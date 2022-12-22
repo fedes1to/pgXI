@@ -2330,7 +2330,7 @@ public sealed class Player_move_c : MonoBehaviour
 			inGameGUI.StopAllCircularIndicators();
 		}
 		photonView.synchronization = ViewSynchronization.Off;
-		_networkView.stateSynchronization = NetworkStateSynchronization.Off;
+//		_networkView.stateSynchronization = NetworkStateSynchronization.Off;
 		if (!Defs.isTurretWeapon)
 		{
 			while (deltaAngle < 40f && !Defs.isTurretWeapon && !isMechActive)
@@ -2390,7 +2390,7 @@ public sealed class Player_move_c : MonoBehaviour
 			deltaAngle = 0f;
 		}
 		photonView.synchronization = ViewSynchronization.Unreliable;
-		_networkView.stateSynchronization = NetworkStateSynchronization.Unreliable;
+//		_networkView.stateSynchronization = NetworkStateSynchronization.Unreliable;
 		_changingWeapon = false;
 	}
 

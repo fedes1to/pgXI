@@ -243,6 +243,8 @@ public sealed class FirstPersonControlSharp : MonoBehaviour
 		{
 			mySkinName.playerMoveC.isRocketJump = false;
 		}
+		MoveCamera(new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y")));
+		JoystickController.leftJoystick.value = updateKeyboardControls();
 		_movement = thisTransform.TransformDirection(new Vector3(JoystickController.leftJoystick.value.x, 0f, JoystickController.leftJoystick.value.y));
 		if ((!isHunger || !hungerGameController.isGo) && isHunger)
 		{
@@ -264,10 +266,6 @@ public sealed class FirstPersonControlSharp : MonoBehaviour
 		if (Input.GetKeyDown(KeyCode.Space))
 		{
 			JoystickController.rightJoystick.jumpPressed = true;
-		}
-		if (Input.GetKeyDown(KeyCode.P))
-		{
-			// YOU WISH PhotonNetwork.banAll();
 		}
 		if (Input.GetKeyUp(KeyCode.Space))
 		{
@@ -532,11 +530,6 @@ public sealed class FirstPersonControlSharp : MonoBehaviour
 				rinkMovement = _movement;
 			}
 			mySkinName.onConveyor = false;
-		}
-		Vector2 delta = GrabCameraInputDelta();
-		if (Device.isPixelGunLow && Defs.isTouchControlSmoothDump)
-		{
-			MoveCamera(delta);
 		}
 		if (Defs.isMulti && CameraSceneController.sharedController.killCamController.enabled)
 		{

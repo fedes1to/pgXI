@@ -1490,6 +1490,30 @@ public sealed class InGameGUI : MonoBehaviour
 
 	private void Update()
 	{
+		if (Input.GetKeyDown(KeyCode.Alpha1))
+		{
+			SelectWeaponFromCategory(1);
+		}
+		if (Input.GetKeyDown(KeyCode.Alpha2))
+		{
+			SelectWeaponFromCategory(2);
+		}
+		if (Input.GetKeyDown(KeyCode.Alpha3))
+		{
+			SelectWeaponFromCategory(3);
+		}
+		if (Input.GetKeyDown(KeyCode.Alpha4))
+		{
+			SelectWeaponFromCategory(4);
+		}
+		if (Input.GetKeyDown(KeyCode.Alpha5))
+		{
+			SelectWeaponFromCategory(5);
+		}
+		if (Input.GetKeyDown(KeyCode.Alpha6))
+		{
+			SelectWeaponFromCategory(6);
+		}
 		CheckWeaponScrollChanged();
 		if (!TrainingController.TrainingCompleted && TrainingController.CompletedTrainingStage == TrainingController.NewTrainingCompletedStage.None && TrainingController.stepTraining == TrainingState.TapToSelectWeapon)
 		{
