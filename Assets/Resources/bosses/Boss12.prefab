@@ -1,0 +1,1213 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1838967459781987}
+  m_IsPrefabParent: 1
+--- !u!1 &1838967459781987
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4703029697899493}
+  - component: {fileID: 82696309671632333}
+  - component: {fileID: 195747182039505584}
+  - component: {fileID: 114789411653907443}
+  - component: {fileID: 114713383629234909}
+  m_Layer: 0
+  m_Name: Boss12
+  m_TagString: Enemy
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4703029697899493
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1838967459781987}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4497191144435999}
+  - {fileID: 4223550759879941}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: -0, z: -0}
+--- !u!82 &82696309671632333
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1838967459781987}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 0
+  MinDistance: 1
+  MaxDistance: 100
+  Pan2D: 0
+  rolloffMode: 2
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+--- !u!195 &195747182039505584
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1838967459781987}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 2
+--- !u!114 &114789411653907443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1838967459781987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f3b25b53e0611d48adfd98533e80d5a, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  minLenghtMove: 17
+  isStationary: 0
+  isTeleportationMove: 0
+  timeToNextTeleport: 2
+  DeltaTeleportAttackDistance:
+  - 1
+  - 2
+  effectTeleport: {fileID: 0}
+  angleByPlayerLook: 30
+  teleportStart: {fileID: 0}
+  teleportEnd: {fileID: 0}
+--- !u!114 &114713383629234909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1838967459781987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a22c043b8cc22274fa6640766295979a, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  nameBot: Mutant
+  damageSound: {fileID: 8300000, guid: 79c3bba6534bb804e87817664b3b98bd, type: 3}
+  voiceMobSoud: {fileID: 8300000, guid: c03aad64d7fb6744fa2904a50fbfe84a, type: 3}
+  takeDamageSound: {fileID: 8300000, guid: 92db45ee01f4dc944b4a5d62b51643c3, type: 3}
+  deathSound: {fileID: 8300000, guid: b22b2e0bfc60c4542a6f0c584a69c155, type: 3}
+  stepSound: {fileID: 0}
+  runStepSound: {fileID: 0}
+  notAttackingSpeed: 2
+  attackingSpeed: 3.5
+  health: 40
+  attackDistance: 11
+  detectRadius: 200
+  damagePerHit: 5
+  scorePerKill: 1800
+  attackingSpeedRandomRange:
+  - -0.5
+  - 0.5
+  flashDeadthTexture: {fileID: 2800000, guid: 47643b06907519c44aad5c6f8edab224, type: 3}
+  heightFlyOutHitEffect: 1.75
+  isAutomaticAnimationEnable: 0
+  speedAnimationWalk: 1
+  speedAnimationRun: 1
+  speedAnimationAttack: 1
+  isFlyingSpeedLimit: 0
+  maxFlyingSpeed: 0
+  guards: []
+  bulletPrefab: {fileID: 1463040927376949, guid: fffd0b841d925c843a742887c2208b15, type: 2}
+  isFriendlyFire: 0
+  firePoints:
+  - {fileID: 4704311801515079}
+  isSequentialShooting: 0
+  rangeShootingDistance: 12
+  headPoint: {fileID: 0}
+  isProjectileExplosion: 1
+  damagePerHitMin: 1
+  effectExplosion: {fileID: 1153716702391395, guid: 1a3d261f108d15a43972bdc9cdf46272, type: 2}
+  radiusExplosion: 4
+  speedBullet: 13
+  isCalculateSpeedBullet: 0
+  shootingSound: {fileID: 8300000, guid: f9bf394d26f030041ad9865c168c642e, type: 3}
+  isMoveByPhysics: 1
+  force: 8
+  angle: -30
+--- !u!1 &1046087795673362
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4497191144435999}
+  m_Layer: 0
+  m_Name: Healt_Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4497191144435999
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1046087795673362}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.73, z: 0.249}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4945457171944779}
+  m_Father: {fileID: 4703029697899493}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: -0, z: -0}
+--- !u!1 &1187323970597721
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4945457171944779}
+  - component: {fileID: 114656528730987660}
+  - component: {fileID: 114932100257952356}
+  m_Layer: 0
+  m_Name: Health_Indicator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4945457171944779
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1187323970597721}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
+  m_Children:
+  - {fileID: 4871556482474468}
+  m_Father: {fileID: 4497191144435999}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: -0, z: -0}
+--- !u!114 &114656528730987660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1187323970597721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf2f31d8675e04d4593700a0f2c7395b, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  Invert: 1
+--- !u!114 &114932100257952356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1187323970597721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7461694bb57b15449cbc1e48208e327, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  _frame: {fileID: 1202887766957517}
+  _healthBar: {fileID: 4579530884604259}
+  _currentScale: 0
+--- !u!1 &1202887766957517
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4871556482474468}
+  - component: {fileID: 33518277053287280}
+  - component: {fileID: 23710601993031990}
+  m_Layer: 0
+  m_Name: Health_Frame
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4871556482474468
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1202887766957517}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 12, z: 0}
+  m_LocalScale: {x: 15, y: 15, z: 3}
+  m_Children:
+  - {fileID: 4579530884604259}
+  m_Father: {fileID: 4945457171944779}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: -0, z: -0}
+--- !u!33 &33518277053287280
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1202887766957517}
+  m_Mesh: {fileID: 4300000, guid: 67570914a1f5c9a47854dc07a0aef807, type: 2}
+--- !u!23 &23710601993031990
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1202887766957517}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 2100000, guid: 0eec8f257459cd847b606ad090c09784, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!1 &1157490689269875
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4579530884604259}
+  - component: {fileID: 33146991781670942}
+  - component: {fileID: 23295281840887015}
+  m_Layer: 0
+  m_Name: Health_Bar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4579530884604259
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1157490689269875}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.1573493, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4871556482474468}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: -0, z: -0}
+--- !u!33 &33146991781670942
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1157490689269875}
+  m_Mesh: {fileID: 4300000, guid: c241b0f4d1ff30144bd3097df04f9f18, type: 2}
+--- !u!23 &23295281840887015
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1157490689269875}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 2100000, guid: 0eec8f257459cd847b606ad090c09784, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!1 &1281932818268692
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4223550759879941}
+  - component: {fileID: 111433463418952954}
+  - component: {fileID: 65120792466311500}
+  - component: {fileID: 135129558984897638}
+  - component: {fileID: 114757764392790476}
+  m_Layer: 0
+  m_Name: Boss12
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4223550759879941
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1281932818268692}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4816512130823045}
+  - {fileID: 4788004806569491}
+  m_Father: {fileID: 4703029697899493}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: -0, z: -0}
+--- !u!111 &111433463418952954
+Animation:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1281932818268692}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 0}
+  m_Animations:
+  - {fileID: 7400000, guid: 6420fbf6b5c07d942b7e0f70d3fb2897, type: 2}
+  - {fileID: 7400000, guid: 585adaef26a9dbf46aad2f8f73b50517, type: 2}
+  - {fileID: 7400000, guid: c04b2a66b5e33354bbead25514e3688f, type: 2}
+  - {fileID: 7400000, guid: 91aa07a39591ce746b022b9e9cdec12c, type: 2}
+  - {fileID: 7400000, guid: 4152e21baaa6893439c0ef0ed8b301f9, type: 2}
+  - {fileID: 7400000, guid: b2d9b4fdbd3363a4da0b47f609593b17, type: 2}
+  - {fileID: 7400000, guid: 7204301fd6065e948bad5b886422e175, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 1
+--- !u!65 &65120792466311500
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1281932818268692}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.33, y: 1.4021308, z: 0.82}
+  m_Center: {x: 0, y: 1.4860655, z: 0}
+--- !u!135 &135129558984897638
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1281932818268692}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.32455516
+  m_Center: {x: 0, y: 2.49, z: 0.14}
+--- !u!114 &114757764392790476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1281932818268692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f3bfead665ce1e4387e2b5b74784e6c, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+--- !u!1 &1437426280421105
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4816512130823045}
+  - component: {fileID: 137280371531552263}
+  - component: {fileID: 114001986993540342}
+  m_Layer: 0
+  m_Name: Boss34
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4816512130823045
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1437426280421105}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4223550759879941}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: -0, z: -0}
+--- !u!137 &137280371531552263
+SkinnedMeshRenderer:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1437426280421105}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 2100000, guid: 94c5d399fddb4ed4d877f22961b68830, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  serializedVersion: 2
+  m_Quality: 0
+  m_UpdateWhenOffscreen: 0
+  m_skinnedMotionVectors: 0
+  m_Mesh: {fileID: 4300000, guid: ef5c910c14bbaf545b5542349ec78888, type: 2}
+  m_Bones:
+  - {fileID: 4247040729087538}
+  - {fileID: 4177999452111566}
+  - {fileID: 4149408931467645}
+  - {fileID: 4816162530195527}
+  - {fileID: 4741130882590226}
+  - {fileID: 4320861847632838}
+  - {fileID: 4376815105661668}
+  - {fileID: 4591106735896219}
+  - {fileID: 4025039266062635}
+  - {fileID: 4467496917220973}
+  - {fileID: 4527127460101126}
+  - {fileID: 4006857503889499}
+  - {fileID: 4023518181947092}
+  - {fileID: 4183108521903113}
+  - {fileID: 4764524123825141}
+  - {fileID: 4102580414858324}
+  - {fileID: 4291825902312165}
+  - {fileID: 4427921598002315}
+  - {fileID: 4704311801515079}
+  m_BlendShapeWeights: []
+  m_RootBone: {fileID: 4247040729087538}
+  m_AABB:
+    m_Center: {x: -1.1869886, y: 0.14076579, z: -0.4293728}
+    m_Extent: {x: 1.9767549, y: 2.2855225, z: 2.1415024}
+  m_DirtyAABB: 0
+--- !u!114 &114001986993540342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1437426280421105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03d79672937f2cc4d8dd780e3f09bda2, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+--- !u!1 &1897732966209422
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4788004806569491}
+  m_Layer: 0
+  m_Name: Zombie_boss_Pelvis
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4788004806569491
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1897732966209422}
+  m_LocalRotation: {x: -0.5000047, y: 0.49999174, z: 0.5000083, w: -0.49999526}
+  m_LocalPosition: {x: 2E-08, y: 0.6875, z: -1.6999999E-07}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4816162530195527}
+  - {fileID: 4741130882590226}
+  - {fileID: 4247040729087538}
+  m_Father: {fileID: 4223550759879941}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 89.999596, y: -0.0014889812, z: 90}
+--- !u!1 &1318779401163481
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4816162530195527}
+  m_Layer: 0
+  m_Name: Zombie_boss_LLeg1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4816162530195527
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1318779401163481}
+  m_LocalRotation: {x: -0.00017048095, y: 0.99999994, z: 9.607556E-05, w: 0.00040248394}
+  m_LocalPosition: {x: -0, y: 0, z: 0.2499999}
+  m_LocalScale: {x: 0.9999994, y: 1.0000001, z: 1.0000004}
+  m_Children: []
+  m_Father: {fileID: 4788004806569491}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 179.989, y: -0.046123136, z: 179.98047}
+--- !u!1 &1168747673257417
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4741130882590226}
+  m_Layer: 0
+  m_Name: Zombie_boss_RLeg1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4741130882590226
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1168747673257417}
+  m_LocalRotation: {x: -5.6843504E-07, y: 0.99999994, z: -9.547452E-05, w: -0.0003749999}
+  m_LocalPosition: {x: -0, y: 0, z: -0.25000006}
+  m_LocalScale: {x: 1.0000002, y: 1, z: 1.0000004}
+  m_Children: []
+  m_Father: {fileID: 4788004806569491}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: -179.98906, y: 0.042971827, z: 179.99994}
+--- !u!1 &1360014796637932
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4247040729087538}
+  m_Layer: 0
+  m_Name: Zombie_boss_Spine1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4247040729087538
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1360014796637932}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4149408931467645}
+  m_Father: {fileID: 4788004806569491}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: -0, z: -0}
+--- !u!1 &1018842032580058
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4149408931467645}
+  m_Layer: 0
+  m_Name: Zombie_boss_Spine2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4149408931467645
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1018842032580058}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.75, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4764290634943252}
+  m_Father: {fileID: 4247040729087538}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: -0, z: -0}
+--- !u!1 &1098294578858790
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4764290634943252}
+  m_Layer: 0
+  m_Name: Zombie_boss_chest
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4764290634943252
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1098294578858790}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.75, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4517536097195038}
+  - {fileID: 4472719623333524}
+  - {fileID: 4276423624467966}
+  m_Father: {fileID: 4149408931467645}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: -0, z: -0}
+--- !u!1 &1586401390617529
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4517536097195038}
+  m_Layer: 0
+  m_Name: Zombie_boss_LArmCollarbone
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4517536097195038
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1586401390617529}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0.12028732, y: -0.11376888, z: 0.6259948}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4591106735896219}
+  m_Father: {fileID: 4764290634943252}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -0, y: -90, z: 0}
+--- !u!1 &1118164723227131
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4591106735896219}
+  m_Layer: 0
+  m_Name: Zombie_boss_LArm1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4591106735896219
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1118164723227131}
+  m_LocalRotation: {x: -0.0005879604, y: 0.7071083, z: -0.0005879604, w: 0.70710474}
+  m_LocalPosition: {x: -0.1298048, y: 0, z: -1.4999999E-07}
+  m_LocalScale: {x: 1.0000004, y: 1.0000004, z: 1}
+  m_Children:
+  - {fileID: 4699130962477389}
+  m_Father: {fileID: 4517536097195038}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -90.17366, y: -89.90472, z: 90.17366}
+--- !u!1 &1079216393698334
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4699130962477389}
+  m_Layer: 0
+  m_Name: Zombie_boss_LArmPalm
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4699130962477389
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1079216393698334}
+  m_LocalRotation: {x: 1.4724912E-06, y: -2.5163022E-06, z: -0.010967664, w: 0.99993986}
+  m_LocalPosition: {x: -1.0035903, y: 0, z: 0}
+  m_LocalScale: {x: 0.9999996, y: 0.9999996, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4591106735896219}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0.00017188741, y: 0.00028647901, z: 1.256827}
+--- !u!1 &1122120406476398
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4472719623333524}
+  m_Layer: 0
+  m_Name: Zombie_boss_neck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4472719623333524
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1122120406476398}
+  m_LocalRotation: {x: 0, y: -0, z: -0.41447797, w: 0.9100594}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.9999999, y: 0.9999999, z: 1}
+  m_Children:
+  - {fileID: 4177999452111566}
+  m_Father: {fileID: 4764290634943252}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: -0, z: 48.97289}
+--- !u!1 &1133632808902832
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4177999452111566}
+  m_Layer: 0
+  m_Name: Zombie_boss_Head
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4177999452111566
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1133632808902832}
+  m_LocalRotation: {x: 0, y: 0, z: 0.41447797, w: 0.9100594}
+  m_LocalPosition: {x: -0.1356868, y: -1.4999999E-07, z: 0}
+  m_LocalScale: {x: 0.9999999, y: 0.9999999, z: 1}
+  m_Children:
+  - {fileID: 4376815105661668}
+  m_Father: {fileID: 4472719623333524}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: -0, z: -48.97289}
+--- !u!1 &1629782673570628
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4376815105661668}
+  m_Layer: 0
+  m_Name: Zombie_boss_gaw
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4376815105661668
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1629782673570628}
+  m_LocalRotation: {x: 0, y: -0, z: -0.13052616, w: 0.9914449}
+  m_LocalPosition: {x: -0.0868341, y: 0.0193849, z: 0}
+  m_LocalScale: {x: 1.0000001, y: 1.0000001, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4177999452111566}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: -0, z: 14.999996}
+--- !u!1 &1838042678156476
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4276423624467966}
+  m_Layer: 0
+  m_Name: Zombie_boss_RArmCollarbone
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4276423624467966
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1838042678156476}
+  m_LocalRotation: {x: -0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0.12028732, y: -0.11376896, z: -0.62599486}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4320861847632838}
+  m_Father: {fileID: 4764290634943252}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: -0, y: 90, z: 0}
+--- !u!1 &1830487854415342
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4320861847632838}
+  m_Layer: 0
+  m_Name: Zombie_boss_RArm1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4320861847632838
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1830487854415342}
+  m_LocalRotation: {x: -0.05427301, y: -0.6695524, z: 0.065142676, w: 0.7379095}
+  m_LocalPosition: {x: -0.16318314, y: 0, z: 1.4999999E-07}
+  m_LocalScale: {x: 0.9999998, y: 1.0000002, z: 0.9999998}
+  m_Children:
+  - {fileID: 4025039266062635}
+  m_Father: {fileID: 4276423624467966}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -59.769394, y: 78.8331, z: -60.654354}
+--- !u!1 &1654898505448479
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4025039266062635}
+  m_Layer: 0
+  m_Name: Zombie_boss_RArm2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4025039266062635
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1654898505448479}
+  m_LocalRotation: {x: 0.010589875, y: 0.029966377, z: -0.24651131, w: 0.96861863}
+  m_LocalPosition: {x: -0.6439738, y: -4E-08, z: 0}
+  m_LocalScale: {x: 0.9999996, y: 1.0000001, z: 1.0000002}
+  m_Children:
+  - {fileID: 4467496917220973}
+  m_Father: {fileID: 4320861847632838}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0.3295973, y: -3.6277008, z: 28.546625}
+--- !u!1 &1273758071559462
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4467496917220973}
+  m_Layer: 0
+  m_Name: Zombie_boss_RArmPalm
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4467496917220973
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1273758071559462}
+  m_LocalRotation: {x: 0.7051835, y: -0.0016443261, z: 0.11069394, w: 0.70032877}
+  m_LocalPosition: {x: -0.7442094, y: 0, z: 0}
+  m_LocalScale: {x: 0.9999987, y: 1.0000006, z: 1.0000004}
+  m_Children:
+  - {fileID: 4704311801515079}
+  - {fileID: 4291825902312165}
+  - {fileID: 4023518181947092}
+  - {fileID: 4006857503889499}
+  - {fileID: 4527127460101126}
+  m_Father: {fileID: 4025039266062635}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 89.685074, y: 9.115328, z: -8.898154}
+--- !u!1 &1725448280578556
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4704311801515079}
+  m_Layer: 0
+  m_Name: Zombie_boss_R_arm_asset
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4704311801515079
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1725448280578556}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.20619808, y: -0.15636207, z: 0.00016459999}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
+  m_Children: []
+  m_Father: {fileID: 4467496917220973}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: -0, z: -0}
+--- !u!1 &1252198308488786
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4291825902312165}
+  m_Layer: 0
+  m_Name: Zombie_boss_RArmDigit11
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4291825902312165
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1252198308488786}
+  m_LocalRotation: {x: -0.42162523, y: -0.5693911, z: 0.42158556, w: 0.5659432}
+  m_LocalPosition: {x: -0.21774395, y: 0.06519264, z: -0.285461}
+  m_LocalScale: {x: 0.99999774, y: 1.0000002, z: 1.0000008}
+  m_Children:
+  - {fileID: 4427921598002315}
+  m_Father: {fileID: 4467496917220973}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: -90.23628, y: 16.797125, z: -90.23228}
+--- !u!1 &1411353438385136
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4427921598002315}
+  m_Layer: 0
+  m_Name: Zombie_boss_RArmDigit12
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4427921598002315
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1411353438385136}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7396162, w: 0.67302895}
+  m_LocalPosition: {x: -0.31899607, y: 0, z: 0}
+  m_LocalScale: {x: 0.99999785, y: 1.0000019, z: 0.999999}
+  m_Children: []
+  m_Father: {fileID: 4291825902312165}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: -0, z: -95.39746}
+--- !u!1 &1747797532899279
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4023518181947092}
+  m_Layer: 0
+  m_Name: Zombie_boss_RArmDigit21
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4023518181947092
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1747797532899279}
+  m_LocalRotation: {x: 0, y: 0, z: 0.6710729, w: 0.74139136}
+  m_LocalPosition: {x: -0.43299934, y: 0.12481742, z: -0.18299977}
+  m_LocalScale: {x: 0.99999666, y: 1.0000018, z: 1}
+  m_Children:
+  - {fileID: 4102580414858324}
+  m_Father: {fileID: 4467496917220973}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: -0, z: -84.29985}
+--- !u!1 &1212734688668651
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4102580414858324}
+  m_Layer: 0
+  m_Name: Zombie_boss_RArmDigit22
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4102580414858324
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1212734688668651}
+  m_LocalRotation: {x: 0, y: 0, z: 0.67107284, w: 0.7413914}
+  m_LocalPosition: {x: -0.31148323, y: 0, z: 0}
+  m_LocalScale: {x: 0.99999565, y: 1.0000027, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4023518181947092}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: -0, z: -84.29984}
+--- !u!1 &1420691383640055
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4006857503889499}
+  m_Layer: 0
+  m_Name: Zombie_boss_RArmDigit31
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4006857503889499
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1420691383640055}
+  m_LocalRotation: {x: 0, y: 0, z: 0.6710729, w: 0.74139136}
+  m_LocalPosition: {x: -0.43299934, y: 0.12481742, z: 1.8E-07}
+  m_LocalScale: {x: 0.99999666, y: 1.0000018, z: 1}
+  m_Children:
+  - {fileID: 4764524123825141}
+  m_Father: {fileID: 4467496917220973}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: -0, z: -84.29985}
+--- !u!1 &1709808521348784
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4764524123825141}
+  m_Layer: 0
+  m_Name: Zombie_boss_RArmDigit32
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4764524123825141
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1709808521348784}
+  m_LocalRotation: {x: 0, y: 0, z: 0.67107284, w: 0.7413914}
+  m_LocalPosition: {x: -0.31148323, y: 0, z: -1E-08}
+  m_LocalScale: {x: 0.99999565, y: 1.0000027, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4006857503889499}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: -0, z: -84.29984}
+--- !u!1 &1172444380255279
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4527127460101126}
+  m_Layer: 0
+  m_Name: Zombie_boss_RArmDigit41
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4527127460101126
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1172444380255279}
+  m_LocalRotation: {x: 0, y: 0, z: 0.6710729, w: 0.74139136}
+  m_LocalPosition: {x: -0.43299934, y: 0.12481742, z: 0.18300012}
+  m_LocalScale: {x: 0.99999666, y: 1.0000018, z: 1}
+  m_Children:
+  - {fileID: 4183108521903113}
+  m_Father: {fileID: 4467496917220973}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: -0, z: -84.29985}
+--- !u!1 &1187009907191626
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4183108521903113}
+  m_Layer: 0
+  m_Name: Zombie_boss_RArmDigit42
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4183108521903113
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1187009907191626}
+  m_LocalRotation: {x: 0, y: 0, z: 0.67107284, w: 0.7413914}
+  m_LocalPosition: {x: -0.31148323, y: -2E-08, z: 0}
+  m_LocalScale: {x: 0.99999565, y: 1.0000027, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4527127460101126}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: -0, z: -84.29984}

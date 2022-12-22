@@ -1,0 +1,370 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1490212065619482}
+  m_IsPrefabParent: 1
+--- !u!1 &1490212065619482
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4705466789281845}
+  - component: {fileID: 111039081716310540}
+  - component: {fileID: 65527099068937935}
+  - component: {fileID: 114393723401977634}
+  - component: {fileID: 114149876106793644}
+  - component: {fileID: 114608943310598542}
+  - component: {fileID: 82857589010352879}
+  - component: {fileID: 114819972758174624}
+  m_Layer: 0
+  m_Name: Rocket_61
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4705466789281845
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1490212065619482}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4416014191594861}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: -0, z: -0}
+--- !u!111 &111039081716310540
+Animation:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1490212065619482}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Animation: {fileID: 0}
+  m_Animations:
+  - {fileID: 7400000, guid: 19ddd2bd8f7388e45a839176fc397404, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 1
+--- !u!65 &65527099068937935
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1490212065619482}
+  m_Material: {fileID: 13400000, guid: 0f81ba8cb08cd7447b71fcdca2d4b092, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.24544205, y: 0.59559417, z: 0.30208254}
+  m_Center: {x: 0, y: 0.016506493, z: -0.009440079}
+--- !u!114 &114393723401977634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1490212065619482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37c04414432f9a8448bf3fb002b6374f, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+--- !u!114 &114149876106793644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1490212065619482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 250114f962311d24d8c3e53cf67bbc62, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  typeFly: 17
+  typeDead: 1
+  typeKilsIconChat: 3
+  lifeTime: 1.35
+  startForce: 150
+  flyParticle: {fileID: 0}
+  trail: {fileID: 0}
+  droneRotator: {fileID: 0}
+  droneParticle: {fileID: 0}
+  sizeBoxCollider: {x: 0.15, y: 0.15, z: 0.75}
+  centerBoxCollider: {x: 0, y: 0, z: 0}
+  autoRocketForce: 15
+  raduisDetectTarget: 5
+  toxicHitTime: 1
+  toxicDamageMultiplier: 0.2
+  stickedParticle: {fileID: 0}
+  countJumpLightning: 2
+  raduisDetectTargetLightning: 5
+  chargeScaleMin: 0.7
+  chargeScaleMax: 1.2
+--- !u!114 &114608943310598542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1490212065619482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b07e4d1e98b990a4695dd13c66133b7a, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  _Type: 0
+  _rocketComponent: {fileID: 0}
+--- !u!82 &82857589010352879
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1490212065619482}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: ac533009dbe8caf4a8588857594da14b, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+--- !u!114 &114819972758174624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1490212065619482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9af2b2c646f8a0419a72addcce48084, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+--- !u!1 &1900917757857092
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4416014191594861}
+  - component: {fileID: 111145590759818979}
+  m_Layer: 0
+  m_Name: NUCLEAR_GRENADE_Rocket
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4416014191594861
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1900917757857092}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071067}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4700532666083353}
+  - {fileID: 4860996245070693}
+  m_Father: {fileID: 4705466789281845}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 90.00001, y: -0, z: -0}
+--- !u!111 &111145590759818979
+Animation:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1900917757857092}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 0}
+  m_Animations:
+  - {fileID: 7400000, guid: 19ddd2bd8f7388e45a839176fc397404, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
+--- !u!1 &1892923819182137
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4700532666083353}
+  - component: {fileID: 33877846050792251}
+  - component: {fileID: 23572769706854461}
+  m_Layer: 0
+  m_Name: GRENADE_peg
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4700532666083353
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1892923819182137}
+  m_LocalRotation: {x: -0.6703902, y: 0.0150573235, z: -0.021181827, w: 0.7415535}
+  m_LocalPosition: {x: -1.9073486E-08, y: -7.6293944E-08, z: 1.5258789E-07}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4416014191594861}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -84.22038, y: 0.34770486, z: 2.95803}
+--- !u!33 &33877846050792251
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1892923819182137}
+  m_Mesh: {fileID: 4300000, guid: 8636505df58df6f4596bd43864d3dfcc, type: 2}
+--- !u!23 &23572769706854461
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1892923819182137}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 2100000, guid: 4cb5c5c7096d9054ab6922ee70db496e, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!1 &1638525861987009
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4860996245070693}
+  - component: {fileID: 33111701946948427}
+  - component: {fileID: 23433931082611029}
+  m_Layer: 0
+  m_Name: NUCLEAR GRENADE
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4860996245070693
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1638525861987009}
+  m_LocalRotation: {x: 0.050320107, y: -0.0043306374, z: -0.025624953, w: 0.99839497}
+  m_LocalPosition: {x: -0.0004576492, y: 0.023093337, z: -0.012692871}
+  m_LocalScale: {x: 1.0000002, y: 0.9999998, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4416014191594861}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 5.779624, y: 0.3477, z: 2.9580302}
+--- !u!33 &33111701946948427
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1638525861987009}
+  m_Mesh: {fileID: 4300000, guid: b7e4080e0ecfc5646825e11e2415f9bb, type: 2}
+--- !u!23 &23433931082611029
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1638525861987009}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 2100000, guid: 4cb5c5c7096d9054ab6922ee70db496e, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0

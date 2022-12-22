@@ -1,0 +1,275 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1504706063781797}
+  m_IsPrefabParent: 1
+--- !u!1 &1504706063781797
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4732412060391945}
+  - component: {fileID: 114159635289729651}
+  - component: {fileID: 65342694611100385}
+  - component: {fileID: 114712685424886620}
+  m_Layer: 29
+  m_Name: Rocket_45
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4732412060391945
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1504706063781797}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4341207759504253}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: -0, z: -0}
+--- !u!114 &114159635289729651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1504706063781797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 250114f962311d24d8c3e53cf67bbc62, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  typeFly: 3
+  typeDead: 0
+  typeKilsIconChat: 0
+  lifeTime: 7
+  startForce: 190
+  flyParticle: {fileID: 0}
+  trail: {fileID: 0}
+  droneRotator: {fileID: 0}
+  droneParticle: {fileID: 0}
+  sizeBoxCollider: {x: 0.15, y: 0.15, z: 0.75}
+  centerBoxCollider: {x: 0, y: 0, z: 0}
+  autoRocketForce: 15
+  raduisDetectTarget: 5
+  toxicHitTime: 1
+  toxicDamageMultiplier: 0.2
+  stickedParticle: {fileID: 0}
+  countJumpLightning: 2
+  raduisDetectTargetLightning: 5
+  chargeScaleMin: 0.7
+  chargeScaleMax: 1.2
+--- !u!65 &65342694611100385
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1504706063781797}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114712685424886620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1504706063781797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f43e306faadc0bc4da59cd996acdd491, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+--- !u!1 &1979376462746018
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4341207759504253}
+  - component: {fileID: 111335193916268410}
+  m_Layer: 29
+  m_Name: Trapper_Snaryad
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4341207759504253
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1979376462746018}
+  m_LocalRotation: {x: 2.1855694E-08, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4481141272919438}
+  - {fileID: 4104950088592628}
+  m_Father: {fileID: 4732412060391945}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 2.504478E-06, y: -0, z: 0}
+--- !u!111 &111335193916268410
+Animation:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1979376462746018}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 0}
+  m_Animations:
+  - {fileID: 7400000, guid: 5ddf2bb33732b3742be98b348a131dc4, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 1
+--- !u!1 &1274546774871768
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4481141272919438}
+  m_Layer: 29
+  m_Name: Bone_Root
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4481141272919438
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1274546774871768}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071067}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4333939083967165}
+  - {fileID: 4857794177652835}
+  m_Father: {fileID: 4341207759504253}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -90.00001, y: -0, z: 0}
+--- !u!1 &1952720865073496
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4333939083967165}
+  m_Layer: 29
+  m_Name: Bone_Down
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4333939083967165
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1952720865073496}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.9073486E-08, y: 0.10334102, z: -0.05710546}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4481141272919438}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: -0, z: -0}
+--- !u!1 &1636515421404888
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4857794177652835}
+  m_Layer: 29
+  m_Name: Bone_Top
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4857794177652835
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1636515421404888}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.0003519249, y: 0.10928997, z: 0.011864361}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4481141272919438}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: -0, z: -0}
+--- !u!1 &1123756232923431
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4104950088592628}
+  - component: {fileID: 137635620116091877}
+  m_Layer: 29
+  m_Name: Trapper_Snaryad_Mesh
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4104950088592628
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1123756232923431}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071067}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4341207759504253}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: -90.00001, y: -0, z: 0}
+--- !u!137 &137635620116091877
+SkinnedMeshRenderer:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1123756232923431}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 2100000, guid: da7ae97d3696d794e8b8d56279500a77, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  serializedVersion: 2
+  m_Quality: 0
+  m_UpdateWhenOffscreen: 0
+  m_skinnedMotionVectors: 0
+  m_Mesh: {fileID: 4300000, guid: 18398af181945e6448e4c58e7988632a, type: 2}
+  m_Bones:
+  - {fileID: 4481141272919438}
+  - {fileID: 4333939083967165}
+  - {fileID: 4857794177652835}
+  m_BlendShapeWeights: []
+  m_RootBone: {fileID: 4481141272919438}
+  m_AABB:
+    m_Center: {x: 0, y: 0.014044687, z: -0.0155825615}
+    m_Extent: {x: 0.14942527, y: 0.17479618, z: 0.30503172}
+  m_DirtyAABB: 0

@@ -1,0 +1,26 @@
+public enum GiftCategoryType
+{
+	none,
+	Coins,
+	Gems,
+	Grenades,
+	Gear,
+	Skins,
+	ArmorAndHat,
+	Wear,
+	Event_content,
+	Editor,
+	Masks,
+	Capes,
+	Boots,
+	Hats_random,
+	Gun1,
+	Gun2,
+	Gun3,
+	Gun4,
+	Guns_gray,
+	Stickers,
+	Freespins,
+	WeaponSkin,
+	Gadgets
+}

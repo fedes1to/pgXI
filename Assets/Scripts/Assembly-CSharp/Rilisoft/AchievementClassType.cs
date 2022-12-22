@@ -1,0 +1,39 @@
+namespace Rilisoft
+{
+	public enum AchievementClassType
+	{
+		Unknown,
+		KillMobs,
+		KillPlayers,
+		KillPlayerThroughWeaponCategory,
+		InflictHeadshot,
+		Win,
+		WinInRegim,
+		Gacha,
+		GetCurrency,
+		AccumulateCurrency,
+		JoinToClan,
+		OpenLeague,
+		CollectItem,
+		CollectCompagnSecret,
+		Jump,
+		KillInvisiblePlayer,
+		KillPlayerOfAllWeaponCategories,
+		TurretKill,
+		KillAtFly,
+		KillPlayerWhenHpEqualsOne,
+		RemainArenaWaves,
+		JetPackFlying,
+		MechKillPlayers,
+		Pacifist,
+		Shooting,
+		ReturnAfterDays,
+		CollectPets,
+		QuestsComplited,
+		ExistsGadgetsInAllCategories,
+		Resurection,
+		EggsHatched,
+		DemonKillMech,
+		GetItem
+	}
+}

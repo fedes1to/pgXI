@@ -1,0 +1,22 @@
+public enum BannerWindowType
+{
+	SorryRemovedArmorHat,
+	SorryGearRemoved,
+	Admob,
+	Sorry,
+	SorryWeaponAndArmor,
+	Advertisement,
+	DaysOfValor,
+	X3,
+	EverydayReward,
+	NewVersion,
+	TrophiesPenalty,
+	StarterPack,
+	SocialGunForLogin,
+	buySmiles,
+	GiftBonuse,
+	DailyQuests,
+	TournamentAvailable,
+	TournamentWunner,
+	TournamentLooser
+}
