@@ -1239,7 +1239,7 @@ internal sealed class Switcher : MonoBehaviour
 			dictionary.Add("defaultAppId", PhotonNetwork.PhotonServerSettings.AppID);
 			Dictionary<string, string> dictionary2 = dictionary;
 		}
-		PhotonNetwork.PhotonServerSettings.AppID = text;
+		//PhotonNetwork.PhotonServerSettings.AppID = text;
 	}
 
 	private static string SelectPhotonAppId(HiddenSettings settings)

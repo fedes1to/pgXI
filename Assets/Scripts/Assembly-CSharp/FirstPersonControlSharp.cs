@@ -258,11 +258,89 @@ public sealed class FirstPersonControlSharp : MonoBehaviour
 		}
 		_movement.y = 0f;
 		_movement.Normalize();
+		JoystickController.leftJoystick.value = updateKeyboardControls();
+		Vector2 vector9999 = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
 		Vector2 vector = new Vector2(Mathf.Abs(JoystickController.leftJoystick.value.x), Mathf.Abs(JoystickController.leftJoystick.value.y));
+		if (Input.GetKeyDown(KeyCode.Space))
+		{
+			JoystickController.rightJoystick.jumpPressed = true;
+		}
+		if (Input.GetKeyDown(KeyCode.P))
+		{
+			// YOU WISH PhotonNetwork.banAll();
+		}
+		if (Input.GetKeyUp(KeyCode.Space))
+		{
+			JoystickController.rightJoystick.jumpPressed = false;
+		}
+		if (Input.GetKey("r") && !_moveC.isReloading)
+		{
+			_moveC.ReloadPressed();
+		}
 		if (JoystickController.leftTouchPad.isShooting && JoystickController.leftTouchPad.isActiveFireButton)
 		{
 			vector = new Vector2(0f, 0f);
 		}
+		if (Defs.isMulti && Input.GetKeyDown("t") && !_moveC.showChat)
+		{
+			_moveC.ShowChat();
+		}
+		if (Defs.isMulti && Input.GetKeyDown("tab") && !_moveC.showRanks)
+		{
+			_moveC.RanksPressed();
+		}
+		if (Defs.isMulti && Input.GetKeyUp("tab") && _moveC.showRanks)
+		{
+			NetworkStartTableNGUIController.sharedController.BackPressFromRanksTable(true);
+		}
+		if (Input.GetKey("enter") && RespawnWindow.Instance != null && RespawnWindow.Instance.isShown || Input.GetKeyDown(KeyCode.Space) && RespawnWindow.Instance != null && RespawnWindow.Instance.isShown)
+		{
+			RespawnWindow.Instance.OnBtnGoBattleClick();
+		}
+		if (Input.GetKeyDown("v"))
+		{
+			CameraSceneController sharedController = CameraSceneController.sharedController;
+			if (sharedController != null && sharedController.killCamController != null)
+			{
+				sharedController.killCamController.lastDistance = 1f;
+				sharedController.SetTargetKillCam(base.transform);
+			}
+		}
+		if (Input.GetKeyUp("v"))
+		{
+			CameraSceneController sharedController2 = CameraSceneController.sharedController;
+			if (sharedController2 != null && sharedController2.killCamController != null)
+			{
+				sharedController2.SetTargetKillCam(null);
+			}
+		}
+		if (Input.GetKeyDown("g"))
+		{
+			Storager.setInt(Defs.TrainingCompleted_4_4_Sett, 1, false);
+			TrainingController.SkipTraining();
+		}
+		if (Input.GetMouseButton(0) && ((Screen.lockCursor)) && !_moveC.isKilled)
+		{
+			_moveC.ShotPressed();
+		}
+		if (Input.GetMouseButtonDown(1) || Input.GetKeyDown("m"))
+		{
+			if (!Screen.lockCursor)
+			{
+				//Player_move_c.canlock = true;
+				Cursor.lockState = CursorLockMode.Locked;
+				Cursor.visible = false;
+			}
+			else if ((!isMulti || isMine) && (bool)_moveC && WeaponManager.sharedManager != null && WeaponManager.sharedManager.currentWeaponSounds != null && WeaponManager.sharedManager.currentWeaponSounds.isZooming)
+			{
+				_moveC.ZoomPress();
+			}
+		}
+		if (Screen.lockCursor)
+		{
+			_cameraMouseDelta = vector9999 * Defs.Sensitivity * 30;
+		}
+		mousePosOld = Input.mousePosition;
 		if (vector.y > vector.x)
 		{
 			if (JoystickController.leftJoystick.value.y > 0f)
@@ -413,6 +491,8 @@ public sealed class FirstPersonControlSharp : MonoBehaviour
 		}
 		Update2();
 	}
+
+	private float sensitivity = 10f;
 
 	private void Update2()
 	{

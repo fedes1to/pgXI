@@ -150,6 +150,8 @@ internal sealed class AppsMenu : MonoBehaviour
 
 	private void Awake()
 	{
+		PhotonNetwork.PhotonServerSettings.UseCloud("d2700ea5-7cd3-46ff-81c2-43922275f424", 0);
+		Debug.LogError("done the");
 		LogsManager.Initialize();
 		WeaponManager.FirstTagForOurTier(WeaponTags.PistolTag);
 		if (Application.platform == RuntimePlatform.IPhonePlayer)

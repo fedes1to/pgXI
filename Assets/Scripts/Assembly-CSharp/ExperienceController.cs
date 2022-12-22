@@ -355,8 +355,15 @@ public sealed class ExperienceController : MonoBehaviour
 
 	public static void RewriteLevelingParametersForLevel(int _level, int _coins, int _gems)
 	{
-		_addCoinsFromLevels[_level] = _coins;
-		_addGemsFromLevels[_level] = _gems;
+		try
+		{
+			_addCoinsFromLevels[_level] = _coins;
+			_addGemsFromLevels[_level] = _gems;
+		}
+		catch
+		{
+			UnityEngine.Debug.LogError("augh");
+		}
 	}
 
 	public void SetCurrentExperience(int _exp)
