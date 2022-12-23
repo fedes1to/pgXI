@@ -1604,7 +1604,7 @@ public sealed class FriendsController : MonoBehaviour
 			{
 				if (Debug.isDebugBuild || Application.isEditor)
 				{
-					Debug.LogWarning("CheckMapPopularity error: " + download.error);
+					Debug.Log("CheckMapPopularity error: " + download.error);
 				}
 				yield return StartCoroutine(MyWaitForSeconds(18f));
 				continue;
@@ -3022,7 +3022,7 @@ public sealed class FriendsController : MonoBehaviour
 			{
 				if (Debug.isDebugBuild || Application.isEditor)
 				{
-					Debug.LogWarning("create_player_intent error: " + download.error);
+					Debug.Log("create_player_intent error: " + download.error);
 				}
 				yield return StartCoroutine(MyWaitForSeconds(10f));
 				continue;

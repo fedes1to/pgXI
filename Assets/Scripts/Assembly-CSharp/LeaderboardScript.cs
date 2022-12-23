@@ -1122,7 +1122,7 @@ internal sealed class LeaderboardScript : MonoBehaviour
 		string playerId = FriendsController.sharedController.id;
 		if (string.IsNullOrEmpty(playerId))
 		{
-			Debug.LogError("Player id should not be null.");
+			Debug.LogWarning("Player id should not be null.");
 			yield break;
 		}
 		if (_currentRequestPromise == null)

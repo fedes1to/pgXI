@@ -72,7 +72,7 @@ public sealed class ProtocolListGetter : MonoBehaviour
 			{
 				if (Debug.isDebugBuild)
 				{
-					Debug.LogWarning("ProtocolListGetter error: " + download.error);
+					Debug.Log("ProtocolListGetter error: " + download.error);
 				}
 				yield return waitForSeconds;
 			}
