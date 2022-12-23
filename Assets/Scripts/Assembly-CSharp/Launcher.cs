@@ -6,7 +6,6 @@ using System.Runtime.CompilerServices;
 using System.Threading;
 using Rilisoft;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.GameCenter;
 using UnityEngine.UI;
 
 internal sealed class Launcher : MonoBehaviour
@@ -605,10 +604,6 @@ internal sealed class Launcher : MonoBehaviour
 				}
 				_amazonGamecircleManagerInitialized = true;
 			}
-		}
-		else if (BuildSettings.BuildTargetPlatform == RuntimePlatform.IPhonePlayer)
-		{
-			GameCenterPlatform.ShowDefaultAchievementCompletionBanner(true);
 		}
 		yield return 1f;
 	}

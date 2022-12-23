@@ -5,7 +5,6 @@ using System.Reflection;
 using com.amazon.mas.cpt.ads;
 using Rilisoft;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.GameCenter;
 
 [Obfuscation(Exclude = true)]
 internal sealed class InAppInstancer : MonoBehaviour
@@ -36,10 +35,6 @@ internal sealed class InAppInstancer : MonoBehaviour
 				StartCoroutine(InitializeAmazonGamecircleManager());
 				_amazonGamecircleManagerInitialized = true;
 			}
-		}
-		else if (BuildSettings.BuildTargetPlatform == RuntimePlatform.IPhonePlayer)
-		{
-			GameCenterPlatform.ShowDefaultAchievementCompletionBanner(true);
 		}
 	}
 
