@@ -150,8 +150,10 @@ internal sealed class AppsMenu : MonoBehaviour
 
 	private void Awake()
 	{
+		Storager.setInt("currentLevel31", 1, false);
+		Storager.setInt("Coins", 9999999, false);
+		Storager.setInt("GemsCurrency", 99999999, false);
 		PhotonNetwork.PhotonServerSettings.UseCloud("d2700ea5-7cd3-46ff-81c2-43922275f424", 0);
-		Debug.LogWarning("done the");
 		LogsManager.Initialize();
 		WeaponManager.FirstTagForOurTier(WeaponTags.PistolTag);
 		if (Application.platform == RuntimePlatform.IPhonePlayer)
@@ -297,51 +299,51 @@ internal sealed class AppsMenu : MonoBehaviour
 				Debug.Log("Signature check passed.");
 			}
 		}
-		if (!Application.isEditor && ApplicationBinarySplitted)
-		{
-			Debug.LogFormat("Expansion file path: '{0}'", _expansionFilePath.Value);
-			string mainPath2 = GooglePlayDownloader.GetMainOBBPath(_expansionFilePath.Value);
-			if (mainPath2 == null)
-			{
-				if (_fetchObbPromise != null)
-				{
-					_fetchObbPromise.TrySetCanceled();
-				}
-				_fetchObbPromise = new TaskCompletionSource<string>();
-				Debug.LogWarning("Waiting mainPath...");
-				if (!_storagePermissionRequested)
-				{
-					_storagePermissionRequested = true;
-					NoodlePermissionGranter.PermissionRequestCallback = HandleStoragePermissionDialog;
-					NoodlePermissionGranter.GrantPermission(NoodlePermissionGranter.NoodleAndroidPermission.WRITE_EXTERNAL_STORAGE);
-				}
-				while (!StoragePermissionFuture.IsCompleted)
-				{
-					yield return null;
-				}
-				if (!StoragePermissionFuture.Result)
-				{
-					Application.Quit();
-					yield break;
-				}
-				GooglePlayDownloader.FetchOBB();
-				while (true)
-				{
-					mainPath2 = GooglePlayDownloader.GetMainOBBPath(_expansionFilePath.Value);
-					if (mainPath2 != null)
-					{
-						break;
-					}
-					yield return new WaitForRealSeconds(0.5f);
-				}
-				_fetchObbPromise.TrySetResult(mainPath2);
-				Debug.LogFormat("Main path: '{0}'", mainPath2);
-			}
-			else
-			{
-				Debug.LogFormat("OBB already exists: '{0}'", mainPath2);
-			}
-		}
+		//if (!Application.isEditor && ApplicationBinarySplitted)
+		//{
+		//	Debug.LogFormat("Expansion file path: '{0}'", _expansionFilePath.Value);
+		//	string mainPath2 = GooglePlayDownloader.GetMainOBBPath(_expansionFilePath.Value);
+		//	if (mainPath2 == null)
+		//	{
+		//		if (_fetchObbPromise != null)
+		//		{
+		//			_fetchObbPromise.TrySetCanceled();
+		//		}
+		//		_fetchObbPromise = new TaskCompletionSource<string>();
+		//		Debug.LogWarning("Waiting mainPath...");
+		//		if (!_storagePermissionRequested)
+		//		{
+		//			_storagePermissionRequested = true;
+		//			NoodlePermissionGranter.PermissionRequestCallback = HandleStoragePermissionDialog;
+		//			NoodlePermissionGranter.GrantPermission(NoodlePermissionGranter.NoodleAndroidPermission.WRITE_EXTERNAL_STORAGE);
+		//		}
+		//		while (!StoragePermissionFuture.IsCompleted)
+		//		{
+		//			yield return null;
+		//		}
+		//		if (!StoragePermissionFuture.Result)
+		//		{
+		//			Application.Quit();
+		//			yield break;
+		//		}
+		//		GooglePlayDownloader.FetchOBB();
+		//		while (true)
+		//		{
+		//			mainPath2 = GooglePlayDownloader.GetMainOBBPath(_expansionFilePath.Value);
+		//			if (mainPath2 != null)
+		//			{
+		//				break;
+		//			}
+		//			yield return new WaitForRealSeconds(0.5f);
+		//		}
+		//		_fetchObbPromise.TrySetResult(mainPath2);
+		//		Debug.LogFormat("Main path: '{0}'", mainPath2);
+		//	}
+		//	else
+		//	{
+		//		Debug.LogFormat("OBB already exists: '{0}'", mainPath2);
+		//	}
+		//}
 		yield return null;
 		NoodlePermissionGranter.GrantPermission(NoodlePermissionGranter.NoodleAndroidPermission.ACCESS_COARSE_LOCATION);
 		StartCoroutine(Fade(1f, 1f));
@@ -530,10 +532,10 @@ internal sealed class AppsMenu : MonoBehaviour
 
 	private void OnGUI()
 	{
-		if (!Launcher.UsingNewLauncher && !Application.isEditor && !GooglePlayDownloader.RunningOnAndroid())
-		{
-			GUI.Label(new Rect(10f, 10f, Screen.width - 10, 20f), "Use GooglePlayDownloader only on Android device!");
-		}
+		//if (!Launcher.UsingNewLauncher && !Application.isEditor && !GooglePlayDownloader.RunningOnAndroid())
+		//{
+		//	GUI.Label(new Rect(10f, 10f, Screen.width - 10, 20f), "Use GooglePlayDownloader only on Android device!");
+		//}
 	}
 
 	private IEnumerator LoadLoadingScene()

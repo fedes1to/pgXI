@@ -715,10 +715,10 @@ public class GadgetsInfo
 					GadgetInfo.Parameter.Lifetime
 				}, new List<WeaponSounds.Effects> { WeaponSounds.Effects.DamageReflection }, PlayerEventScoreController.ScoreEvent.none)
 			},
-			{
-				"gadget_resurrection",
-				new GadgetInfo(GadgetInfo.GadgetCategory.Support, "gadget_resurrection", "Key_2477", 6, null, null, "Key_2578", new List<GadgetInfo.Parameter> { GadgetInfo.Parameter.Cooldown }, new List<WeaponSounds.Effects> { WeaponSounds.Effects.Resurrection }, PlayerEventScoreController.ScoreEvent.none)
-			},
+			//{
+			//	"gadget_resurrection",
+			//	new GadgetInfo(GadgetInfo.GadgetCategory.Support, "gadget_resurrection", "Key_2477", 6, null, null, "Key_2578", new List<GadgetInfo.Parameter> { GadgetInfo.Parameter.Cooldown }, new List<WeaponSounds.Effects> { WeaponSounds.Effects.Resurrection }, PlayerEventScoreController.ScoreEvent.none)
+			//},
 			{
 				"gadget_shield",
 				new GadgetInfo(GadgetInfo.GadgetCategory.Support, "gadget_shield", "Key_2478", 1, null, "gadget_shield_up1", "Key_2573", new List<GadgetInfo.Parameter>

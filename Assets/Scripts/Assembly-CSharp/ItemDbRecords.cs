@@ -299,6 +299,7 @@ public static class ItemDbRecords
 		list.Add(new ItemRecord(218, "PX-3000", "PX-3000", "Weapon220", "PX-3000", "PX-3000", 289, true, false, "GemsCurrency"));
 		list.Add(new ItemRecord(219, "Sunrise", "Sunrise", "Weapon221", "Sunrise", "Sunrise", 265, true, false, "GemsCurrency"));
 		list.Add(new ItemRecord(220, "Bastion", "Bastion", "Weapon222", "Bastion", "Bastion", 275, true, false, "GemsCurrency"));
+		list.Add(new ItemRecord(300, "Water_Toy_Pistol", "Water_Toy_Pistol", "Weapon300", "Water_Toy_Pistol", "Water_Toy_Pistol", 275, true, false, "GemsCurrency"));
 		list.Add(new ItemRecord(221, "SteamPower_2", "SteamPower_2", "Weapon225", "SteamPower_2", "SteamPower_2", 85, true, false, "Coins", -1, true));
 		list.Add(new ItemRecord(222, "SteamPower_3", "SteamPower_3", "Weapon226", "SteamPower_3", "SteamPower_3", 85, true, false, "GemsCurrency", -1, true));
 		list.Add(new ItemRecord(223, "PlasmaRifle_2", "PlasmaRifle_2", "Weapon227", "PlasmaRifle_2", "PlasmaRifle_2", 88, true, false, "Coins", -1, true));
