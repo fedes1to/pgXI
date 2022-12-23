@@ -98,6 +98,13 @@ public sealed class PlayerDeadController : MonoBehaviour
 		}
 		default:
 			playerDeads[0].SetActive(true);
+			try
+			{
+				playerDeads[0].GetComponent<Animation>().Play("Take 001");
+			}
+			catch
+			{
+			}
 			break;
 		}
 	}

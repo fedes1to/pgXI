@@ -484,6 +484,11 @@ public class TouchPadController : MonoBehaviour
 
 	private void Update()
 	{
+		if (Input.GetKeyDown("g"))
+		{
+			OnGadgetPanelClick(true);
+			move.gadgeted = !move.gadgeted;
+		}
 		HideButtonsOnGadgetPanel();
 		if (m_shouldHideGadgetPanel && Time.realtimeSinceStartup - 5f >= m_hideGadgetsPanelSettedTime)
 		{

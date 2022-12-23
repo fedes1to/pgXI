@@ -1032,6 +1032,8 @@ public sealed class Player_move_c : MonoBehaviour
 
 	private bool playChargeLoopAnim;
 
+	public bool gadgeted;
+
 	private FreezerRay[] freezeRays = new FreezerRay[2];
 
 	public bool isPlacemarker

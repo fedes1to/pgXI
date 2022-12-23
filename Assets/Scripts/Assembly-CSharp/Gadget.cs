@@ -156,10 +156,10 @@ public abstract class Gadget
 			{
 				result = new TimeWatchGadget(gadgetInfo);
 			}
-			if (GadgetsInfo.Upgrades["gadget_resurrection"].Contains(gadgetInfo.Id))
-			{
-				result = new RessurectionGadget(gadgetInfo);
-			}
+			//if (GadgetsInfo.Upgrades["gadget_resurrection"].Contains(gadgetInfo.Id))
+			//{
+			//	result = new RessurectionGadget(gadgetInfo);
+			//}
 			if (GadgetsInfo.Upgrades["gadget_disabler"].Contains(gadgetInfo.Id))
 			{
 				result = new DisablerGadget(gadgetInfo);

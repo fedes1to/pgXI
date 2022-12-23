@@ -801,6 +801,7 @@ public sealed class NetworkStartTable : MonoBehaviour
 				_playerPrefab = Resources.Load("Player") as GameObject;
 			}
 			pl = (GameObject)Network.Instantiate(_playerPrefab, pos, rot, 0);
+			Screen.lockCursor = true;
 			pl.GetComponent<SkinName>().playerMoveC.SetIDMyTable(GetComponent<NetworkView>().viewID.ToString());
 		}
 		NickLabelController.currentCamera = pl.GetComponent<SkinName>().camPlayer.GetComponent<Camera>();

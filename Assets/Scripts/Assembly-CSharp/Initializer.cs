@@ -546,6 +546,7 @@ public sealed class Initializer : MonoBehaviour
 		SetPlayerInStartPoint(gameObject);
 		NickLabelController.currentCamera = gameObject.GetComponent<SkinName>().camPlayer.GetComponent<Camera>();
 		Invoke("SetupObjectThatNeedsPlayer", 0.01f);
+		Screen.lockCursor = true;
 	}
 
 	public void SetPlayerInStartPoint(GameObject player)

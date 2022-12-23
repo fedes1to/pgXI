@@ -115,6 +115,7 @@ public sealed class FirstPersonControlSharp : MonoBehaviour
 
 	private void Start()
 	{
+		Screen.lockCursor = true;
 		mySkinName = GetComponent<SkinName>();
 		if (!isInet)
 		{
@@ -243,7 +244,10 @@ public sealed class FirstPersonControlSharp : MonoBehaviour
 		{
 			mySkinName.playerMoveC.isRocketJump = false;
 		}
-		MoveCamera(new Vector2(Input.GetAxis("Mouse X") * 10, Input.GetAxis("Mouse Y") * 10));
+		if (Screen.lockCursor)
+		{
+			MoveCamera(new Vector2(Input.GetAxis("Mouse X") * 10, Input.GetAxis("Mouse Y") * 10));
+		}
 		JoystickController.leftJoystick.value = updateKeyboardControls();
 		_movement = thisTransform.TransformDirection(new Vector3(JoystickController.leftJoystick.value.x, 0f, JoystickController.leftJoystick.value.y));
 		if ((!isHunger || !hungerGameController.isGo) && isHunger)
@@ -261,7 +265,6 @@ public sealed class FirstPersonControlSharp : MonoBehaviour
 		_movement.y = 0f;
 		_movement.Normalize();
 		JoystickController.leftJoystick.value = updateKeyboardControls();
-		Vector2 vector9999 = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
 		Vector2 vector = new Vector2(Mathf.Abs(JoystickController.leftJoystick.value.x), Mathf.Abs(JoystickController.leftJoystick.value.y));
 		if (Input.GetKeyDown(KeyCode.Space))
 		{
@@ -304,39 +307,16 @@ public sealed class FirstPersonControlSharp : MonoBehaviour
 				sharedController.SetTargetKillCam(base.transform);
 			}
 		}
-		if (Input.GetKeyUp("v"))
-		{
-			CameraSceneController sharedController2 = CameraSceneController.sharedController;
-			if (sharedController2 != null && sharedController2.killCamController != null)
-			{
-				sharedController2.SetTargetKillCam(null);
-			}
-		}
-		if (Input.GetKeyDown("g"))
-		{
-			Storager.setInt(Defs.TrainingCompleted_4_4_Sett, 1, false);
-			TrainingController.SkipTraining();
-		}
-		if (Input.GetMouseButton(0) && ((Screen.lockCursor)) && !_moveC.isKilled)
+		if (Input.GetMouseButton(0) && ((Screen.lockCursor)) && !_moveC.isKilled && !_moveC.gadgeted)
 		{
 			_moveC.ShotPressed();
 		}
-		if (Input.GetMouseButtonDown(1) || Input.GetKeyDown("m"))
+		if (Input.GetMouseButtonDown(1) && Screen.lockCursor)
 		{
-			if (!Screen.lockCursor)
-			{
-				//Player_move_c.canlock = true;
-				Cursor.lockState = CursorLockMode.Locked;
-				Cursor.visible = false;
-			}
-			else if ((!isMulti || isMine) && (bool)_moveC && WeaponManager.sharedManager != null && WeaponManager.sharedManager.currentWeaponSounds != null && WeaponManager.sharedManager.currentWeaponSounds.isZooming)
+			if ((!isMulti || isMine) && (bool)_moveC && WeaponManager.sharedManager != null && WeaponManager.sharedManager.currentWeaponSounds != null && WeaponManager.sharedManager.currentWeaponSounds.isZooming)
 			{
 				_moveC.ZoomPress();
 			}
-		}
-		if (Screen.lockCursor)
-		{
-			_cameraMouseDelta = vector9999 * Defs.Sensitivity * 30;
 		}
 		mousePosOld = Input.mousePosition;
 		if (vector.y > vector.x)
