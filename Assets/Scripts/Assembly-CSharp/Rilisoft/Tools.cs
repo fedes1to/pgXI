@@ -130,20 +130,26 @@ namespace Rilisoft
 
 		internal static WWW CreateWwwIfNotConnected(string url)
 		{
-			WWW wWW = ((!ConnectedToPhoton()) ? new WWW(url) : null);
-			if (Application.isEditor && FriendsController.isDebugLogWWW)
+			WWW wWW = null;
+			try
 			{
-				string[] source = url.Split(new char[1] { '/' }, StringSplitOptions.RemoveEmptyEntries);
-				string text = source.LastOrDefault() ?? url;
-				if (wWW != null)
+				wWW = ((!ConnectedToPhoton()) ? new WWW(url) : null);
+				if (Application.isEditor && FriendsController.isDebugLogWWW)
 				{
-					Debug.LogFormat("<color=yellow>{0}</color>", text);
+					string[] source = url.Split(new char[1] { '/' }, StringSplitOptions.RemoveEmptyEntries);
+					string text = source.LastOrDefault() ?? url;
+					if (wWW != null)
+					{
+						Debug.LogFormat("<color=yellow>{0}</color>", text);
+					}
+					else
+					{
+						Debug.LogFormat("<color=orange>Skipping {0}</color>", text);
+					}
 				}
-				else
-				{
-					Debug.LogFormat("<color=orange>Skipping {0}</color>", text);
+				} catch {
+					Debug.LogWarning("WWW broke lmao");
 				}
-			}
 			return wWW;
 		}
 
