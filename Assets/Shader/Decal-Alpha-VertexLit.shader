@@ -1,75 +1,107 @@
+//
+// Author:
+//   Based on the Unity3D built-in shaders
+//   Andreas Suter (andy@edelweissinteractive.com)
+//
+// Copyright (C) 2012 Edelweiss Interactive (http://edelweissinteractive.com)
+//
+
 Shader "Decal/Transparent VertexLit" {
 Properties {
- _Color ("Main Color", Color) = (1,1,1,1)
- _MainTex ("Base (RGB) Trans (A)", 2D) = "white" {}
+	_Color ("Main Color", Color) = (1,1,1,1)
+	_MainTex ("Base (RGB) Trans (A)", 2D) = "white" {}
 }
-SubShader { 
- Tags { "QUEUE"="Transparent" "IGNOREPROJECTOR"="true" "RenderType"="Transparent" }
- Pass {
-  Tags { "LIGHTMODE"="Vertex" "QUEUE"="Transparent" "IGNOREPROJECTOR"="true" "RenderType"="Transparent" }
-  Lighting On
-  Material {
-   Ambient [_Color]
-   Diffuse [_Color]
-  }
-  ZWrite Off
-  Blend SrcAlpha OneMinusSrcAlpha
-  AlphaTest Greater 0
-  ColorMask RGB
-  Offset -1, -1
-  SetTexture [_MainTex] { combine texture * primary double, texture alpha * primary alpha }
- }
- Pass {
-  Tags { "LIGHTMODE"="VertexLM" "QUEUE"="Transparent" "IGNOREPROJECTOR"="true" "RenderType"="Transparent" }
-  BindChannels {
-   Bind "vertex", Vertex
-   Bind "normal", Normal
-   Bind "texcoord1", TexCoord0
-   Bind "texcoord", TexCoord1
-  }
-  ZWrite Off
-  Blend SrcAlpha OneMinusSrcAlpha
-  AlphaTest Greater 0
-  ColorMask RGB
-  Offset -1, -1
-  SetTexture [unity_Lightmap] { Matrix [unity_LightmapMatrix] ConstantColor [_Color] combine texture * constant }
-  SetTexture [_MainTex] { combine texture * previous double, texture alpha * primary alpha }
- }
- Pass {
-  Tags { "LIGHTMODE"="VertexLMRGBM" "QUEUE"="Transparent" "IGNOREPROJECTOR"="true" "RenderType"="Transparent" }
-  BindChannels {
-   Bind "vertex", Vertex
-   Bind "normal", Normal
-   Bind "texcoord1", TexCoord0
-   Bind "texcoord1", TexCoord1
-   Bind "texcoord", TexCoord2
-  }
-  ZWrite Off
-  Blend SrcAlpha OneMinusSrcAlpha
-  AlphaTest Greater 0
-  ColorMask RGB
-  Offset -1, -1
-  SetTexture [unity_Lightmap] { Matrix [unity_LightmapMatrix] combine texture * texture alpha double }
-  SetTexture [unity_Lightmap] { ConstantColor [_Color] combine previous * constant }
-  SetTexture [_MainTex] { combine texture * previous quad, texture alpha * primary alpha }
- }
+
+// 2/3 texture stage GPUs
+SubShader {
+	Tags {"Queue"="Transparent" "IgnoreProjector"="True" "RenderType"="Transparent"}
+	Offset -1,-1
+	
+	Alphatest Greater 0
+	ZWrite Off
+	Blend SrcAlpha OneMinusSrcAlpha 
+	ColorMask RGB
+		
+	// Non-lightmapped
+	Pass {
+		Tags { "LightMode" = "Vertex" }
+		Material {
+			Diffuse [_Color]
+			Ambient [_Color]
+		}
+		Lighting On
+		SetTexture [_MainTex] {
+			Combine texture * primary DOUBLE, texture * primary
+		} 
+	}
+	
+	// Lightmapped, encoded as dLDR
+	Pass {
+		Tags { "LightMode" = "VertexLM" }
+		
+		BindChannels {
+			Bind "Vertex", vertex
+			Bind "normal", normal
+			Bind "texcoord1", texcoord0 // lightmap uses 2nd uv
+			Bind "texcoord", texcoord1 // main uses 1st uv
+		}
+		SetTexture [unity_Lightmap] {
+			matrix [unity_LightmapMatrix]
+			constantColor [_Color]
+			combine texture * constant
+		}
+		SetTexture [_MainTex] {
+			combine texture * previous DOUBLE, texture * primary
+		}
+	}
+	
+	// Lightmapped, encoded as RGBM
+	Pass {
+		Tags { "LightMode" = "VertexLMRGBM" }
+		
+		BindChannels {
+			Bind "Vertex", vertex
+			Bind "normal", normal
+			Bind "texcoord1", texcoord0 // lightmap uses 2nd uv
+			Bind "texcoord1", texcoord1 // unused
+			Bind "texcoord", texcoord2 // main uses 1st uv
+		}
+		
+		SetTexture [unity_Lightmap] {
+			matrix [unity_LightmapMatrix]
+			combine texture * texture alpha DOUBLE
+		}
+		SetTexture [unity_Lightmap] {
+			constantColor [_Color]
+			combine previous * constant
+		}
+		SetTexture [_MainTex] {
+			combine texture * previous QUAD, texture * primary
+		}
+	}
 }
-SubShader { 
- LOD 100
- Tags { "QUEUE"="Transparent" "IGNOREPROJECTOR"="true" "RenderType"="Transparent" }
- Pass {
-  Tags { "LIGHTMODE"="Always" "QUEUE"="Transparent" "IGNOREPROJECTOR"="true" "RenderType"="Transparent" }
-  Lighting On
-  Material {
-   Ambient [_Color]
-   Diffuse [_Color]
-  }
-  ZWrite Off
-  Blend SrcAlpha OneMinusSrcAlpha
-  AlphaTest Greater 0
-  ColorMask RGB
-  Offset -1, -1
-  SetTexture [_MainTex] { combine texture * primary double, texture alpha * primary alpha }
- }
+
+// 1 texture stage GPUs
+SubShader {
+	Tags {"Queue"="Transparent" "IgnoreProjector"="True" "RenderType"="Transparent"}
+	LOD 100
+	Offset -1,-1
+	
+	Alphatest Greater 0
+	ZWrite Off
+	Blend SrcAlpha OneMinusSrcAlpha 
+	ColorMask RGB
+		
+	Pass {
+		Tags { "LightMode" = "Always" }
+		Material {
+			Diffuse [_Color]
+			Ambient [_Color]
+		}
+		Lighting On
+		SetTexture [_MainTex] {
+			Combine texture * primary DOUBLE, texture * primary
+		} 
+	}	
 }
 }
