@@ -171,8 +171,7 @@ namespace Rilisoft
 		{
 			if (futureToWait != null)
 			{
-				Task futureToWait2 = default(Task);
-				yield return new WaitUntil(() => futureToWait2.IsCompleted);
+				yield return new WaitUntil(() => futureToWait.IsCompleted);
 			}
 			while (!TrainingController.TrainingCompleted && TrainingController.CompletedTrainingStage <= TrainingController.NewTrainingCompletedStage.None)
 			{

@@ -602,8 +602,7 @@ public sealed class FriendsController : MonoBehaviour
 
 	private IEnumerator GetPixelbookSettingsLoop(Task futureToWait)
 	{
-		Task futureToWait2 = default(Task);
-		yield return new WaitUntil(() => futureToWait2.IsCompleted);
+		yield return new WaitUntil(() => futureToWait.IsCompleted);
 		timerUpdatePixelbookSetting = Defs.timeUpdatePixelbookInfo;
 		while (true)
 		{
@@ -619,8 +618,7 @@ public sealed class FriendsController : MonoBehaviour
 
 	private IEnumerator GetNewsLoop(Task futureToWait)
 	{
-		Task futureToWait2 = default(Task);
-		yield return new WaitUntil(() => futureToWait2.IsCompleted);
+		yield return new WaitUntil(() => futureToWait.IsCompleted);
 		while (!TrainingController.TrainingCompleted && TrainingController.CompletedTrainingStage <= TrainingController.NewTrainingCompletedStage.ShopCompleted)
 		{
 			yield return null;
@@ -662,8 +660,7 @@ public sealed class FriendsController : MonoBehaviour
 
 	private IEnumerator GetBuffSettings(Task futureToWait)
 	{
-		Task futureToWait2 = default(Task);
-		yield return new WaitUntil(() => futureToWait2.IsCompleted);
+		yield return new WaitUntil(() => futureToWait.IsCompleted);
 		string url = ((!ABTestController.useBuffSystem) ? URLs.BuffSettings1031 : URLs.BuffSettings1050);
 		string cachedResponse = PersistentCacheManager.Instance.GetValue(url);
 		string responseText;

@@ -362,7 +362,7 @@ public sealed class ExperienceController : MonoBehaviour
 		}
 		catch
 		{
-			UnityEngine.Debug.LogError("augh");
+			UnityEngine.Debug.LogWarning("augh, _level was " + _level);
 		}
 	}
 

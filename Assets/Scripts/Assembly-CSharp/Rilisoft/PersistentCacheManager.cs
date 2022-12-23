@@ -407,8 +407,7 @@ namespace Rilisoft
 		{
 			try
 			{
-				Task<string> future2 = default(Task<string>);
-				yield return new WaitUntil(() => future2.IsCompleted);
+				yield return new WaitUntil(() => future.IsCompleted);
 				if (future.IsCanceled)
 				{
 					promise.TrySetCanceled();
