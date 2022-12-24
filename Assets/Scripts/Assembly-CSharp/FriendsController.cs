@@ -1670,7 +1670,7 @@ public sealed class FriendsController : MonoBehaviour
 			{
 				if (Debug.isDebugBuild)
 				{
-					Debug.LogWarning("get_cohort_name error: " + download.error);
+					Debug.Log("get_cohort_name error: " + download.error);
 				}
 				yield return StartCoroutine(MyWaitForSeconds(1f));
 				continue;

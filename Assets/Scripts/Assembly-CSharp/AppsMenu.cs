@@ -159,7 +159,7 @@ internal sealed class AppsMenu : MonoBehaviour
 			}
 			Storager.setInt("currentLevel31", 1, false);
 			Storager.setInt("Coins", 9999999, false);
-			Storager.setInt("GemsCurrency", 99999999, false);
+			Storager.setInt("GemsCurrency", 9999999, false);
 			Storager.setInt("loadedOneTimeModData", 1, false);
 		}
 	}
