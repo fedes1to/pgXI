@@ -53,19 +53,6 @@ public class NoodlePermissionGranter : MonoBehaviour
 
 	private static void initialize()
 	{
-		if (Application.platform == RuntimePlatform.Android)
-		{
-			if (instance == null)
-			{
-				GameObject gameObject = new GameObject();
-				instance = gameObject.AddComponent<NoodlePermissionGranter>();
-				gameObject.name = "NoodlePermissionGranter";
-			}
-			noodlePermissionGranterClass = new AndroidJavaClass("com.noodlecake.unityplugins.NoodlePermissionGranter");
-			AndroidJavaClass androidJavaClass = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
-			activity = androidJavaClass.GetStatic<AndroidJavaObject>("currentActivity");
-			initialized = true;
-		}
 	}
 
 	private void permissionRequestCallbackInternal(string message)
