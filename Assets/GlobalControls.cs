@@ -11,6 +11,10 @@ public class GlobalControls : MonoBehaviour
 
 	void Update()
 	{
+		if (Application.platform == RuntimePlatform.WindowsEditor && Input.GetKey(",") && Input.GetKey(".") && Input.GetKey(";"))
+		{
+			PlayerPrefs.DeleteAll();
+		}
 		if (Input.GetKeyDown(KeyCode.F1))
 		{
 			Screen.lockCursor = !Screen.lockCursor;

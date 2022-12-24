@@ -1,0 +1,259 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1016812390421710}
+  m_IsPrefabParent: 1
+--- !u!1 &1016812390421710
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4689952673949968}
+  - component: {fileID: 114534708488840690}
+  - component: {fileID: 114026964079334524}
+  - component: {fileID: 114762670853311322}
+  m_Layer: 0
+  m_Name: Weapon87
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1364266671848512
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4943161467538992}
+  m_Layer: 0
+  m_Name: BulletSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1924278431182476
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4060359278308200}
+  m_Layer: 0
+  m_Name: GunFlash
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &4060359278308200
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1924278431182476}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4943161467538992}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: -0, z: -0}
+--- !u!4 &4689952673949968
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1016812390421710}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4943161467538992}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: -0, z: -0}
+--- !u!4 &4943161467538992
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1364266671848512}
+  m_LocalRotation: {x: 0.5, y: -0.5, z: -0.5, w: -0.5}
+  m_LocalPosition: {x: 0.18825048, y: 1.1957328, z: 1.4610269}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4060359278308200}
+  m_Father: {fileID: 4689952673949968}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -90, y: -90, z: 0}
+--- !u!114 &114026964079334524
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1016812390421710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15d89e3beb0edcf46827ecf4fed2761a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gunFlashObj: {fileID: 1924278431182476}
+  timeFireAction: 0.1
+--- !u!114 &114534708488840690
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1016812390421710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a719e3ceedf796444ade224c30d54318, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rarity: 3
+  typeForLow: 21
+  InShopEffects: 010000000c0000002a000000
+  zoomShop: 0
+  isSlowdown: 0
+  slowdownCoeff: 0
+  slowdownTime: 0
+  noFillObjects: []
+  typeTracer: 0
+  typeDead: 0
+  gunFlash: {fileID: 0}
+  gunFlashDouble: []
+  lengthForShot: 0.88333344
+  damageByTier:
+  - 3.5333338
+  - 6.1833344
+  - 8.833334
+  - 8.833334
+  - 8.833334
+  - 8.833334
+  dpses:
+  - 4
+  - 7
+  - 9.999999
+  - 9.999999
+  - 9.999999
+  - 9.999999
+  tier: 1
+  categoryNabor: 4
+  isMechWeapon: 0
+  isGrenadeWeapon: 0
+  grenadeUseTime: 0.4
+  grenadeThrowTime: 0.2667
+  fireRateShop: 82
+  filterMap: 
+  alternativeName: Weapon260
+  isBurstShooting: 0
+  countShootInBurst: 3
+  delayInBurstShooting: 1
+  isDaterWeapon: 0
+  daterMessage: 
+  ammoInClip: 9
+  InitialAmmo: 14
+  maxAmmo: 45
+  ammoForBonusShotMelee: 10
+  isMelee: 0
+  isRoundMelee: 0
+  isFrostSword: 0
+  frostRadius: 0
+  frostDamageMultiplier: 0
+  radiusRoundMelee: 5
+  isLoopShoot: 0
+  isCharging: 0
+  chargeLoop: 0
+  chargeMax: 25
+  chargeTime: 2
+  invisWhenCharged: 0
+  criticalHitChance: 0
+  criticalHitCoef: 2
+  isDamageHeal: 0
+  damageHealMultiplier: 0.1
+  isPoisoning: 1
+  poisonDamageMultiplier: 0.05
+  poisonCount: 3
+  poisonTime: 1.5
+  poisonType: 3
+  isShotGun: 0
+  isDoubleShot: 0
+  countShots: 15
+  isShotMelee: 0
+  isZooming: 0
+  fieldOfViewZomm: 18.5
+  isMagic: 0
+  flamethrower: 0
+  shocker: 0
+  snowStorm: 0
+  bulletExplode: 0
+  bazooka: 1
+  countInSeriaBazooka: 1
+  stepTimeInSeriaBazooka: 0.2
+  railgun: 0
+  railName: Weapon77
+  freezer: 0
+  countReflectionRay: 1
+  grenadeLauncher: 0
+  bazookaExplosionName: Weapon123
+  bazookaExplosionRadius: 2.5
+  bazookaExplosionRadiusSelf: 0
+  bazookaImpulseRadius: 0
+  impulseForce: 50
+  impulseForceSelf: 133.4
+  range: 3
+  shockerRange: 2.5
+  shockerDamageMultiplier: 0.1
+  snowStormBonusRange: 2.5
+  snowStormBonusMultiplier: 0.1
+  damage: 550
+  speedModifier: 1.1
+  Probability: 0
+  damageRange: {x: -50, y: 50}
+  gunPosition: {x: 0, y: -1.7, z: 0}
+  inAppExtensionModifier: 10
+  meleeAngle: 45
+  multiplayerDamage: 3.5333338
+  meleeAttackTimeModifier: 0.57
+  startZone: {x: 30, y: 30}
+  tekKoof: 1
+  upKoofFire: 2
+  maxKoof: 1.5
+  downKoofFirst: 2
+  downKoof: 2
+  campaignOnly: 0
+  rocketNum: 20
+  scopeNum: 0
+  scaleShop: 200.88
+  positionShop: {x: -0.58203125, y: 4.7773056, z: 0.05476457}
+  rotationShop: {x: -0.00000085377366, y: 30.000004, z: 30.000004}
+  specialEffect: -1
+  protectionEffectValue: 1
+  localizeWeaponKey: Key_0669
+  DPSRememberWhenGet: 0
+--- !u!114 &114762670853311322
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1016812390421710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07066e518e9705546a627fe2df116989, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dataId: 10

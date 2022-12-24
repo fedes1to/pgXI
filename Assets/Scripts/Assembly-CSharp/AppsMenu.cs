@@ -148,11 +148,25 @@ internal sealed class AppsMenu : MonoBehaviour
 		}
 	}
 
+	private void LoadModData()
+	{
+		if (Storager.getInt("loadedOneTimeModData", false) == 0)
+		{
+			Storager.setInt(Defs.IsFacebookLoginRewardaGained, 1, true);
+			foreach (string str in WeaponManager.GotchaGuns)
+			{
+				Storager.setInt(str, 1, true);
+			}
+			Storager.setInt("currentLevel31", 1, false);
+			Storager.setInt("Coins", 9999999, false);
+			Storager.setInt("GemsCurrency", 99999999, false);
+			Storager.setInt("loadedOneTimeModData", 1, false);
+		}
+	}
+
 	private void Awake()
 	{
-		Storager.setInt("currentLevel31", 1, false);
-		Storager.setInt("Coins", 9999999, false);
-		Storager.setInt("GemsCurrency", 99999999, false);
+		LoadModData();
 		PhotonNetwork.PhotonServerSettings.UseCloud("d2700ea5-7cd3-46ff-81c2-43922275f424", 0);
 		LogsManager.Initialize();
 		WeaponManager.FirstTagForOurTier(WeaponTags.PistolTag);
