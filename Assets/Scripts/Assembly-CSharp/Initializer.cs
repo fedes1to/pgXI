@@ -967,42 +967,7 @@ public sealed class Initializer : MonoBehaviour
 
 	private static string InitializeSeparator()
 	{
-		//Discarded unreachable code: IL_00f9
-		if (Defs.AndroidEdition == Defs.RuntimeAndroidEdition.Amazon)
-		{
-			return "bada8a20";
-		}
-		AndroidJavaObject currentActivity = AndroidSystem.Instance.CurrentActivity;
-		if (currentActivity == null)
-		{
-			return "deadac71";
-		}
-		AndroidJavaObject androidJavaObject = currentActivity.Call<AndroidJavaObject>("getPackageManager", new object[0]);
-		if (androidJavaObject == null)
-		{
-			return "dead3a9a";
-		}
-		AndroidJavaObject androidJavaObject2 = androidJavaObject.Call<AndroidJavaObject>("getPackageInfo", new object[2] { "com.pixel.gun3d", 64 });
-		if (androidJavaObject2 == null)
-		{
-			return "dead6ac5";
-		}
-		AndroidJavaObject[] array = androidJavaObject2.Get<AndroidJavaObject[]>("signatures");
-		if (array == null)
-		{
-			return "deadc199";
-		}
-		if (array.Length != 1)
-		{
-			return "dead139c";
-		}
-		AndroidJavaObject androidJavaObject3 = array[0];
-		byte[] buffer = androidJavaObject3.Call<byte[]>("toByteArray", new object[0]);
-		using (SHA1Managed sHA1Managed = new SHA1Managed())
-		{
-			byte[] source = sHA1Managed.ComputeHash(buffer);
-			return BitConverter.ToString(source.Take(4).ToArray()).Replace("-", string.Empty).ToLower();
-		}
+		return "deadac71" + Application.version;
 	}
 
 	private void OnFailedToConnectToPhoton(object parameters)

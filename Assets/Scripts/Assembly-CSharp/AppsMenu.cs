@@ -269,28 +269,28 @@ internal sealed class AppsMenu : MonoBehaviour
 			LicenseVerificationController.PackageInfo actualPackageInfo = default(LicenseVerificationController.PackageInfo);
 			try
 			{
-				actualPackageInfo = LicenseVerificationController.GetPackageInfo();
-				Launcher.PackageInfo = actualPackageInfo;
+//				actualPackageInfo = LicenseVerificationController.GetPackageInfo();
+//				Launcher.PackageInfo = actualPackageInfo;
 			}
 			catch (Exception ex4)
 			{
-				Exception ex = ex4;
-				Debug.Log("LicenseVerificationController.GetPackageInfo() failed:    " + ex);
-				handle(GetTerminalSceneName_4de1(19937u));
+//				Exception ex = ex4;
+//				Debug.Log("LicenseVerificationController.GetPackageInfo() failed:    " + ex);
+//				handle(GetTerminalSceneName_4de1(19937u));
 			}
 			finally
 			{
 				if (actualPackageInfo.SignatureHash == null)
 				{
-					Debug.Log("actualPackageInfo.SignatureHash == null");
-					handle(GetTerminalSceneName_4de1(19937u));
+//					Debug.Log("actualPackageInfo.SignatureHash == null");
+//					handle(GetTerminalSceneName_4de1(19937u));
 				}
 			}
 			string actualPackageName = actualPackageInfo.PackageName;
 			if (string.Compare(actualPackageName, Defs.GetIntendedAndroidPackageName(), StringComparison.Ordinal) != 0)
 			{
-				Debug.LogWarning("Verification FakeBundleDetected:    " + actualPackageName);
-				handle(GetTerminalSceneName_4de1(19937u));
+//				Debug.LogWarning("Verification FakeBundleDetected:    " + actualPackageName);
+//				handle(GetTerminalSceneName_4de1(19937u));
 			}
 			else
 			{
@@ -298,15 +298,15 @@ internal sealed class AppsMenu : MonoBehaviour
 			}
 			if (string.IsNullOrEmpty(intendedSignatureHash))
 			{
-				Debug.LogWarning("String.IsNullOrEmpty(intendedSignatureHash)");
-				handle(GetTerminalSceneName_4de1(19937u));
+//				Debug.LogWarning("String.IsNullOrEmpty(intendedSignatureHash)");
+//				handle(GetTerminalSceneName_4de1(19937u));
 			}
 			string actualSignatureHash = actualPackageInfo.SignatureHash;
 			if (string.Compare(actualSignatureHash, intendedSignatureHash, StringComparison.Ordinal) != 0)
 			{
-				Debug.LogWarning("Verification FakeSignatureDetected:    " + actualSignatureHash);
-				Switcher.AppendAbuseMethod(AbuseMetod.AndroidPackageSignature);
-				handle(GetTerminalSceneName_4de1(19937u));
+//				Debug.LogWarning("Verification FakeSignatureDetected:    " + actualSignatureHash);
+//				Switcher.AppendAbuseMethod(AbuseMetod.AndroidPackageSignature);
+//				handle(GetTerminalSceneName_4de1(19937u));
 			}
 			else
 			{
@@ -359,7 +359,7 @@ internal sealed class AppsMenu : MonoBehaviour
 		//	}
 		//}
 		yield return null;
-		NoodlePermissionGranter.GrantPermission(NoodlePermissionGranter.NoodleAndroidPermission.ACCESS_COARSE_LOCATION);
+//		NoodlePermissionGranter.GrantPermission(NoodlePermissionGranter.NoodleAndroidPermission.ACCESS_COARSE_LOCATION);
 		StartCoroutine(Fade(1f, 1f));
 		SetCurrentLanguage();
 	}
