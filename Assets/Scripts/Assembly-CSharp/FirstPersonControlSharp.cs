@@ -278,7 +278,7 @@ public sealed class FirstPersonControlSharp : MonoBehaviour
 		{
 			_moveC.ReloadPressed();
 		}
-		if (JoystickController.leftTouchPad.isShooting && JoystickController.leftTouchPad.isActiveFireButton)
+		if (JoystickController.leftTouchPad.isShooting && JoystickController.leftTouchPad.isActiveFireButton && !Application.isMobilePlatform)
 		{
 			vector = new Vector2(0f, 0f);
 		}

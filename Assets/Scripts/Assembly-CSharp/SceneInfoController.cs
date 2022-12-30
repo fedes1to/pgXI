@@ -407,10 +407,10 @@ public sealed class SceneInfoController : MonoBehaviour
 					if (curSceneInf.ContainsKey("ratingCount"))
 					{
 						int ratCount = Convert.ToInt32(curSceneInf["ratingCount"]);
-						if (RatingSystem.instance.currentRating < ratCount)
-						{
-							avalForCurLev = false;
-						}
+						// if (RatingSystem.instance.currentRating < ratCount)
+						// {
+						// 	avalForCurLev = false;
+						// }
 					}
 					if (avalForCurLev && curSceneInf.ContainsKey("nameScene"))
 					{
