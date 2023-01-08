@@ -203,14 +203,6 @@ public sealed class RatingSystem : MonoBehaviour
 		}
 	}
 
-	private void Update()
-	{
-		if (currentLeague != RatingLeague.Adamant)
-		{
-			currentLeague = RatingLeague.Adamant;
-		}
-	}
-
 	private const string POSITIVE_RATING_LOCAL_KEY = "RatingPositiveLocal";
 
 	private static RatingSystem _instance;
@@ -430,7 +422,7 @@ public sealed class RatingSystem : MonoBehaviour
 		return currentDivision;
 	}
 
-	public void AddToRating(int rating)
+	private void AddToRating(int rating)
 	{
 		if (rating > 0)
 		{

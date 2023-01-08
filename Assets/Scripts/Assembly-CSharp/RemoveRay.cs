@@ -9,11 +9,7 @@ public class RemoveRay : MonoBehaviour
 
 	private IEnumerator Start()
 	{
-		float startTime = Time.realtimeSinceStartup;
-		while (Time.realtimeSinceStartup - startTime < lifetime)
-		{
-			yield return null;
-		}
+		yield return new WaitForSeconds(lifetime);
 		Object.Destroy(base.gameObject);
 	}
 }

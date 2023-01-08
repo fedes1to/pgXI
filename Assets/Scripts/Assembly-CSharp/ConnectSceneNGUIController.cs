@@ -574,9 +574,9 @@ public class ConnectSceneNGUIController : MonoBehaviour
 			goBtn.GetComponent<UIButton>().isEnabled = false;
 		}
 		int storagedStageDuel = Storager.getInt("ModeUnlockDuel", false);
-		int currentStateDuel = 1; //((RatingSystem.instance.currentRating >= 1200) ? storagedStageDuel : 0);
+		int currentStateDuel = ((RatingSystem.instance.currentRating >= 1200) ? storagedStageDuel : 0);
 		modeDuelRatingNeedLabel.text = 1200.ToString();
-		modeDuelRatingNeed.SetActive(false); // RatingSystem.instance.currentRating < 1200
+		modeDuelRatingNeed.SetActive(RatingSystem.instance.currentRating < 1200);
 		modeButtonDuel.isEnable = currentStateDuel == 1;
 		int storagedStage = Storager.getInt("ModeUnlockStage", false);
 		if (Storager.getInt("TrainingCompleted_4_4_Sett", false) == 1)
@@ -648,7 +648,7 @@ public class ConnectSceneNGUIController : MonoBehaviour
 		{
 			Storager.setInt("ModeUnlockStage", currentStage, false);
 		}
-		if (currentStateDuel == 0) // && RatingSystem.instance.currentRating >= 1200)
+		if (currentStateDuel == 0 && RatingSystem.instance.currentRating >= 1200)
 		{
 			modeAnimObj.transform.SetParent(categoryButtonsController.transform.parent);
 			modeAnimObj.transform.position = modeButtonDuel.transform.position;
@@ -770,7 +770,7 @@ public class ConnectSceneNGUIController : MonoBehaviour
 		SetPosSelectMapPanelInMainMenu();
 		regim = ((!TrainingController.TrainingCompleted) ? RegimGame.TeamFight : ((!Defs.isDaterRegim) ? ((RegimGame)PlayerPrefs.GetInt("RegimMulty", 2)) : RegimGame.Deathmatch));
 		directedFromQuests = false;
-		if (false) //regim == RegimGame.Duel && RatingSystem.instance.currentRating < 1200)
+		if (regim == RegimGame.Duel && RatingSystem.instance.currentRating < 1200)
 		{
 			regim = RegimGame.TeamFight;
 		}

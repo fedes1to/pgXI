@@ -247,8 +247,8 @@ public sealed class FirstPersonControlSharp : MonoBehaviour
 		if (Screen.lockCursor)
 		{
 			MoveCamera(new Vector2(Input.GetAxis("Mouse X") * 10, Input.GetAxis("Mouse Y") * 10));
-			JoystickController.leftJoystick.value = updateKeyboardControls();
 		}
+		JoystickController.leftJoystick.value = updateKeyboardControls();
 		_movement = thisTransform.TransformDirection(new Vector3(JoystickController.leftJoystick.value.x, 0f, JoystickController.leftJoystick.value.y));
 		if ((!isHunger || !hungerGameController.isGo) && isHunger)
 		{
@@ -278,7 +278,7 @@ public sealed class FirstPersonControlSharp : MonoBehaviour
 		{
 			_moveC.ReloadPressed();
 		}
-		if (JoystickController.leftTouchPad.isShooting && JoystickController.leftTouchPad.isActiveFireButton && !Application.isMobilePlatform)
+		if (JoystickController.leftTouchPad.isShooting && JoystickController.leftTouchPad.isActiveFireButton)
 		{
 			vector = new Vector2(0f, 0f);
 		}
@@ -483,11 +483,6 @@ public sealed class FirstPersonControlSharp : MonoBehaviour
 			if (mySkinName.onConveyor)
 			{
 				_movement += mySkinName.conveyorDirection * Time.deltaTime;
-			}
-			Vector2 delta = GrabCameraInputDelta();
-			if (Device.isPixelGunLow && Defs.isTouchControlSmoothDump)
-			{
-				MoveCamera(delta);
 			}
 			character.Move(_movement);
 			_movement = Vector3.zero;
