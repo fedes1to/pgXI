@@ -1211,6 +1211,8 @@ public sealed class InGameGUI : MonoBehaviour
 		SelectWeaponFromCategory(6);
 	}
 
+    int categoryNabortTrol = 0;
+
 	private void SelectWeaponFromCategory(int category, bool isUpdateSwipe = true)
 	{
 		for (int i = 0; i < WeaponManager.sharedManager.playerWeapons.Count; i++)
@@ -1218,7 +1220,8 @@ public sealed class InGameGUI : MonoBehaviour
 			Weapon weapon = (Weapon)WeaponManager.sharedManager.playerWeapons[i];
 			if (weapon.weaponPrefab.GetComponent<WeaponSounds>().categoryNabor == category)
 			{
-				SelectWeaponFromIndex(i, isUpdateSwipe);
+                categoryNabortTrol = category;
+                SelectWeaponFromIndex(i, isUpdateSwipe);
 				break;
 			}
 		}
@@ -1514,7 +1517,15 @@ public sealed class InGameGUI : MonoBehaviour
 		{
 			SelectWeaponFromCategory(6);
 		}
-		CheckWeaponScrollChanged();
+        if (Input.GetAxis("Mouse ScrollWheel") < 0f)
+        {
+            SelectWeaponFromCategory(Mathf.Clamp(categoryNabortTrol + 1, 1, 6));
+        }
+        else if (Input.GetAxis("Mouse ScrollWheel") > 0f)
+        {
+            SelectWeaponFromCategory(Mathf.Clamp(categoryNabortTrol - 1, 1, 6));
+        }
+        CheckWeaponScrollChanged();
 		if (!TrainingController.TrainingCompleted && TrainingController.CompletedTrainingStage == TrainingController.NewTrainingCompletedStage.None && TrainingController.stepTraining == TrainingState.TapToSelectWeapon)
 		{
 			fastShopPanel.transform.localPosition = new Vector3(0f, 0f, -1f);
