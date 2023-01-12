@@ -513,6 +513,14 @@ public sealed class RatingSystem : MonoBehaviour
 		}
 	}
 
+	private void Update()
+	{
+		if (currentLeague != RatingLeague.Adamant)
+		{
+			currentLeague = RatingLeague.Adamant;
+		}
+	}
+
 	public void UpdateLeagueEvent(object o, EventArgs arg)
 	{
 		UpdateLeagueByRating();
