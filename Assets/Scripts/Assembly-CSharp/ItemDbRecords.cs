@@ -326,6 +326,7 @@ public static class ItemDbRecords
 		list.Add(new ItemRecord(247, "DualHawks", "DualHawks", "Weapon223", "DualHawks", "DualHawks", 265, true, false, "GemsCurrency"));
 		list.Add(new ItemRecord(248, "DragonGun_2", "DragonGun_2", "Weapon249", "DragonGun_2", "DragonGun_2", 150, true, false, "GemsCurrency", -1, true));
 		list.Add(new ItemRecord(249, "Badcode_gun", null, "Weapon250", null, null, 0, false, false));
+		list.Add(new ItemRecord(189, "LuckyStrike", "LuckyStrike", "Weapon521", "LuckyStrike", "LuckyStrike", 99, true, false, "GemsCurrency", -1, true));
 		list.Add(new ItemRecord(258, "DualUzi", "DualUzi", "Weapon259", "DualUzi", "DualUzi", true, false, new List<ItemPrice>
 		{
 			new ItemPrice(255, "Coins"),

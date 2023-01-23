@@ -1578,7 +1578,8 @@ public sealed class WeaponManager : MonoBehaviour
 					new List<string> { "Weapon84" },
 					new List<string>(),
 					new List<string>(),
-					new List<string> { "Weapon220" }
+					new List<string> { "Weapon220" },
+					new List<string> { "Weapon521" }
 				}
 			},
 			{
