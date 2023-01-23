@@ -843,7 +843,8 @@ public static class WeaponUpgrades
 		List<string> item124 = new List<string>
 		{
 			WeaponTags.autoaim_bazooka_Tag,
-			WeaponTags.autoaim_bazooka_up1_Tag
+			WeaponTags.autoaim_bazooka_up1_Tag,
+			"autoaim_bazooka_up2"
 		};
 		upgrades.Add(item124);
 		List<string> item125 = new List<string>

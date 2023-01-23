@@ -1840,6 +1840,12 @@ public static class ItemDbRecords
 			new ItemPrice(100, "Coins"),
 			new ItemPrice(100, "Coins")
 		}, true));
+		list.Add(new ItemRecord(522, "autoaim_bazooka_up2", "autoaim_bazooka_up2", "Weapon522", "autoaim_bazooka_up2", "autoaim_bazooka_up2", true, false, new List<ItemPrice>
+		{
+			new ItemPrice(285, "Coins"),
+			new ItemPrice(390, "Coins"),
+			new ItemPrice(390, "Coins")
+		}, true));
 		return list;
 	}
 }

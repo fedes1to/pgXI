@@ -3,7 +3,7 @@ using System.Collections;
 
 public sealed class WeaponComparer : IComparer
 {
-	public static readonly string[] multiplayerWeaponsOrd = new string[508]
+	public static readonly string[] multiplayerWeaponsOrd = new string[]
 	{
 		WeaponTags.ShotgunTag,
 		WeaponTags.Red_StoneRent_Tag,
@@ -504,6 +504,7 @@ public sealed class WeaponComparer : IComparer
 		WeaponTags.RocketCrossbow_up2_Tag,
 		WeaponTags.autoaim_bazooka_Tag,
 		WeaponTags.autoaim_bazooka_up1_Tag,
+		"autoaim_bazooka_up2",
 		WeaponTags.Ghost_Lantern_Tag,
 		WeaponTags.Ghost_Lantern_up1_Tag,
 		WeaponTags.Demoman_Tag,
