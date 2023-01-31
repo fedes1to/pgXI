@@ -1,173 +1,278 @@
-using System;
-using System.Collections.Generic;
+//-------------------------------------------------
+//            NGUI: Next-Gen UI kit
+// Copyright © 2011-2017 Tasharen Entertainment Inc
+//-------------------------------------------------
+
 using UnityEngine;
+using System.Collections.Generic;
+
+/// <summary>
+/// This class makes it possible to activate or select something by pressing a key (such as space bar for example).
+/// </summary>
 
 [AddComponentMenu("NGUI/Interaction/Key Binding")]
 public class UIKeyBinding : MonoBehaviour
 {
+	static List<UIKeyBinding> mList = new List<UIKeyBinding>();
+
+#if W2
+	[Beebyte.Obfuscator.SkipRename]
+#endif
 	public enum Action
 	{
 		PressAndClick,
 		Select,
-		All
+		All,
 	}
 
+#if W2
+	[Beebyte.Obfuscator.SkipRename]
+#endif
 	public enum Modifier
 	{
 		Any,
 		Shift,
 		Control,
 		Alt,
-		None
+		None,
 	}
 
-	private static List<UIKeyBinding> mList = new List<UIKeyBinding>();
+	/// <summary>
+	/// Key that will trigger the binding.
+	/// </summary>
 
-	public KeyCode keyCode;
+	public KeyCode keyCode = KeyCode.None;
 
-	public Modifier modifier;
+	/// <summary>
+	/// Modifier key that must be active in order for the binding to trigger.
+	/// </summary>
 
-	public Action action;
+	public Modifier modifier = Modifier.Any;
 
-	[NonSerialized]
-	private bool mIgnoreUp;
+	/// <summary>
+	/// Action to take with the specified key.
+	/// </summary>
 
-	[NonSerialized]
-	private bool mIsInput;
+	public Action action = Action.PressAndClick;
 
-	[NonSerialized]
-	private bool mPress;
+	[System.NonSerialized] bool mIgnoreUp = false;
+	[System.NonSerialized] bool mIsInput = false;
+	[System.NonSerialized] bool mPress = false;
 
-	public static bool IsBound(KeyCode key)
+	/// <summary>
+	/// Key binding's descriptive caption.
+	/// </summary>
+
+	public string captionText
 	{
-		int i = 0;
-		for (int count = mList.Count; i < count; i++)
+		get
 		{
-			UIKeyBinding uIKeyBinding = mList[i];
-			if (uIKeyBinding != null && uIKeyBinding.keyCode == key)
-			{
-				return true;
-			}
+			string s = NGUITools.KeyToCaption(keyCode);
+			if (modifier == Modifier.Alt) return "Alt+" + s;
+			if (modifier == Modifier.Control) return "Control+" + s;
+			if (modifier == Modifier.Shift) return "Shift+" + s;
+			return s;
+		}
+	}
+
+	/// <summary>
+	/// Check to see if the specified key happens to be bound to some element.
+	/// </summary>
+
+	static public bool IsBound (KeyCode key)
+	{
+		for (int i = 0, imax = mList.Count; i < imax; ++i)
+		{
+			UIKeyBinding kb = mList[i];
+			if (kb != null && kb.keyCode == key) return true;
 		}
 		return false;
 	}
 
-	protected virtual void OnEnable()
+	protected virtual void OnEnable () { mList.Add(this); }
+	protected virtual void OnDisable () { mList.Remove(this); }
+
+	/// <summary>
+	/// If we're bound to an input field, subscribe to its Submit notification.
+	/// </summary>
+
+	protected virtual void Start ()
 	{
-		mList.Add(this);
+		UIInput input = GetComponent<UIInput>();
+		mIsInput = (input != null);
+		if (input != null) EventDelegate.Add(input.onSubmit, OnSubmit);
 	}
 
-	protected virtual void OnDisable()
-	{
-		mList.Remove(this);
-	}
+	/// <summary>
+	/// Ignore the KeyUp message if the input field "ate" it.
+	/// </summary>
 
-	protected virtual void Start()
-	{
-		UIInput component = GetComponent<UIInput>();
-		mIsInput = component != null;
-		if (component != null)
-		{
-			EventDelegate.Add(component.onSubmit, OnSubmit);
-		}
-	}
+	protected virtual void OnSubmit () { if (UICamera.currentKey == keyCode && IsModifierActive()) mIgnoreUp = true; }
 
-	protected virtual void OnSubmit()
-	{
-		if (UICamera.currentKey == keyCode && IsModifierActive())
-		{
-			mIgnoreUp = true;
-		}
-	}
+	/// <summary>
+	/// Convenience function that checks whether the required modifier key is active.
+	/// </summary>
 
-	protected virtual bool IsModifierActive()
+	protected virtual bool IsModifierActive () { return IsModifierActive(modifier); }
+
+	/// <summary>
+	/// Convenience function that checks whether the required modifier key is active.
+	/// </summary>
+
+	static public bool IsModifierActive (Modifier modifier)
 	{
-		if (modifier == Modifier.Any)
-		{
-			return true;
-		}
+		if (modifier == Modifier.Any) return true;
+
 		if (modifier == Modifier.Alt)
 		{
-			if (UICamera.GetKey(KeyCode.LeftAlt) || UICamera.GetKey(KeyCode.RightAlt))
-			{
-				return true;
-			}
+			if (UICamera.GetKey(KeyCode.LeftAlt) ||
+				UICamera.GetKey(KeyCode.RightAlt)) return true;
 		}
 		else if (modifier == Modifier.Control)
 		{
-			if (UICamera.GetKey(KeyCode.LeftControl) || UICamera.GetKey(KeyCode.RightControl))
-			{
-				return true;
-			}
+			if (UICamera.GetKey(KeyCode.LeftControl) ||
+				UICamera.GetKey(KeyCode.RightControl)) return true;
 		}
 		else if (modifier == Modifier.Shift)
 		{
-			if (UICamera.GetKey(KeyCode.LeftShift) || UICamera.GetKey(KeyCode.RightShift))
-			{
-				return true;
-			}
+			if (UICamera.GetKey(KeyCode.LeftShift) ||
+				UICamera.GetKey(KeyCode.RightShift)) return true;
 		}
 		else if (modifier == Modifier.None)
-		{
-			return !UICamera.GetKey(KeyCode.LeftAlt) && !UICamera.GetKey(KeyCode.RightAlt) && !UICamera.GetKey(KeyCode.LeftControl) && !UICamera.GetKey(KeyCode.RightControl) && !UICamera.GetKey(KeyCode.LeftShift) && !UICamera.GetKey(KeyCode.RightShift);
-		}
+			return
+				!UICamera.GetKey(KeyCode.LeftAlt) &&
+				!UICamera.GetKey(KeyCode.RightAlt) &&
+				!UICamera.GetKey(KeyCode.LeftControl) &&
+				!UICamera.GetKey(KeyCode.RightControl) &&
+				!UICamera.GetKey(KeyCode.LeftShift) &&
+				!UICamera.GetKey(KeyCode.RightShift);
 		return false;
 	}
 
-	protected virtual void Update()
+	/// <summary>
+	/// Process the key binding.
+	/// </summary>
+
+	protected virtual void Update ()
 	{
-		if (UICamera.inputHasFocus || keyCode == KeyCode.None || !IsModifierActive())
-		{
-			return;
-		}
-		bool flag = UICamera.GetKeyDown(keyCode);
-		bool flag2 = UICamera.GetKeyUp(keyCode);
-		if (flag)
-		{
-			mPress = true;
-		}
+		if (UICamera.inputHasFocus) return;
+		if (keyCode == KeyCode.None || !IsModifierActive()) return;
+#if WINDWARD && UNITY_ANDROID
+		// NVIDIA Shield controller has an odd bug where it can open the on-screen keyboard via a KeyCode.Return binding,
+		// and then it can never be closed. I am disabling it here until I can track down the cause.
+		if (keyCode == KeyCode.Return && PlayerPrefs.GetInt("Start Chat") == 0) return;
+#endif
+
+#if UNITY_FLASH
+		bool keyDown = Input.GetKeyDown(keyCode);
+		bool keyUp = Input.GetKeyUp(keyCode);
+#else
+		bool keyDown = UICamera.GetKeyDown(keyCode);
+		bool keyUp = UICamera.GetKeyUp(keyCode);
+#endif
+
+		if (keyDown) mPress = true;
+
 		if (action == Action.PressAndClick || action == Action.All)
 		{
-			if (flag)
+			if (keyDown)
 			{
+				UICamera.currentTouchID = -1;
 				UICamera.currentKey = keyCode;
 				OnBindingPress(true);
 			}
-			if (mPress && flag2)
+
+			if (mPress && keyUp)
 			{
+				UICamera.currentTouchID = -1;
 				UICamera.currentKey = keyCode;
 				OnBindingPress(false);
 				OnBindingClick();
 			}
 		}
-		if ((action == Action.Select || action == Action.All) && flag2)
+
+		if (action == Action.Select || action == Action.All)
 		{
-			if (mIsInput)
+			if (keyUp)
 			{
-				if (!mIgnoreUp && !UICamera.inputHasFocus && mPress)
+				if (mIsInput)
 				{
-					UICamera.selectedObject = base.gameObject;
+					if (!mIgnoreUp && !UICamera.inputHasFocus)
+					{
+						if (mPress) UICamera.selectedObject = gameObject;
+					}
+					mIgnoreUp = false;
 				}
-				mIgnoreUp = false;
-			}
-			else if (mPress)
-			{
-				UICamera.hoveredObject = base.gameObject;
+				else if (mPress)
+				{
+					UICamera.hoveredObject = gameObject;
+				}
 			}
 		}
-		if (flag2)
+
+		if (keyUp) mPress = false;
+	}
+
+	protected virtual void OnBindingPress (bool pressed) { UICamera.Notify(gameObject, "OnPress", pressed); }
+	protected virtual void OnBindingClick () { UICamera.Notify(gameObject, "OnClick", null); }
+
+	/// <summary>
+	/// Convert the key binding to its text format.
+	/// </summary>
+
+	public override string ToString () { return GetString(keyCode, modifier); }
+
+	/// <summary>
+	/// Convert the key binding to its text format.
+	/// </summary>
+
+	static public string GetString (KeyCode keyCode, Modifier modifier)
+	{
+		return (modifier != Modifier.None) ? modifier + "+" + keyCode : keyCode.ToString();
+	}
+
+	/// <summary>
+	/// Given the ToString() text, parse it for key and modifier information.
+	/// </summary>
+
+	static public bool GetKeyCode (string text, out KeyCode key, out Modifier modifier)
+	{
+		key = KeyCode.None;
+		modifier = Modifier.None;
+		if (string.IsNullOrEmpty(text)) return false;
+
+		if (text.Contains("+"))
 		{
-			mPress = false;
+			string[] parts = text.Split('+');
+
+			try
+			{
+				modifier = (Modifier)System.Enum.Parse(typeof(Modifier), parts[0]);
+				key = (KeyCode)System.Enum.Parse(typeof(KeyCode), parts[1]);
+			}
+			catch (System.Exception) { return false; }
 		}
+		else
+		{
+			modifier = Modifier.None;
+			try { key = (KeyCode)System.Enum.Parse(typeof(KeyCode), text); }
+			catch (System.Exception) { return false; }
+		}
+		return true;
 	}
 
-	protected virtual void OnBindingPress(bool pressed)
-	{
-		UICamera.Notify(base.gameObject, "OnPress", pressed);
-	}
+	/// <summary>
+	/// Get the currently active key modifier, if any.
+	/// </summary>
 
-	protected virtual void OnBindingClick()
+	static public Modifier GetActiveModifier ()
 	{
-		UICamera.Notify(base.gameObject, "OnClick", null);
+		UIKeyBinding.Modifier mod = UIKeyBinding.Modifier.None;
+
+		if (UICamera.GetKey(KeyCode.LeftAlt) || UICamera.GetKey(KeyCode.RightAlt)) mod = UIKeyBinding.Modifier.Alt;
+		else if (UICamera.GetKey(KeyCode.LeftShift) || UICamera.GetKey(KeyCode.RightShift)) mod = UIKeyBinding.Modifier.Shift;
+		else if (UICamera.GetKey(KeyCode.LeftControl) || UICamera.GetKey(KeyCode.RightControl)) mod = UIKeyBinding.Modifier.Control;
+
+		return mod;
 	}
 }

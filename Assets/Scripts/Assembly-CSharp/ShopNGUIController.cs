@@ -4365,10 +4365,10 @@ public class ShopNGUIController : MonoBehaviour
 		{
 			gridScrollView.DisableSpring();
 			gridScrollView.RestrictWithinBounds(true);
-			if (!gridScrollView.shouldMove)
-			{
+			//if (!gridScrollView.shouldMove)
+			//{
 				gridScrollView.SetDragAmount(0f, 0f, false);
-			}
+			//}
 			UpdateSkinShaderParams();
 		}, 1));
 		yield return CoroutineRunner.Instance.StartCoroutine(CoroutineRunner.WaitForSecondsActionEveryNFrames(propertiesHideShowScript.animTime * 1.1f, delegate

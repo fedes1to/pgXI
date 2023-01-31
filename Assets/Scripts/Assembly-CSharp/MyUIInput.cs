@@ -50,11 +50,11 @@ public class MyUIInput : UIInput
 		{
 			Init();
 		}
-		if (UIInput.mKeyboard != null)
-		{
-			UIInput.mKeyboard.active = false;
-			UIInput.mKeyboard = null;
-		}
+		//if (UIInput.mKeyboard != null)
+		//{
+		//	UIInput.mKeyboard.active = false;
+		//	UIInput.mKeyboard = null;
+		//}
 		if (label != null)
 		{
 			mValue = base.value;

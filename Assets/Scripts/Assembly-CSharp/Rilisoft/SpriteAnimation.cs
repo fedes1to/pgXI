@@ -21,8 +21,8 @@ namespace Rilisoft
 			if (Application.isPlaying && base.isPlaying && base.frames >= 2 && !((float)base.framesPerSecond <= 0f))
 			{
 				int num = Mathf.FloorToInt(Time.realtimeSinceStartup * (float)base.framesPerSecond);
-				mIndex = num % base.frames;
-				mSprite.spriteName = mSpriteNames[mIndex];
+				frameIndex = num % base.frames;
+				mSprite.spriteName = mSpriteNames[frameIndex];
 				if (mSnap)
 				{
 					mSprite.MakePixelPerfect();
