@@ -31,7 +31,6 @@ public class FindFriendsFromLocalLAN : MonoBehaviour
 
 	private void Start()
 	{
-		ipaddress = Network.player.ipAddress.ToString();
 		StartBroadcastingSession();
 	}
 

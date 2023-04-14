@@ -56,7 +56,7 @@ public class BonusController : MonoBehaviour
 
 	private Dictionary<int, Dictionary<string, int>> probabilityBonus = new Dictionary<int, Dictionary<string, int>>();
 
-	private NetworkView _networkView { get; set; }
+	private PhotonView _PhotonView { get; set; }
 
 	private void InitStack()
 	{
@@ -96,7 +96,7 @@ public class BonusController : MonoBehaviour
 	private void Start()
 	{
 		photonView = PhotonView.Get(this);
-		_networkView = GetComponent<NetworkView>();
+		_PhotonView = GetComponent<PhotonView>();
 		if ((bool)photonView)
 		{
 			PhotonObjectCacher.AddObject(base.gameObject);
@@ -186,7 +186,6 @@ public class BonusController : MonoBehaviour
 		photonView.RPC("AddWeaponAfterKillPlayerRPC", PhotonTargets.MasterClient, _weaponName, _pos);
 	}
 
-	[RPC]
 	[PunRPC]
 	private void AddWeaponAfterKillPlayerRPC(string _weaponName, Vector3 _pos)
 	{
@@ -201,11 +200,10 @@ public class BonusController : MonoBehaviour
 		}
 		else
 		{
-			_networkView.RPC("AddBonusAfterKillPlayerRPC", RPCMode.Server, _pos);
+			_PhotonView.RPC("AddBonusAfterKillPlayerRPC", PhotonTargets.MasterClient, _pos);
 		}
 	}
 
-	[RPC]
 	[PunRPC]
 	private void AddBonusAfterKillPlayerRPC(Vector3 _pos)
 	{
@@ -213,24 +211,9 @@ public class BonusController : MonoBehaviour
 	}
 
 	[PunRPC]
-	[RPC]
 	private void AddBonusAfterKillPlayerRPC(int _type, Vector3 _pos)
 	{
-		if (Defs.isMulti)
-		{
-			if (Defs.isInet && PhotonNetwork.isMasterClient && !Defs.isHunger)
-			{
-				AddBonus(_pos, _type);
-			}
-			if (!Defs.isInet && Network.isServer)
-			{
-				AddBonus(_pos, _type);
-			}
-		}
-		else
-		{
-			AddBonus(_pos, _type);
-		}
+		AddBonus(_pos, _type);
 	}
 
 	private void AddBonus(Vector3 pos, int _type)
@@ -320,7 +303,7 @@ public class BonusController : MonoBehaviour
 					}
 					else
 					{
-						_networkView.RPC("MakeBonusRPC", RPCMode.Others, l, _type, pos, (num2 != -1) ? (-1f) : ((float)GetTimeForBonus()), num2);
+						_PhotonView.RPC("MakeBonusRPC", PhotonTargets.Others, l, _type, pos, (num2 != -1) ? (-1f) : ((float)GetTimeForBonus()), num2);
 					}
 				}
 				break;
@@ -360,7 +343,7 @@ public class BonusController : MonoBehaviour
 				}
 				else
 				{
-					_networkView.RPC("MakeBonusRPC", RPCMode.Others, i, _type, pos, -1f, spawnZoneIndex);
+					_PhotonView.RPC("MakeBonusRPC", PhotonTargets.Others, i, _type, pos, -1f, spawnZoneIndex);
 				}
 			}
 			break;
@@ -378,7 +361,7 @@ public class BonusController : MonoBehaviour
 			}
 			else
 			{
-				_networkView.RPC("RemoveBonusRPC", RPCMode.Others, index);
+				_PhotonView.RPC("RemoveBonusRPC", PhotonTargets.Others, index);
 			}
 		}
 	}
@@ -418,22 +401,17 @@ public class BonusController : MonoBehaviour
 		}
 	}
 
-	private void OnPlayerConnected(NetworkPlayer player)
+	private void OnPlayerConnected(PhotonPlayer player)
 	{
-		if (!Network.isServer)
-		{
-			return;
-		}
 		for (int i = 0; i < bonusStack.Length; i++)
 		{
 			if (bonusStack[i].isActive)
 			{
-				_networkView.RPC("MakeBonusRPC", player, i, (int)bonusStack[i].type, bonusStack[i].transform.position, (float)bonusStack[i].expireTime, bonusStack[i].mySpawnNumber);
+				_PhotonView.RPC("MakeBonusRPC", player, i, (int)bonusStack[i].type, bonusStack[i].transform.position, (float)bonusStack[i].expireTime, bonusStack[i].mySpawnNumber);
 			}
 		}
 	}
 
-	[RPC]
 	[PunRPC]
 	private void MakeBonusRPC(int index, int type, Vector3 position, float expireTime, int zoneNumber)
 	{
@@ -456,7 +434,6 @@ public class BonusController : MonoBehaviour
 	}
 
 	[PunRPC]
-	[RPC]
 	private void RemoveBonusRPC(int index)
 	{
 		if (index < bonusStack.Length && bonusStack[index].isActive)
@@ -470,7 +447,6 @@ public class BonusController : MonoBehaviour
 	}
 
 	[PunRPC]
-	[RPC]
 	private void RemoveBonusWithRewardRPC(PhotonPlayer sender, int index)
 	{
 		if (isMulti && isInet && !NetworkStartTable.LocalOrPasswordRoom() && index < bonusStack.Length && bonusStack[index].isActive)
@@ -479,7 +455,6 @@ public class BonusController : MonoBehaviour
 		}
 	}
 
-	[RPC]
 	[PunRPC]
 	private void GetBonusRewardRPC(int index)
 	{
@@ -505,7 +480,7 @@ public class BonusController : MonoBehaviour
 		{
 			return PhotonNetwork.time + 15.0;
 		}
-		return Network.time + 15.0;
+		return PhotonNetwork.time + 15.0;
 	}
 
 	private bool CanSpawnGemBonus()
@@ -554,15 +529,11 @@ public class BonusController : MonoBehaviour
 	private void Update()
 	{
 		bool flag = false;
-		flag = !isMulti || ((!isInet) ? Network.isServer : PhotonNetwork.isMasterClient);
-		if (flag)
+		for (int i = 0; i < bonusStack.Length; i++)
 		{
-			for (int i = 0; i < bonusStack.Length; i++)
+			if (bonusStack[i].isActive && bonusStack[i].isPickedUp)
 			{
-				if (bonusStack[i].isActive && bonusStack[i].isPickedUp)
-				{
-					photonView.RPC("GetBonusRewardRPC", PhotonTargets.All, i);
-				}
+				photonView.RPC("GetBonusRewardRPC", PhotonTargets.All, i);
 			}
 		}
 		if (!isStopCreateBonus && flag)

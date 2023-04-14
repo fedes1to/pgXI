@@ -21,7 +21,7 @@ public sealed class TurretController_MusicBox : TurretController
 			PlayMusic(false);
 			if (!Defs.isInet)
 			{
-				_networkView.RPC("PlayMusic", RPCMode.Others, false);
+				_PhotonView.RPC("PlayMusic", PhotonTargets.Others, false);
 			}
 			else
 			{
@@ -78,7 +78,7 @@ public sealed class TurretController_MusicBox : TurretController
 			PlayMusic(true);
 			if (!Defs.isInet)
 			{
-				_networkView.RPC("PlayMusic", RPCMode.Others, true);
+				_PhotonView.RPC("PlayMusic", PhotonTargets.Others, true);
 			}
 			else
 			{
@@ -97,7 +97,6 @@ public sealed class TurretController_MusicBox : TurretController
 		}
 	}
 
-	[RPC]
 	[PunRPC]
 	private void PlayMusic(bool isPlay)
 	{
@@ -121,10 +120,10 @@ public sealed class TurretController_MusicBox : TurretController
 		}
 	}
 
-	protected override void PlayerConnectedLocal(NetworkPlayer player)
+	protected override void PlayerConnectedLocal(PhotonPlayer player)
 	{
 		base.PlayerConnectedLocal(player);
-		_networkView.RPC("PlayMusic", player, isPlayMusicDater);
+		_PhotonView.RPC("PlayMusic", player, isPlayMusicDater);
 	}
 
 	protected override void PlayerConnectedPhoton(PhotonPlayer player)

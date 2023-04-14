@@ -72,7 +72,7 @@ namespace Rilisoft
 
 		private void Start()
 		{
-			if ((Defs.isInet && base.photonView.isMine) || (!Defs.isInet && GetComponent<NetworkView>().isMine))
+			if ((Defs.isInet && base.photonView.isMine) || (!Defs.isInet && GetComponent<PhotonView>().isMine))
 			{
 				isMine = true;
 			}
@@ -130,7 +130,7 @@ namespace Rilisoft
 			}
 		}
 
-		private void OnSerializeNetworkView(BitStream stream, NetworkMessageInfo info)
+		private void OnSerializePhotonView(PhotonStream stream, PhotonMessageInfo info)
 		{
 			if (stream.isWriting)
 			{
@@ -138,7 +138,7 @@ namespace Rilisoft
 				Quaternion value2 = thisTransform.rotation;
 				stream.Serialize(ref value);
 				stream.Serialize(ref value2);
-				float value3 = (float)Network.time;
+				float value3 = (float)PhotonNetwork.time;
 				stream.Serialize(ref value3);
 				int value4 = (int)currentAnimation;
 				stream.Serialize(ref value4);
@@ -310,13 +310,12 @@ namespace Rilisoft
 				}
 				else
 				{
-					GetComponent<NetworkView>().RPC("IsVisible_RPC", RPCMode.Others, state, showHideEffect);
+					GetComponent<PhotonView>().RPC("IsVisible_RPC", PhotonTargets.Others, state, showHideEffect);
 				}
 			}
 		}
 
 		[PunRPC]
-		[RPC]
 		private void IsVisible_RPC(bool state, bool showHideEffect)
 		{
 			if (isMine)

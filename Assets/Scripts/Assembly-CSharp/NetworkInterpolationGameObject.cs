@@ -12,7 +12,7 @@ public class NetworkInterpolationGameObject : MonoBehaviour
 		}
 	}
 
-	private void OnSerializeNetworkView(BitStream stream, NetworkMessageInfo info)
+	private void OnSerializePhotonView(PhotonStream stream, PhotonMessageInfo info)
 	{
 		if (stream.isWriting)
 		{
@@ -29,7 +29,7 @@ public class NetworkInterpolationGameObject : MonoBehaviour
 
 	private void Update()
 	{
-		if (!GetComponent<NetworkView>().isMine)
+		if (!GetComponent<PhotonView>().isMine)
 		{
 			base.transform.localRotation = correctPlayerRot;
 		}

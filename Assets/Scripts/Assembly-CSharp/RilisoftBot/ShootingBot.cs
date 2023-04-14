@@ -142,7 +142,6 @@ namespace RilisoftBot
 			TryPlayAudioClip(shootingSound);
 		}
 
-		[RPC]
 		[PunRPC]
 		private void FireBulletRPC(Vector3 pointFire, Vector3 positionToFire)
 		{

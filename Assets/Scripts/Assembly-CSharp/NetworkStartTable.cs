@@ -482,7 +482,6 @@ public sealed class NetworkStartTable : MonoBehaviour
 	}
 
 	[PunRPC]
-	[RPC]
 	public void ImDeadInHungerGamesRPC()
 	{
 		isDeadInHungerGame = true;
@@ -495,7 +494,6 @@ public sealed class NetworkStartTable : MonoBehaviour
 	}
 
 	[PunRPC]
-	[RPC]
 	private void RunGame()
 	{
 		GameObject[] array = GameObject.FindGameObjectsWithTag("NetworkTable");
@@ -569,16 +567,8 @@ public sealed class NetworkStartTable : MonoBehaviour
 		RemoveShop(true);
 		if (!isInet)
 		{
-			if (isServer)
-			{
-				Network.Disconnect(200);
-				GameObject.FindGameObjectWithTag("NetworkTable").GetComponent<LANBroadcastService>().StopBroadCasting();
-			}
-			else if (Network.connections.Length == 1)
-			{
-				UnityEngine.Debug.Log("Disconnecting: " + Network.connections[0].ipAddress + ":" + Network.connections[0].port);
-				Network.CloseConnection(Network.connections[0], true);
-			}
+			PhotonNetwork.Disconnect();
+			GameObject.FindGameObjectWithTag("NetworkTable").GetComponent<LANBroadcastService>().StopBroadCasting();
 			ActivityIndicator.IsActiveIndicator = false;
 			ConnectSceneNGUIController.Local();
 		}
@@ -800,17 +790,17 @@ public sealed class NetworkStartTable : MonoBehaviour
 			{
 				_playerPrefab = Resources.Load("Player") as GameObject;
 			}
-			pl = (GameObject)Network.Instantiate(_playerPrefab, pos, rot, 0);
+			pl = (GameObject)PhotonNetwork.Instantiate("Player", pos, rot, 0);
 			Screen.lockCursor = true;
-			pl.GetComponent<SkinName>().playerMoveC.SetIDMyTable(GetComponent<NetworkView>().viewID.ToString());
+			pl.GetComponent<SkinName>().playerMoveC.SetIDMyTable(GetComponent<PhotonView>().ToString());
 		}
 		NickLabelController.currentCamera = pl.GetComponent<SkinName>().camPlayer.GetComponent<Camera>();
 		_weaponManager.myPlayer = pl;
 		_weaponManager.myPlayerMoveC = pl.GetComponent<SkinName>().playerMoveC;
 		if (!isInet && isServer)
 		{
-			UnityEngine.Debug.Log("networkView.RPC(RunGame, RPCMode.OthersBuffered);");
-			GetComponent<NetworkView>().RPC("RunGame", RPCMode.OthersBuffered);
+			UnityEngine.Debug.Log("PhotonView.RPC(RunGame, PhotonTargets.OthersBuffered);");
+			GetComponent<PhotonView>().RPC("RunGame", PhotonTargets.OthersBuffered);
 		}
 		Initializer.Instance.SetupObjectThatNeedsPlayer();
 		if (NetworkStartTableNGUIController.sharedController != null)
@@ -834,7 +824,6 @@ public sealed class NetworkStartTable : MonoBehaviour
 		StartCoroutine(StartPlayerCoroutine());
 	}
 
-	[RPC]
 	[PunRPC]
 	public void CreateChestRPC(Vector3 pos, Quaternion rot)
 	{
@@ -842,7 +831,6 @@ public sealed class NetworkStartTable : MonoBehaviour
 	}
 
 	[PunRPC]
-	[RPC]
 	private void SetPixelBookID(string _pixelBookID)
 	{
 		pixelBookID = _pixelBookID;
@@ -877,11 +865,10 @@ public sealed class NetworkStartTable : MonoBehaviour
 		}
 		else
 		{
-			GetComponent<NetworkView>().RPC("SynhNickNameRPC", RPCMode.OthersBuffered, NamePlayer);
+			GetComponent<PhotonView>().RPC("SynhNickNameRPC", PhotonTargets.OthersBuffered, NamePlayer);
 		}
 	}
 
-	[RPC]
 	[PunRPC]
 	private void SynhNickNameRPC(string _nick)
 	{
@@ -909,12 +896,11 @@ public sealed class NetworkStartTable : MonoBehaviour
 		}
 		else
 		{
-			GetComponent<NetworkView>().RPC("SynhRanksRPC", RPCMode.OthersBuffered, myRanks);
+			GetComponent<PhotonView>().RPC("SynhRanksRPC", PhotonTargets.OthersBuffered, myRanks);
 		}
 	}
 
 	[PunRPC]
-	[RPC]
 	private void SynhRanksRPC(int _ranks)
 	{
 		myRanks = _ranks;
@@ -935,12 +921,11 @@ public sealed class NetworkStartTable : MonoBehaviour
 		}
 		else
 		{
-			GetComponent<NetworkView>().RPC("SynhCommandRPC", RPCMode.Others, myCommand, myCommandOld);
+			GetComponent<PhotonView>().RPC("SynhCommandRPC", PhotonTargets.Others, myCommand, myCommandOld);
 		}
 	}
 
 	[PunRPC]
-	[RPC]
 	private void SynhCommandRPC(int _command, int _oldCommand)
 	{
 		myCommand = _command;
@@ -986,12 +971,11 @@ public sealed class NetworkStartTable : MonoBehaviour
 		}
 		else
 		{
-			GetComponent<NetworkView>().RPC("SynhCountKillsRPC", RPCMode.Others, CountKills, oldCountKills);
+			GetComponent<PhotonView>().RPC("SynhCountKillsRPC", PhotonTargets.Others, CountKills, oldCountKills);
 		}
 	}
 
 	[PunRPC]
-	[RPC]
 	private void SynhCountKillsRPC(int _countKills, int _oldCountKills)
 	{
 		CountKills = _countKills;
@@ -1032,12 +1016,11 @@ public sealed class NetworkStartTable : MonoBehaviour
 		}
 		else
 		{
-			GetComponent<NetworkView>().RPC("SynhScoreRPC", RPCMode.Others, score, scoreOld);
+			GetComponent<PhotonView>().RPC("SynhScoreRPC", PhotonTargets.Others, score, scoreOld);
 		}
 	}
 
 	[PunRPC]
-	[RPC]
 	private void SynhScoreRPC(int _score, int _oldScore)
 	{
 		score = _score;
@@ -1077,7 +1060,7 @@ public sealed class NetworkStartTable : MonoBehaviour
 		{
 			if (isLocal)
 			{
-				isMine = GetComponent<NetworkView>().isMine;
+				isMine = GetComponent<PhotonView>().isMine;
 			}
 			else
 			{
@@ -1103,7 +1086,7 @@ public sealed class NetworkStartTable : MonoBehaviour
 				}
 				else
 				{
-					GetComponent<NetworkView>().RPC("SetMyClanTexture", RPCMode.AllBuffered, FriendsController.sharedController.clanLogo, FriendsController.sharedController.ClanID, FriendsController.sharedController.clanName, FriendsController.sharedController.clanLeaderID);
+					GetComponent<PhotonView>().RPC("SetMyClanTexture", PhotonTargets.AllBuffered, FriendsController.sharedController.clanLogo, FriendsController.sharedController.ClanID, FriendsController.sharedController.clanName, FriendsController.sharedController.clanLeaderID);
 				}
 			}
 			Invoke("GetMyTeam", 1.5f);
@@ -1167,7 +1150,7 @@ public sealed class NetworkStartTable : MonoBehaviour
 			pixelBookID = FriendsController.sharedController.id;
 			if (!isInet)
 			{
-				GetComponent<NetworkView>().RPC("SetPixelBookID", RPCMode.OthersBuffered, pixelBookID);
+				GetComponent<PhotonView>().RPC("SetPixelBookID", PhotonTargets.OthersBuffered, pixelBookID);
 			}
 			else
 			{
@@ -1229,7 +1212,6 @@ public sealed class NetworkStartTable : MonoBehaviour
 		}
 	}
 
-	[RPC]
 	[PunRPC]
 	private void SetMyClanTexture(string str, string _clanID, string _clanName, string _clanLeaderId)
 	{
@@ -1252,7 +1234,6 @@ public sealed class NetworkStartTable : MonoBehaviour
 	}
 
 	[PunRPC]
-	[RPC]
 	private void setMySkin(byte[] _skinByte)
 	{
 		if (photonView == null || !Defs.isMulti)
@@ -1279,7 +1260,6 @@ public sealed class NetworkStartTable : MonoBehaviour
 		}
 	}
 
-	[RPC]
 	[PunRPC]
 	private void setMySkinLocal(string str1, string str2)
 	{
@@ -1289,9 +1269,9 @@ public sealed class NetworkStartTable : MonoBehaviour
 		texture2D.filterMode = FilterMode.Point;
 		texture2D.Apply();
 		mySkin = texture2D;
-		if (GetComponent<NetworkView>().isMine && WeaponManager.sharedManager.myPlayer != null)
+		if (GetComponent<PhotonView>().isMine && WeaponManager.sharedManager.myPlayer != null)
 		{
-			WeaponManager.sharedManager.myPlayerMoveC.SetIDMyTable(GetComponent<NetworkView>().viewID.ToString());
+			WeaponManager.sharedManager.myPlayerMoveC.SetIDMyTable(GetComponent<PhotonView>().ToString());
 		}
 	}
 
@@ -1306,7 +1286,7 @@ public sealed class NetworkStartTable : MonoBehaviour
 			return;
 		}
 		string text = Convert.ToBase64String(array);
-		GetComponent<NetworkView>().RPC("setMySkinLocal", RPCMode.AllBuffered, text.Substring(0, text.Length / 2), text.Substring(text.Length / 2, text.Length / 2));
+		GetComponent<PhotonView>().RPC("setMySkinLocal", PhotonTargets.AllBuffered, text.Substring(0, text.Length / 2), text.Substring(text.Length / 2, text.Length / 2));
 	}
 
 	public void ResetCamPlayer(int _nextPrev = 0)
@@ -1759,9 +1739,9 @@ public sealed class NetworkStartTable : MonoBehaviour
 		}
 	}
 
-	private void OnPlayerConnected(NetworkPlayer player)
+	private void OnPlayerConnected(PhotonPlayer player)
 	{
-		if (GetComponent<NetworkView>().isMine)
+		if (GetComponent<PhotonView>().isMine)
 		{
 			SynhCommand(null);
 			SynhCountKills(null);
@@ -1769,23 +1749,19 @@ public sealed class NetworkStartTable : MonoBehaviour
 		}
 	}
 
-	private void OnDisconnectedFromServer(NetworkDisconnection info)
+	private void OnDisconnectedFromServer(PhotonDisconnectCause info)
 	{
 		UnityEngine.Debug.Log("OnDisconnectedFromServer");
 		showDisconnectFromServer = true;
 		timerShow = 3f;
 	}
 
-	private void OnPlayerDisconnected(NetworkPlayer player)
+	private void OnPlayerDisconnected(PhotonPlayer player)
 	{
-		Network.RemoveRPCs(player);
-		Network.DestroyPlayerObjects(player);
+		PhotonNetwork.RemoveRPCs(player);
+		PhotonNetwork.DestroyPlayerObjects(player);
 		foreach (Player_move_c player2 in Initializer.players)
 		{
-			if (!player.ipAddress.Equals(player2.myIp) || !(NickLabelStack.sharedStack != null))
-			{
-				continue;
-			}
 			NickLabelController[] lables = NickLabelStack.sharedStack.lables;
 			NickLabelController[] array = lables;
 			foreach (NickLabelController nickLabelController in array)
@@ -1800,7 +1776,7 @@ public sealed class NetworkStartTable : MonoBehaviour
 		}
 	}
 
-	private void OnFailedToConnectToMasterServer(NetworkConnectionError info)
+	private void OnFailedToConnectToMasterServer(PhotonDisconnectCause info)
 	{
 		UnityEngine.Debug.Log("Could not connect to master server: " + info);
 		showDisconnectFromMasterServer = true;
@@ -1843,12 +1819,10 @@ public sealed class NetworkStartTable : MonoBehaviour
 	}
 
 	[PunRPC]
-	[RPC]
 	public void DrawInHangerRPC()
 	{
 	}
 
-	[RPC]
 	[PunRPC]
 	public void winInHungerRPC(string winner)
 	{
@@ -2804,8 +2778,8 @@ public sealed class NetworkStartTable : MonoBehaviour
 	{
 		if (WeaponManager.sharedManager.myPlayer != null)
 		{
-			Network.RemoveRPCs(_weaponManager.myPlayer.GetComponent<NetworkView>().viewID);
-			Network.Destroy(_weaponManager.myPlayer);
+			PhotonNetwork.RemoveRPCs(_weaponManager.myPlayer.GetComponent<PhotonView>());
+			PhotonNetwork.Destroy(_weaponManager.myPlayer);
 		}
 	}
 
@@ -2851,7 +2825,6 @@ public sealed class NetworkStartTable : MonoBehaviour
 		photonView.RPC("ClearScoreCommandInFlagGameRPC", PhotonTargets.Others);
 	}
 
-	[RPC]
 	[PunRPC]
 	public void ClearScoreCommandInFlagGameRPC()
 	{
@@ -2870,7 +2843,6 @@ public sealed class NetworkStartTable : MonoBehaviour
 		PhotonNetwork.InstantiateSceneObject("Flags/Flag2", gameObject2.transform.position, gameObject2.transform.rotation, 0, null);
 	}
 
-	[RPC]
 	[PunRPC]
 	private void AddPaticleBazeRPC(int _command)
 	{
@@ -2895,7 +2867,6 @@ public sealed class NetworkStartTable : MonoBehaviour
 	}
 
 	[PunRPC]
-	[RPC]
 	private void SynchScoreCommandRPC(int _command, int _score)
 	{
 		GameObject[] array = GameObject.FindGameObjectsWithTag("NetworkTable");
@@ -2939,7 +2910,6 @@ public sealed class NetworkStartTable : MonoBehaviour
 	}
 
 	[PunRPC]
-	[RPC]
 	private void SynchGameRating(int _rating)
 	{
 		gameRating = _rating;

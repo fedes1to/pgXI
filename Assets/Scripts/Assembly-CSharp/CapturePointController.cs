@@ -134,7 +134,6 @@ public class CapturePointController : MonoBehaviour
 	}
 
 	[PunRPC]
-	[RPC]
 	public void SynchScoresCommandsNewPlayerRPC(int _viewId, bool isMaster, float _scoreBlue, float _scoreRed)
 	{
 		if (!isStartUpdateFromMasterClient && PhotonNetwork.player.ID == _viewId)
@@ -145,7 +144,6 @@ public class CapturePointController : MonoBehaviour
 	}
 
 	[PunRPC]
-	[RPC]
 	public void SynchScoresCommandsRPC(float _scoreBlue, float _scoreRed)
 	{
 		scoreBlue = _scoreBlue;

@@ -18,10 +18,9 @@ internal sealed class Shoot : MonoBehaviour
 	}
 
 	[PunRPC]
-	[RPC]
-	private void Popal(NetworkViewID Popal, NetworkMessageInfo info)
+	private void Popal(PhotonView Popal, PhotonMessageInfo info)
 	{
-		Debug.Log(string.Concat(Popal, " ", base.gameObject.transform.GetComponent<NetworkView>().viewID, " ", info.sender));
+		Debug.Log(string.Concat(Popal, " ", base.gameObject.transform.GetComponent<PhotonView>(), " ", info.sender));
 	}
 
 	public void shootS()
@@ -34,7 +33,7 @@ internal sealed class Shoot : MonoBehaviour
 			Debug.Log("Hit!");
 			if (hitInfo.collider.gameObject.transform.CompareTag("Enemy") && Defs.isMulti)
 			{
-				GetComponent<NetworkView>().RPC("Popal", RPCMode.All, hitInfo.collider.gameObject.transform.GetComponent<NetworkView>().viewID);
+				GetComponent<PhotonView>().RPC("Popal", PhotonTargets.All, hitInfo.collider.gameObject.transform.GetComponent<PhotonView>());
 			}
 		}
 	}

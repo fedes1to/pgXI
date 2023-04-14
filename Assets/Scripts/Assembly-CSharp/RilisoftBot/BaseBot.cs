@@ -1113,21 +1113,18 @@ namespace RilisoftBot
 		}
 
 		[PunRPC]
-		[RPC]
 		public void SetBotHealthRPC(float botHealth)
 		{
 			health = botHealth;
 		}
 
 		[PunRPC]
-		[RPC]
 		public void PlayZombieRunRPC()
 		{
 			PlayAnimationZombieWalk();
 			_currentRunNetworkAnimation = RunNetworkAnimationType.ZombieWalk;
 		}
 
-		[RPC]
 		[PunRPC]
 		public void PlayZombieAttackRPC()
 		{
@@ -1135,7 +1132,6 @@ namespace RilisoftBot
 			_currentRunNetworkAnimation = RunNetworkAnimationType.ZombieAttackOrStop;
 		}
 
-		[RPC]
 		[PunRPC]
 		public void GetDamageRPC(float damage, int _typeKills)
 		{
@@ -1148,7 +1144,6 @@ namespace RilisoftBot
 			_photonView.RPC("GetDamageRPC", PhotonTargets.Others, damage, (int)typeKills);
 		}
 
-		[RPC]
 		[PunRPC]
 		public void ApplyDebuffRPC(int typeDebuff, float timeLife, float parametr)
 		{

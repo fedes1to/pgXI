@@ -119,7 +119,7 @@ public sealed class FirstPersonControlSharp : MonoBehaviour
 		mySkinName = GetComponent<SkinName>();
 		if (!isInet)
 		{
-			isMine = GetComponent<NetworkView>().isMine;
+			isMine = GetComponent<PhotonView>().isMine;
 		}
 		else
 		{
@@ -162,7 +162,6 @@ public sealed class FirstPersonControlSharp : MonoBehaviour
 		base.enabled = false;
 	}
 
-	[RPC]
 	[PunRPC]
 	private void setIp(string _ip)
 	{

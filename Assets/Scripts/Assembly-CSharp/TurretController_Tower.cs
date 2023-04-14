@@ -158,7 +158,7 @@ public class TurretController_Tower : TurretController
 			}
 			else if (!Defs.isInet)
 			{
-				_networkView.RPC("ShotRPC", RPCMode.All);
+				_PhotonView.RPC("ShotRPC", PhotonTargets.All);
 			}
 			else
 			{

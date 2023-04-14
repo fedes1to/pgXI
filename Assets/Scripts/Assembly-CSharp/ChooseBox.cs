@@ -94,7 +94,7 @@ internal sealed class ChooseBox : MonoBehaviour
 			Texture mainTexture = ((!flag) ? (Resources.Load<Texture>(ResPath.Combine("Boxes", LevelBox.campaignBoxes[i].PreviewNAme + "_closed")) ?? Resources.Load<Texture>(ResPath.Combine("Boxes", LevelBox.campaignBoxes[i].PreviewNAme))) : Resources.Load<Texture>(ResPath.Combine("Boxes", LevelBox.campaignBoxes[i].PreviewNAme)));
 			Transform child = gridTransform.GetChild(i);
 			child.GetComponent<UITexture>().mainTexture = mainTexture;
-			Transform transform = child.FindChild("NeedMoreStarsLabel");
+			Transform transform = child.Find("NeedMoreStarsLabel");
 			if (transform != null)
 			{
 				if (!flag && i < LevelBox.campaignBoxes.Count - 1)
@@ -113,7 +113,7 @@ internal sealed class ChooseBox : MonoBehaviour
 			{
 				Debug.LogWarning("Could not find “NeedMoreStarsLabel”.");
 			}
-			Transform transform2 = child.FindChild("CaptionLabel");
+			Transform transform2 = child.Find("CaptionLabel");
 			if (transform2 != null)
 			{
 				transform2.gameObject.SetActive(flag || i == LevelBox.campaignBoxes.Count - 1);

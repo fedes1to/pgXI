@@ -124,24 +124,17 @@ public sealed class ChatViewrController : MonoBehaviour
 		for (int i = 0; i < labelChat.Count; i++)
 		{
 			string text = "[00FF26]";
-			if ((!Defs.isInet && myPlayerMoveC.messages[i].IDLocal == WeaponManager.sharedManager.myPlayer.GetComponent<NetworkView>().viewID) || (Defs.isInet && myPlayerMoveC.messages[i].ID == WeaponManager.sharedManager.myPlayer.GetComponent<PhotonView>().viewID))
+			if (myPlayerMoveC.messages[i].command == 0)
 			{
-				text = "[00FF26]";
+				text = "[FFFF26]";
 			}
-			else
+			if (myPlayerMoveC.messages[i].command == 1)
 			{
-				if (myPlayerMoveC.messages[i].command == 0)
-				{
-					text = "[FFFF26]";
-				}
-				if (myPlayerMoveC.messages[i].command == 1)
-				{
-					text = "[0000FF]";
-				}
-				if (myPlayerMoveC.messages[i].command == 2)
-				{
-					text = "[FF0000]";
-				}
+				text = "[0000FF]";
+			}
+			if (myPlayerMoveC.messages[i].command == 2)
+			{
+				text = "[FF0000]";
 			}
 			ChatLabel chatLabel = labelChat[labelChat.Count - i - 1];
 			chatLabel.nickLabel.text = text + myPlayerMoveC.messages[i].text;

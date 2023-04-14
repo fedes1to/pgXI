@@ -674,7 +674,7 @@ public sealed class Rocket : MonoBehaviour
 		}
 	}
 
-	private void OnSerializeNetworkView(BitStream stream, NetworkMessageInfo info)
+	private void OnSerializePhotonView(PhotonStream stream, PhotonMessageInfo info)
 	{
 		if (stream.isWriting)
 		{
@@ -737,7 +737,7 @@ public sealed class Rocket : MonoBehaviour
 		{
 			if (!Defs.isInet)
 			{
-				isMine = GetComponent<NetworkView>().isMine;
+				isMine = GetComponent<PhotonView>().isMine;
 				return;
 			}
 			isMine = photonView.isMine;
@@ -782,18 +782,17 @@ public sealed class Rocket : MonoBehaviour
 		}
 	}
 
-	public void SendNetworkViewMyPlayer(NetworkViewID myId)
+	public void SendPhotonViewMyPlayer(PhotonView myId)
 	{
-		GetComponent<NetworkView>().RPC("SendNetworkViewMyPlayerRPC", RPCMode.AllBuffered, myId);
+		GetComponent<PhotonView>().RPC("SendPhotonViewMyPlayerRPC", PhotonTargets.AllBuffered, myId);
 	}
 
-	[RPC]
 	[PunRPC]
-	public void SendNetworkViewMyPlayerRPC(NetworkViewID myId)
+	public void SendPhotonViewMyPlayerRPC(PhotonView myId)
 	{
 		for (int i = 0; i < Initializer.players.Count; i++)
 		{
-			if (myId.Equals(Initializer.players[i].mySkinName.GetComponent<NetworkView>().viewID))
+			if (myId.Equals(Initializer.players[i].mySkinName.GetComponent<PhotonView>()))
 			{
 				myPlayerMoveC = Initializer.players[i];
 				break;
@@ -812,11 +811,11 @@ public sealed class Rocket : MonoBehaviour
 			{
 				if (chargePower == 1f)
 				{
-					GetComponent<NetworkView>().RPC("SetRocketActive", RPCMode.All, weaponPrefabName, radiusImpulse, base.transform.position);
+					GetComponent<PhotonView>().RPC("SetRocketActive", PhotonTargets.All, weaponPrefabName, radiusImpulse, base.transform.position);
 				}
 				else
 				{
-					GetComponent<NetworkView>().RPC("SetRocketActiveWithCharge", RPCMode.All, weaponPrefabName, radiusImpulse, base.transform.position, chargePower);
+					GetComponent<PhotonView>().RPC("SetRocketActiveWithCharge", PhotonTargets.All, weaponPrefabName, radiusImpulse, base.transform.position, chargePower);
 				}
 			}
 			else if (chargePower == 1f)
@@ -835,13 +834,11 @@ public sealed class Rocket : MonoBehaviour
 	}
 
 	[PunRPC]
-	[RPC]
 	public void SetRocketActive(string weapon, float _radiusImpulse, Vector3 pos)
 	{
 		SetRocketActiveWithCharge(weapon, _radiusImpulse, pos, 1f);
 	}
 
-	[RPC]
 	[PunRPC]
 	public void SetRocketActiveWithCharge(string _weaponName, float _radiusImpulse, Vector3 pos, float _chargePower)
 	{
@@ -957,7 +954,6 @@ public sealed class Rocket : MonoBehaviour
 	}
 
 	[PunRPC]
-	[RPC]
 	public void StartRocketRPC()
 	{
 		if (IsGrenadeWeaponName(weaponPrefabName) && myPlayerMoveC != null && myPlayerMoveC.myCurrentWeaponSounds != null && myPlayerMoveC.myCurrentWeaponSounds.fakeGrenade != null && base.transform.parent != null)
@@ -1080,7 +1076,7 @@ public sealed class Rocket : MonoBehaviour
 		{
 			if (!Defs.isInet)
 			{
-				GetComponent<NetworkView>().RPC("StartRocketRPC", RPCMode.All);
+				GetComponent<PhotonView>().RPC("StartRocketRPC", PhotonTargets.All);
 			}
 			else
 			{
@@ -1110,7 +1106,7 @@ public sealed class Rocket : MonoBehaviour
 		{
 			if (!Defs.isInet)
 			{
-				GetComponent<NetworkView>().RPC("SetRocketStickedRPC", RPCMode.Others, thisTransform.position);
+				GetComponent<PhotonView>().RPC("SetRocketStickedRPC", PhotonTargets.Others, thisTransform.position);
 			}
 			else
 			{
@@ -1119,7 +1115,6 @@ public sealed class Rocket : MonoBehaviour
 		}
 	}
 
-	[RPC]
 	[PunRPC]
 	public void SetRocketStickedRPC(Vector3 position)
 	{
@@ -1144,7 +1139,7 @@ public sealed class Rocket : MonoBehaviour
 		{
 			if (!Defs.isInet)
 			{
-				GetComponent<NetworkView>().RPC("SetRocketStickedToPlayerRPC", RPCMode.Others, player.skinNamePixelView.viewID, thisTransform.localPosition);
+				GetComponent<PhotonView>().RPC("SetRocketStickedToPlayerRPC", PhotonTargets.Others, player.skinNamePixelView.viewID, thisTransform.localPosition);
 			}
 			else
 			{
@@ -1154,7 +1149,6 @@ public sealed class Rocket : MonoBehaviour
 	}
 
 	[PunRPC]
-	[RPC]
 	public void SetRocketStickedToPlayerRPC(int pixelID, Vector3 relativePosition)
 	{
 		Player_move_c player_move_c = null;
@@ -1381,7 +1375,7 @@ public sealed class Rocket : MonoBehaviour
 		{
 			if (!Defs.isInet)
 			{
-				GetComponent<NetworkView>().RPC("Collide", RPCMode.Others, explosionName, thisTransform.position);
+				GetComponent<PhotonView>().RPC("Collide", PhotonTargets.Others, explosionName, thisTransform.position);
 			}
 			else
 			{
@@ -1391,7 +1385,6 @@ public sealed class Rocket : MonoBehaviour
 		Collide(explosionName, thisTransform.position);
 	}
 
-	[RPC]
 	[PunRPC]
 	private void Collide(string _explosionName, Vector3 _pos)
 	{
@@ -1445,7 +1438,7 @@ public sealed class Rocket : MonoBehaviour
 		{
 			if (!Defs.isInet)
 			{
-				GetComponent<NetworkView>().RPC("ShowExplosion", RPCMode.All, explosionName);
+				GetComponent<PhotonView>().RPC("ShowExplosion", PhotonTargets.All, explosionName);
 			}
 			else
 			{
@@ -1459,7 +1452,6 @@ public sealed class Rocket : MonoBehaviour
 	}
 
 	[PunRPC]
-	[RPC]
 	private void ShowExplosion(string explosionName)
 	{
 		if (currentRocketSettings == null)
@@ -1478,7 +1470,7 @@ public sealed class Rocket : MonoBehaviour
 			return;
 		}
 		objectFromName.transform.position = position;
-		bool flag = !Defs.isMulti || ((!Defs.isInet) ? GetComponent<NetworkView>().isMine : photonView.isMine);
+		bool flag = !Defs.isMulti || ((!Defs.isInet) ? GetComponent<PhotonView>().isMine : photonView.isMine);
 		if (currentRocketSettings.typeFly == RocketSettings.TypeFlyRocket.SingularityGrenade)
 		{
 			objectFromName.GetComponent<SingularityHole>().owner = myPlayerMoveC;
@@ -1515,7 +1507,6 @@ public sealed class Rocket : MonoBehaviour
 		SetRocketDeactive();
 	}
 
-	[RPC]
 	[PunRPC]
 	public void SetRocketDeactive()
 	{
@@ -1574,21 +1565,21 @@ public sealed class Rocket : MonoBehaviour
 		}
 	}
 
-	private void OnPlayerConnected(NetworkPlayer player)
+	private void OnPlayerConnected(PhotonPlayer player)
 	{
 		if (isMine && !isKilled)
 		{
 			if (chargePower == 1f)
 			{
-				GetComponent<NetworkView>().RPC("SetRocketActive", player, weaponPrefabName, radiusImpulse, base.transform.position);
+				GetComponent<PhotonView>().RPC("SetRocketActive", player, weaponPrefabName, radiusImpulse, base.transform.position);
 			}
 			else
 			{
-				GetComponent<NetworkView>().RPC("SetRocketActiveWithCharge", player, weaponPrefabName, radiusImpulse, base.transform.position, chargePower);
+				GetComponent<PhotonView>().RPC("SetRocketActiveWithCharge", player, weaponPrefabName, radiusImpulse, base.transform.position, chargePower);
 			}
 			if (isRun && IsGrenadeWeaponName(weaponPrefabName))
 			{
-				GetComponent<NetworkView>().RPC("StartRocketRPC", player);
+				GetComponent<PhotonView>().RPC("StartRocketRPC", player);
 			}
 		}
 	}

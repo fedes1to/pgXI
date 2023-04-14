@@ -94,7 +94,6 @@ public class DamagedExplosionObject : BaseExplosionObject, IDamageable
 	}
 
 	[PunRPC]
-	[RPC]
 	private void SetVisibleFireEffectRpc(bool visible)
 	{
 		fireEffect.SetActive(visible);
