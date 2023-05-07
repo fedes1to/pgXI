@@ -42,12 +42,12 @@ public sealed class FeedbackMenuController : MonoBehaviour
 			if (faqButton != null)
 			{
 				faqButton.isEnabled = value != State.FAQ;
-				Transform transform = faqButton.gameObject.transform.Find("SpriteLabel");
+				Transform transform = faqButton.gameObject.transform.FindChild("SpriteLabel");
 				if (transform != null)
 				{
 					transform.gameObject.SetActive(value != State.FAQ);
 				}
-				Transform transform2 = faqButton.gameObject.transform.Find("ChekmarkLabel");
+				Transform transform2 = faqButton.gameObject.transform.FindChild("ChekmarkLabel");
 				if (transform2 != null)
 				{
 					transform2.gameObject.SetActive(value == State.FAQ);
@@ -57,7 +57,7 @@ public sealed class FeedbackMenuController : MonoBehaviour
 			if (termsFuseButton != null)
 			{
 				termsFuseButton.isEnabled = value != State.TermsFuse;
-				Transform transform3 = termsFuseButton.gameObject.transform.Find("SpriteLabel");
+				Transform transform3 = termsFuseButton.gameObject.transform.FindChild("SpriteLabel");
 				if (transform3 != null)
 				{
 					transform3.gameObject.SetActive(value != State.TermsFuse);
@@ -66,7 +66,7 @@ public sealed class FeedbackMenuController : MonoBehaviour
 				{
 					Debug.Log("_spriteLabel=null");
 				}
-				Transform transform4 = termsFuseButton.gameObject.transform.Find("ChekmarkLabel");
+				Transform transform4 = termsFuseButton.gameObject.transform.FindChild("ChekmarkLabel");
 				if (transform4 != null)
 				{
 					transform4.gameObject.SetActive(value == State.TermsFuse);

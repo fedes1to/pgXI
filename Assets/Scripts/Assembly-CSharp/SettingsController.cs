@@ -246,7 +246,7 @@ internal sealed class SettingsController : MonoBehaviour
 	private void SetSyncLabelText()
 	{
 		UILabel uILabel = null;
-		Transform transform = syncButton.transform.Find("Label");
+		Transform transform = syncButton.transform.FindChild("Label");
 		if (transform != null)
 		{
 			uILabel = transform.gameObject.GetComponent<UILabel>();

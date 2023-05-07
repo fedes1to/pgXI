@@ -42,7 +42,7 @@ public class DaterHockeyController : MonoBehaviour
 
 	private void Start()
 	{
-		isMine = !Defs.isMulti || (!Defs.isInet && GetComponent<PhotonView>().isMine) || (Defs.isInet && photonView.isMine);
+		isMine = !Defs.isMulti || (!Defs.isInet && GetComponent<NetworkView>().isMine) || (Defs.isInet && photonView.isMine);
 	}
 
 	private void Update()
@@ -96,6 +96,7 @@ public class DaterHockeyController : MonoBehaviour
 		}
 	}
 
+	[RPC]
 	[PunRPC]
 	private void AddForceRPC(Vector3 _force)
 	{
@@ -110,7 +111,7 @@ public class DaterHockeyController : MonoBehaviour
 		}
 		else
 		{
-			GetComponent<PhotonView>().RPC("AddForceRPC", PhotonTargets.MasterClient, _force);
+			GetComponent<NetworkView>().RPC("AddForceRPC", RPCMode.Server, _force);
 			AddForceRPC(_force);
 		}
 	}
@@ -148,7 +149,7 @@ public class DaterHockeyController : MonoBehaviour
 		}
 	}
 
-	private void OnSerializePhotonView(PhotonStream stream, PhotonMessageInfo info)
+	private void OnSerializeNetworkView(BitStream stream, NetworkMessageInfo info)
 	{
 		if (stream.isWriting)
 		{

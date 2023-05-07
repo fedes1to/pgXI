@@ -127,7 +127,7 @@ public sealed class BonusItem : MonoBehaviour
 		{
 			return;
 		}
-		if (isTimeBonus && ((PhotonNetwork.isMasterClient && Defs.isInet && PhotonNetwork.time > expireTime) || (!Defs.isInet && PhotonNetwork.time > expireTime)))
+		if (isTimeBonus && ((PhotonNetwork.isMasterClient && Defs.isInet && PhotonNetwork.time > expireTime) || (!Defs.isInet && Network.time > expireTime)))
 		{
 			BonusController.sharedController.RemoveBonus(myIndex);
 		}

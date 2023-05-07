@@ -31,7 +31,7 @@ namespace Rilisoft
 			{
 				try
 				{
-					Debug.unityLogger.logHandler = new IosLogsHandler();
+					Debug.logger.logHandler = new IosLogsHandler();
 				}
 				catch (Exception ex)
 				{
@@ -104,7 +104,7 @@ namespace Rilisoft
 					Application.logMessageReceived += Application_logMessageReceived;
 				}
 			}
-			Debug.unityLogger.logEnabled = enabled || Application.isEditor;
+			Debug.logger.logEnabled = enabled || Application.isEditor;
 		}
 	}
 }

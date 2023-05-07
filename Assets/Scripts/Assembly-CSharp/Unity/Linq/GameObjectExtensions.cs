@@ -479,7 +479,7 @@ namespace Unity.Linq
 			{
 				return null;
 			}
-			Transform transform = origin.transform.Find(name);
+			Transform transform = origin.transform.FindChild(name);
 			if (transform == null)
 			{
 				return null;

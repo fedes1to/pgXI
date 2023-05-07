@@ -6,7 +6,7 @@ public sealed class PixelView : MonoBehaviour
 
 	private PhotonView photonView;
 
-	private PhotonView _PhotonView;
+	private NetworkView _networkView;
 
 	private int localViewID = -1;
 
@@ -41,10 +41,14 @@ public sealed class PixelView : MonoBehaviour
 			}
 			return;
 		}
-		_PhotonView = GetComponent<PhotonView>();
-		_PhotonView.RPC("SendViewID", PhotonTargets.AllBuffered, viewIdCount++);
+		_networkView = GetComponent<NetworkView>();
+		if (Network.isServer)
+		{
+			_networkView.RPC("SendViewID", RPCMode.AllBuffered, viewIdCount++);
+		}
 	}
 
+	[RPC]
 	private void SendViewID(int id)
 	{
 		if (localViewID != -1)

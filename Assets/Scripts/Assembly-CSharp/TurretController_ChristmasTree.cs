@@ -63,7 +63,7 @@ public class TurretController_ChristmasTree : TurretController
 		}
 		else if (!Defs.isInet)
 		{
-			_PhotonView.RPC("ShotRPC", PhotonTargets.All);
+			_networkView.RPC("ShotRPC", RPCMode.All);
 		}
 		else
 		{

@@ -76,6 +76,7 @@ public class ChestController : Photon.MonoBehaviour, IDamageable
 	}
 
 	[PunRPC]
+	[RPC]
 	public void MinusLiveRPC(float _minus)
 	{
 		if (!isKilled)
@@ -90,11 +91,13 @@ public class ChestController : Photon.MonoBehaviour, IDamageable
 	}
 
 	[PunRPC]
+	[RPC]
 	public void SynchLiveRPC(float _live)
 	{
 		live = _live;
 	}
 
+	[RPC]
 	[PunRPC]
 	public void KilledChest()
 	{
@@ -147,6 +150,7 @@ public class ChestController : Photon.MonoBehaviour, IDamageable
 	}
 
 	[PunRPC]
+	[RPC]
 	private void DestroyChestRPC()
 	{
 		Debug.Log("DestroyChestRPC");

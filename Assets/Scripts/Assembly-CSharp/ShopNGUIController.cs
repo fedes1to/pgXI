@@ -3263,7 +3263,7 @@ public class ShopNGUIController : MonoBehaviour
 				{
 					infoButton.onClick.Add(m_tutorialInfoBtnED_Eggs);
 				}
-				if (rentScreenPoint.Find("PetInfoScreen(Clone)") != null)
+				if (rentScreenPoint.FindChild("PetInfoScreen(Clone)") != null)
 				{
 					TutorialOnInfoEggsButtonClicked();
 				}

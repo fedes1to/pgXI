@@ -80,7 +80,7 @@ public sealed class TurretController_Minigun : TurretController_Tower
 		{
 			if (!Defs.isInet)
 			{
-				WeaponManager.sharedManager.myPlayerMoveC.GetComponent<PhotonView>().RPC("HoleRPC", PhotonTargets.All, flag2, hitInfo.point + hitInfo.normal * 0.001f, Quaternion.FromToRotation(Vector3.up, hitInfo.normal));
+				WeaponManager.sharedManager.myPlayerMoveC.GetComponent<NetworkView>().RPC("HoleRPC", RPCMode.All, flag2, hitInfo.point + hitInfo.normal * 0.001f, Quaternion.FromToRotation(Vector3.up, hitInfo.normal));
 			}
 			else
 			{

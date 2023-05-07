@@ -32,7 +32,7 @@ public class RocketStack : MonoBehaviour
 		}
 		else
 		{
-			gameObject = ((!Defs.isMulti) ? (Object.Instantiate(Resources.Load("Rocket") as GameObject, Vector3.down * 10000f, Quaternion.identity) as GameObject) : (Defs.isInet ? PhotonNetwork.Instantiate("Rocket", Vector3.down * 10000f, Quaternion.identity, 0) : ((GameObject)PhotonNetwork.Instantiate("Rocket", Vector3.down * 10000f, Quaternion.identity, 0))));
+			gameObject = ((!Defs.isMulti) ? (Object.Instantiate(Resources.Load("Rocket") as GameObject, Vector3.down * 10000f, Quaternion.identity) as GameObject) : (Defs.isInet ? PhotonNetwork.Instantiate("Rocket", Vector3.down * 10000f, Quaternion.identity, 0) : ((GameObject)Network.Instantiate(Resources.Load("Rocket") as GameObject, Vector3.down * 10000f, Quaternion.identity, 0))));
 			gameObject.transform.parent = mytranform;
 		}
 		return gameObject;

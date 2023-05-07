@@ -69,24 +69,24 @@ internal sealed class MenuLeaderboardsView : MonoBehaviour
 		set
 		{
 			friendsButton.isEnabled = value != State.Friends;
-			Transform transform = friendsButton.transform.Find("IdleLabel");
-			Transform transform2 = friendsButton.transform.Find("ActiveLabel");
+			Transform transform = friendsButton.transform.FindChild("IdleLabel");
+			Transform transform2 = friendsButton.transform.FindChild("ActiveLabel");
 			if (transform != null && (bool)transform2)
 			{
 				transform.gameObject.SetActive(value != State.Friends);
 				transform2.gameObject.SetActive(value == State.Friends);
 			}
 			bestPlayersButton.isEnabled = value != State.BestPlayers;
-			Transform transform3 = bestPlayersButton.transform.Find("IdleLabel");
-			Transform transform4 = bestPlayersButton.transform.Find("ActiveLabel");
+			Transform transform3 = bestPlayersButton.transform.FindChild("IdleLabel");
+			Transform transform4 = bestPlayersButton.transform.FindChild("ActiveLabel");
 			if (transform3 != null && (bool)transform4)
 			{
 				transform3.gameObject.SetActive(value != State.BestPlayers);
 				transform4.gameObject.SetActive(value == State.BestPlayers);
 			}
 			clansButton.isEnabled = value != State.Clans;
-			Transform transform5 = clansButton.transform.Find("IdleLabel");
-			Transform transform6 = clansButton.transform.Find("ActiveLabel");
+			Transform transform5 = clansButton.transform.FindChild("IdleLabel");
+			Transform transform6 = clansButton.transform.FindChild("ActiveLabel");
 			if (transform5 != null && (bool)transform6)
 			{
 				transform5.gameObject.SetActive(value != State.Clans);

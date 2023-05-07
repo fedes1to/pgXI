@@ -33,7 +33,7 @@ public sealed class AdvancedEffects : MonoBehaviour
 
 	private PhotonView _photonView;
 
-	private PhotonView _PhotonView;
+	private NetworkView _networkView;
 
 	private List<ActiveAdvancedEffect> playerEffects = new List<ActiveAdvancedEffect>(3);
 
@@ -46,9 +46,9 @@ public sealed class AdvancedEffects : MonoBehaviour
 		_photonView = GetComponent<PhotonView>();
 		if (syncInLocal)
 		{
-			_PhotonView = GetComponent<PhotonView>();
+			_networkView = GetComponent<NetworkView>();
 		}
-		isMine = !Defs.isMulti || _photonView == null || (Defs.isInet ? _photonView.isMine : (syncInLocal && _PhotonView.isMine));
+		isMine = !Defs.isMulti || _photonView == null || (Defs.isInet ? _photonView.isMine : (syncInLocal && _networkView.isMine));
 	}
 
 	public void SendAdvancedEffect(int effectIndex, float effectTime)
@@ -61,13 +61,14 @@ public sealed class AdvancedEffects : MonoBehaviour
 			}
 			else if (syncInLocal)
 			{
-				_PhotonView.RPC("AdvancedEffectRPC", PhotonTargets.Others, effectIndex, effectTime);
+				_networkView.RPC("AdvancedEffectRPC", RPCMode.Others, effectIndex, effectTime);
 			}
 		}
 		AdvancedEffectRPC(effectIndex, effectTime);
 	}
 
 	[PunRPC]
+	[RPC]
 	public void AdvancedEffectRPC(int effectIndex, float effectTime)
 	{
 		for (int i = 0; i < playerEffects.Count; i++)

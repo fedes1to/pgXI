@@ -238,7 +238,7 @@ internal sealed class LeaderboardScript : MonoBehaviour
 	{
 		if (ClansTableFooter != null)
 		{
-			ClansTableFooter.transform.Find("LabelPlace").Map((Transform t) => t.gameObject.GetComponent<UILabel>()).Do(delegate(UILabel n)
+			ClansTableFooter.transform.FindChild("LabelPlace").Map((Transform t) => t.gameObject.GetComponent<UILabel>()).Do(delegate(UILabel n)
 			{
 				n.text = LocalizationStore.Get("Key_0053");
 			});
@@ -391,15 +391,15 @@ internal sealed class LeaderboardScript : MonoBehaviour
 			{
 				if (LeaderboardView.InTournamentTop)
 				{
-					FooterTableTournament.transform.Find("LabelPlace").Map((Transform t) => t.gameObject.GetComponent<UILabel>()).Do(delegate(UILabel n)
+					FooterTableTournament.transform.FindChild("LabelPlace").Map((Transform t) => t.gameObject.GetComponent<UILabel>()).Do(delegate(UILabel n)
 					{
 						n.text = LocalizationStore.Get("Key_0053");
 					});
-					FooterTableTournament.transform.Find("LabelNick").Map((Transform t) => t.gameObject.GetComponent<UILabel>()).Do(delegate(UILabel n)
+					FooterTableTournament.transform.FindChild("LabelNick").Map((Transform t) => t.gameObject.GetComponent<UILabel>()).Do(delegate(UILabel n)
 					{
 						n.text = me.Nickname;
 					});
-					FooterTableTournament.transform.Find("LabelWins").Map((Transform t) => t.gameObject.GetComponent<UILabel>()).Do(delegate(UILabel n)
+					FooterTableTournament.transform.FindChild("LabelWins").Map((Transform t) => t.gameObject.GetComponent<UILabel>()).Do(delegate(UILabel n)
 					{
 						n.text = RatingSystem.instance.currentRating.ToString();
 					});
@@ -426,19 +426,19 @@ internal sealed class LeaderboardScript : MonoBehaviour
 				{
 					LeaderboardItemViewModel myClanInTop = rawClansList.FirstOrDefault((LeaderboardItemViewModel c) => c.Id == clanId);
 					LeaderboardView.CanShowClanTableFooter = myClanInTop == null;
-					ClansTableFooter.transform.Find("LabelPlace").Map((Transform t) => t.gameObject.GetComponent<UILabel>()).Do(delegate(UILabel n)
+					ClansTableFooter.transform.FindChild("LabelPlace").Map((Transform t) => t.gameObject.GetComponent<UILabel>()).Do(delegate(UILabel n)
 					{
 						n.text = LocalizationStore.Get("Key_0053");
 					});
-					ClansTableFooter.transform.Find("LabelMembers").Map((Transform t) => t.gameObject.GetComponent<UILabel>()).Do(delegate(UILabel n)
+					ClansTableFooter.transform.FindChild("LabelMembers").Map((Transform t) => t.gameObject.GetComponent<UILabel>()).Do(delegate(UILabel n)
 					{
 						n.text = string.Empty;
 					});
-					ClansTableFooter.transform.Find("LabelWins").Map((Transform t) => t.gameObject.GetComponent<UILabel>()).Do(delegate(UILabel w)
+					ClansTableFooter.transform.FindChild("LabelWins").Map((Transform t) => t.gameObject.GetComponent<UILabel>()).Do(delegate(UILabel w)
 					{
 						w.text = string.Empty;
 					});
-					UILabel clanLabel = ClansTableFooter.transform.Find("LabelNick").Map((Transform t) => t.gameObject.GetComponent<UILabel>());
+					UILabel clanLabel = ClansTableFooter.transform.FindChild("LabelNick").Map((Transform t) => t.gameObject.GetComponent<UILabel>());
 					clanLabel.Do(delegate(UILabel cl)
 					{
 						cl.text = FriendsController.sharedController.Map((FriendsController s) => s.clanName, string.Empty);
@@ -903,7 +903,7 @@ internal sealed class LeaderboardScript : MonoBehaviour
 				l.gameObject.SetActive(p2 + 1 == item.Place && item.WinCount > 0);
 			});
 		}
-		newItem.transform.Find("LabelsPlace").Map((Transform t) => t.gameObject.GetComponent<UILabel>()).Do(delegate(UILabel p)
+		newItem.transform.FindChild("LabelsPlace").Map((Transform t) => t.gameObject.GetComponent<UILabel>()).Do(delegate(UILabel p)
 		{
 			p.text = ((item.Place <= 3) ? string.Empty : item.Place.ToString(CultureInfo.InvariantCulture));
 		});
@@ -936,7 +936,7 @@ internal sealed class LeaderboardScript : MonoBehaviour
 				l.gameObject.SetActive(p2 + 1 == item.Place);
 			});
 		}
-		newItem.transform.Find("LabelsPlace").Map((Transform t) => t.gameObject.GetComponent<UILabel>()).Do(delegate(UILabel p)
+		newItem.transform.FindChild("LabelsPlace").Map((Transform t) => t.gameObject.GetComponent<UILabel>()).Do(delegate(UILabel p)
 		{
 			p.text = ((item.Place <= 3) ? string.Empty : item.Place.ToString(CultureInfo.InvariantCulture));
 		});

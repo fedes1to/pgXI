@@ -385,7 +385,7 @@ namespace Rilisoft
 		public PhotonView photonView;
 
 		[NonSerialized]
-		public PhotonView _PhotonView;
+		public NetworkView _networkView;
 
 		private float _dieTime;
 
@@ -806,7 +806,7 @@ namespace Rilisoft
 				}
 				else
 				{
-					_PhotonView.RPC("ApplyDamageRPC", PhotonTargets.All, damage, killerId);
+					_networkView.RPC("ApplyDamageRPC", RPCMode.All, damage, killerId);
 				}
 			}
 			else
@@ -835,7 +835,7 @@ namespace Rilisoft
 				}
 				else
 				{
-					_PhotonView.RPC("KilledByRPC", PhotonTargets.Others, idKiller);
+					_networkView.RPC("KilledByRPC", RPCMode.Others, idKiller);
 				}
 			}
 			if (Defs.isMulti && !IsMine && CurrentHealth <= 0f && !DeathEffectIsPlaying)
@@ -844,12 +844,14 @@ namespace Rilisoft
 			}
 		}
 
+		[RPC]
 		[PunRPC]
 		public void ApplyDamageRPC(float damage, int idKiller)
 		{
 			ApplyDamageFrom(damage, idKiller);
 		}
 
+		[RPC]
 		[PunRPC]
 		public void KilledByRPC(int idKiller)
 		{
@@ -926,10 +928,10 @@ namespace Rilisoft
 						IsMine = true;
 					}
 				}
-				if (!Defs.isInet && GetComponent<PhotonView>() != null)
+				if (!Defs.isInet && GetComponent<NetworkView>() != null)
 				{
-					_PhotonView = GetComponent<PhotonView>();
-					if (_PhotonView.isMine)
+					_networkView = GetComponent<NetworkView>();
+					if (_networkView.isMine)
 					{
 						IsMine = true;
 					}
@@ -1196,7 +1198,7 @@ namespace Rilisoft
 				}
 				else
 				{
-					PhotonNetwork.Destroy(base.gameObject);
+					Network.Destroy(base.gameObject);
 				}
 			}
 			else
@@ -1253,6 +1255,17 @@ namespace Rilisoft
 			{
 				Owner = WeaponManager.sharedManager.myPlayerMoveC;
 			}
+		}
+
+		public void SendOwnerLocalRPC(NetworkViewID _ownerId)
+		{
+			_networkView.RPC("SetOwnerLocalRPC", RPCMode.OthersBuffered, _ownerId);
+		}
+
+		[RPC]
+		public void SetOwnerLocalRPC(NetworkViewID _ownerId)
+		{
+			Owner = Initializer.GetPlayerMoveCWithLocalPlayerID(_ownerId);
 		}
 
 		public bool InRange(Vector3 first, Vector3 second, float range)
@@ -1386,10 +1399,11 @@ namespace Rilisoft
 			}
 			else
 			{
-				_PhotonView.RPC("SynhCurrentHealthRPC", PhotonTargets.Others, CurrentHealth);
+				_networkView.RPC("SynhCurrentHealthRPC", RPCMode.Others, CurrentHealth);
 			}
 		}
 
+		[RPC]
 		[PunRPC]
 		public void SynhCurrentHealthRPC(float _health)
 		{
@@ -1407,22 +1421,23 @@ namespace Rilisoft
 				}
 				else
 				{
-					_PhotonView.RPC("SynhNameRPC", PhotonTargets.OthersBuffered, PetName);
+					_networkView.RPC("SynhNameRPC", RPCMode.OthersBuffered, PetName);
 				}
 			}
 		}
 
 		[PunRPC]
+		[RPC]
 		public void SynhNameRPC(string _petName)
 		{
 			PetName = _petName;
 		}
 
-		private void OnPlayerConnected(PhotonPlayer player)
+		private void OnPlayerConnected(NetworkPlayer player)
 		{
 			if (IsMine)
 			{
-				_PhotonView.RPC("SynhCurrentHealthRPC", player, CurrentHealth);
+				_networkView.RPC("SynhCurrentHealthRPC", player, CurrentHealth);
 			}
 		}
 

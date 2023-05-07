@@ -1244,8 +1244,8 @@ public class ConnectSceneNGUIController : MonoBehaviour
 		component.normalSprite = "yell_btn";
 		component.hoverSprite = "yell_btn";
 		component.pressedSprite = "green_btn_n";
-		butToogle.transform.Find("LockedSprite").gameObject.SetActive(false);
-		butToogle.transform.Find("Checkmark").GetComponent<UISprite>().spriteName = "green_btn";
+		butToogle.transform.FindChild("LockedSprite").gameObject.SetActive(false);
+		butToogle.transform.FindChild("Checkmark").GetComponent<UISprite>().spriteName = "green_btn";
 	}
 
 	private void SetRegimDeathmatch(object sender, EventArgs e)
@@ -1614,6 +1614,8 @@ public class ConnectSceneNGUIController : MonoBehaviour
 		}
 		else
 		{
+			bool useNat = Network.HavePublicAddress();
+			Network.InitializeServer(num - 1, 25002, useNat);
 			PlayerPrefs.SetString("ServerName", text2);
 			PlayerPrefs.SetString("PlayersLimits", num.ToString());
 			Singleton<SceneLoader>.Instance.LoadSceneAsync("PromScene");

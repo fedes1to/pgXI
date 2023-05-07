@@ -88,7 +88,7 @@ public class TurretController : MonoBehaviour, IDamageable
 	public PhotonView photonView;
 
 	[HideInInspector]
-	public PhotonView _PhotonView;
+	public NetworkView _networkView;
 
 	[HideInInspector]
 	public bool isEnemyTurret;
@@ -148,7 +148,7 @@ public class TurretController : MonoBehaviour, IDamageable
 		}
 		photonView = PhotonView.Get(this);
 		myCollider = GetComponent<BoxCollider>();
-		_PhotonView = GetComponent<PhotonView>();
+		_networkView = GetComponent<NetworkView>();
 		if ((bool)photonView && photonView.isMine)
 		{
 			PhotonObjectCacher.AddObject(base.gameObject);
@@ -174,7 +174,7 @@ public class TurretController : MonoBehaviour, IDamageable
 		{
 			if (!Defs.isInet)
 			{
-				isMine = _PhotonView.isMine;
+				isMine = _networkView.isMine;
 			}
 			else
 			{
@@ -198,7 +198,7 @@ public class TurretController : MonoBehaviour, IDamageable
 			{
 				if (!Defs.isInet)
 				{
-					_PhotonView.RPC("SynchNumUpdateRPC", PhotonTargets.AllBuffered, numUpdate);
+					_networkView.RPC("SynchNumUpdateRPC", RPCMode.AllBuffered, numUpdate);
 				}
 				else
 				{
@@ -228,7 +228,7 @@ public class TurretController : MonoBehaviour, IDamageable
 			{
 				for (int j = 0; j < Initializer.players.Count; j++)
 				{
-					if (_PhotonView.owner == Initializer.players[j].mySkinName.GetComponent<PhotonView>().owner)
+					if (_networkView.owner == Initializer.players[j].mySkinName.GetComponent<NetworkView>().owner)
 					{
 						myPlayer = Initializer.players[j].mySkinName.gameObject;
 						myPlayerMoveC = myPlayer.GetComponent<SkinName>().playerMoveC;
@@ -457,6 +457,7 @@ public class TurretController : MonoBehaviour, IDamageable
 		}
 	}
 
+	[RPC]
 	[PunRPC]
 	public void SynchNumUpdateRPC(int _numUpdate)
 	{
@@ -508,6 +509,7 @@ public class TurretController : MonoBehaviour, IDamageable
 		}
 	}
 
+	[RPC]
 	[PunRPC]
 	protected void ShotRPC()
 	{
@@ -539,7 +541,7 @@ public class TurretController : MonoBehaviour, IDamageable
 		{
 			if (!Defs.isInet)
 			{
-				_PhotonView.RPC("StartTurretRPC", PhotonTargets.AllBuffered);
+				_networkView.RPC("StartTurretRPC", RPCMode.AllBuffered);
 			}
 			else
 			{
@@ -564,7 +566,7 @@ public class TurretController : MonoBehaviour, IDamageable
 		myCollider.isTrigger = !solidWithEnemiesOnly;
 	}
 
-	private void OnPlayerConnected(PhotonPlayer player)
+	private void OnPlayerConnected(NetworkPlayer player)
 	{
 		if (isMine)
 		{
@@ -580,9 +582,9 @@ public class TurretController : MonoBehaviour, IDamageable
 		}
 	}
 
-	protected virtual void PlayerConnectedLocal(PhotonPlayer player)
+	protected virtual void PlayerConnectedLocal(NetworkPlayer player)
 	{
-		_PhotonView.RPC("SynchHealth", player, health);
+		_networkView.RPC("SynchHealth", player, health);
 	}
 
 	protected virtual void PlayerConnectedPhoton(PhotonPlayer player)
@@ -590,6 +592,7 @@ public class TurretController : MonoBehaviour, IDamageable
 		photonView.RPC("SynchHealth", player, health);
 	}
 
+	[RPC]
 	[PunRPC]
 	public void SynchHealth(float _health)
 	{
@@ -654,7 +657,7 @@ public class TurretController : MonoBehaviour, IDamageable
 			}
 			if (!Defs.isInet)
 			{
-				_PhotonView.RPC("MinusLiveRPC", PhotonTargets.All, dm, isExplosion, idKiller);
+				_networkView.RPC("MinusLiveRPC", RPCMode.All, dm, isExplosion, idKiller);
 			}
 			else
 			{
@@ -667,12 +670,14 @@ public class TurretController : MonoBehaviour, IDamageable
 		}
 	}
 
+	[RPC]
 	[PunRPC]
 	public void MinusLiveRPC(float dm, int idKiller)
 	{
 		MinusLiveReal(dm, true, idKiller);
 	}
 
+	[RPC]
 	[PunRPC]
 	public void MinusLiveRPC(float dm, bool isExplosion, int idKiller)
 	{
@@ -696,7 +701,7 @@ public class TurretController : MonoBehaviour, IDamageable
 		{
 			if (!Defs.isInet)
 			{
-				_PhotonView.RPC("SynchHealth", PhotonTargets.Others, health);
+				_networkView.RPC("SynchHealth", RPCMode.Others, health);
 			}
 			else
 			{
@@ -712,8 +717,8 @@ public class TurretController : MonoBehaviour, IDamageable
 		{
 			if (!Defs.isInet)
 			{
-				_PhotonView.RPC("ImKilledRPCWithExplosion", PhotonTargets.AllBuffered, isExplosion);
-				_PhotonView.RPC("MeKillRPC", PhotonTargets.All, idKiller);
+				_networkView.RPC("ImKilledRPCWithExplosion", RPCMode.AllBuffered, isExplosion);
+				_networkView.RPC("MeKillRPC", RPCMode.All, idKiller);
 			}
 			else
 			{
@@ -727,6 +732,7 @@ public class TurretController : MonoBehaviour, IDamageable
 		}
 	}
 
+	[RPC]
 	[PunRPC]
 	public void MeKillRPC(int idKiller)
 	{
@@ -765,7 +771,7 @@ public class TurretController : MonoBehaviour, IDamageable
 		{
 			if (!Defs.isInet)
 			{
-				_PhotonView.RPC("ImKilledRPC", PhotonTargets.AllBuffered);
+				_networkView.RPC("ImKilledRPC", RPCMode.AllBuffered);
 			}
 			else
 			{
@@ -779,11 +785,13 @@ public class TurretController : MonoBehaviour, IDamageable
 	}
 
 	[PunRPC]
+	[RPC]
 	public void ImKilledRPC()
 	{
 		ImKilledRPCWithExplosion(false);
 	}
 
+	[RPC]
 	[PunRPC]
 	public void ImKilledRPCWithExplosion(bool isExplosion)
 	{
@@ -848,8 +856,8 @@ public class TurretController : MonoBehaviour, IDamageable
 			{
 				if (!Defs.isInet)
 				{
-					PhotonNetwork.RemoveRPCs(GetComponent<PhotonView>());
-					PhotonNetwork.Destroy(base.gameObject);
+					Network.RemoveRPCs(GetComponent<NetworkView>().viewID);
+					Network.Destroy(base.gameObject);
 				}
 				else
 				{
@@ -868,6 +876,7 @@ public class TurretController : MonoBehaviour, IDamageable
 	}
 
 	[PunRPC]
+	[RPC]
 	public void StartTurretRPC()
 	{
 		if (nickLabel != null)
@@ -881,7 +890,14 @@ public class TurretController : MonoBehaviour, IDamageable
 			GetComponent<AudioSource>().PlayOneShot(turretActivSound);
 		}
 		Player_move_c.SetLayerRecursively(base.gameObject, LayerMask.NameToLayer("Default"));
-		photonView.synchronization = ViewSynchronization.UnreliableOnChange;
+		if (Defs.isInet)
+		{
+			photonView.synchronization = ViewSynchronization.UnreliableOnChange;
+		}
+		else
+		{
+			_networkView.stateSynchronization = NetworkStateSynchronization.ReliableDeltaCompressed;
+		}
 		isRun = true;
 		if (Defs.isSoundFX && workingSound != null)
 		{
@@ -944,17 +960,18 @@ public class TurretController : MonoBehaviour, IDamageable
 		return position;
 	}
 
-	public void SendPhotonViewMyPlayer(PhotonView myId)
+	public void SendNetworkViewMyPlayer(NetworkViewID myId)
 	{
-		_PhotonView.RPC("SendPhotonViewMyPlayerRPC", PhotonTargets.AllBuffered, myId);
+		_networkView.RPC("SendNetworkViewMyPlayerRPC", RPCMode.AllBuffered, myId);
 	}
 
+	[RPC]
 	[PunRPC]
-	public void SendPhotonViewMyPlayerRPC(PhotonView myId)
+	public void SendNetworkViewMyPlayerRPC(NetworkViewID myId)
 	{
 		for (int i = 0; i < Initializer.players.Count; i++)
 		{
-			if (myId.Equals(Initializer.players[i].mySkinName.GetComponent<PhotonView>()))
+			if (myId.Equals(Initializer.players[i].mySkinName.GetComponent<NetworkView>().viewID))
 			{
 				myPlayer = Initializer.players[i].mySkinName.gameObject;
 				myPlayerMoveC = myPlayer.GetComponent<SkinName>().playerMoveC;

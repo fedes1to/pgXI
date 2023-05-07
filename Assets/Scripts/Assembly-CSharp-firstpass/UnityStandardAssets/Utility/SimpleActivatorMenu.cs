@@ -1,11 +1,10 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace UnityStandardAssets.Utility
 {
 	public class SimpleActivatorMenu : MonoBehaviour
 	{
-		public Text camSwitchButton;
+		public GUIText camSwitchButton;
 
 		public GameObject[] objects;
 

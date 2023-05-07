@@ -34,7 +34,7 @@ public class BaseGrenadeGadget : ThrowGadget
 		Rocket rocket = Player_move_c.CreateRocket(weapon, Vector3.down * 10000f, Quaternion.identity, 1f);
 		if (Defs.isMulti && !Defs.isInet)
 		{
-			rocket.SendPhotonViewMyPlayer(WeaponManager.sharedManager.myPlayerMoveC.myPlayerTransform.GetComponent<PhotonView>());
+			rocket.SendNetworkViewMyPlayer(WeaponManager.sharedManager.myPlayerMoveC.myPlayerTransform.GetComponent<NetworkView>().viewID);
 		}
 		currentGrenade = rocket.gameObject;
 		rocket.multiplayerDamage = Info.Damage;

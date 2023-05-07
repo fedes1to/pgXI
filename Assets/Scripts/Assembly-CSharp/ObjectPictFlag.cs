@@ -19,7 +19,7 @@ internal sealed class ObjectPictFlag : MonoBehaviour
 
 	public void SetTexture(Texture _texture)
 	{
-		// GetComponent<Image>().texture = _texture;
+		GetComponent<GUITexture>().texture = _texture;
 	}
 
 	private void Update()

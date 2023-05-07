@@ -183,6 +183,7 @@ public class BaseExplosionObject : MonoBehaviour
 		RecreateObject();
 	}
 
+	[RPC]
 	[PunRPC]
 	public void DestroyObjectByNetworkRpc()
 	{
@@ -196,6 +197,7 @@ public class BaseExplosionObject : MonoBehaviour
 		}
 	}
 
+	[RPC]
 	[PunRPC]
 	public void StartNewRespanObjectRpc()
 	{
@@ -206,6 +208,7 @@ public class BaseExplosionObject : MonoBehaviour
 	}
 
 	[PunRPC]
+	[RPC]
 	public void PlayDestroyEffectRpc()
 	{
 		PlayDestroyEffect();

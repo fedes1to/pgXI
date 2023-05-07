@@ -36,7 +36,7 @@ public class ShurikenGadget : ThrowGadget
 			Rocket rocket = Player_move_c.CreateRocket(weapon, WeaponManager.sharedManager.myPlayerMoveC.myCurrentWeaponSounds.grenatePoint.position, WeaponManager.sharedManager.myPlayerMoveC.myCurrentWeaponSounds.grenatePoint.rotation, 1f);
 			if (Defs.isMulti && !Defs.isInet)
 			{
-				rocket.SendPhotonViewMyPlayer(WeaponManager.sharedManager.myPlayerMoveC.myPlayerTransform.GetComponent<PhotonView>());
+				rocket.SendNetworkViewMyPlayer(WeaponManager.sharedManager.myPlayerMoveC.myPlayerTransform.GetComponent<NetworkView>().viewID);
 			}
 			currentGrenades[i] = rocket.gameObject;
 			rocket.multiplayerDamage = Info.Damage;

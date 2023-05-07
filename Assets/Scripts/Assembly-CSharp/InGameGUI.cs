@@ -1686,17 +1686,24 @@ public sealed class InGameGUI : MonoBehaviour
 				{
 					if (Time.time - playerMoveC.messages[num8].time < 10f)
 					{
-						if (playerMoveC.messages[num8].command == 0)
+						if ((!isInet && playerMoveC.messages[num8].IDLocal == WeaponManager.sharedManager.myPlayer.GetComponent<NetworkView>().viewID) || (isInet && playerMoveC.messages[num8].ID == WeaponManager.sharedManager.myPlayer.GetComponent<PhotonView>().viewID))
 						{
-							chatLabels[num7].GetComponent<UILabel>().color = new Color(1f, 1f, 0.15f, 1f);
+							chatLabels[num7].GetComponent<UILabel>().color = new Color(0f, 1f, 0.15f, 1f);
 						}
-						if (playerMoveC.messages[num8].command == 1)
+						else
 						{
-							chatLabels[num7].GetComponent<UILabel>().color = new Color(0f, 0f, 0.9f, 1f);
-						}
-						if (playerMoveC.messages[num8].command == 2)
-						{
-							chatLabels[num7].GetComponent<UILabel>().color = new Color(1f, 0f, 0f, 1f);
+							if (playerMoveC.messages[num8].command == 0)
+							{
+								chatLabels[num7].GetComponent<UILabel>().color = new Color(1f, 1f, 0.15f, 1f);
+							}
+							if (playerMoveC.messages[num8].command == 1)
+							{
+								chatLabels[num7].GetComponent<UILabel>().color = new Color(0f, 0f, 0.9f, 1f);
+							}
+							if (playerMoveC.messages[num8].command == 2)
+							{
+								chatLabels[num7].GetComponent<UILabel>().color = new Color(1f, 0f, 0f, 1f);
+							}
 						}
 						ChatLabel component2 = chatLabels[num7].GetComponent<ChatLabel>();
 						component2.nickLabel.text = playerMoveC.messages[num8].text;

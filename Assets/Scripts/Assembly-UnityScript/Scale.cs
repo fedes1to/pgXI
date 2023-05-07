@@ -4,7 +4,7 @@ using UnityEngine;
 [Serializable]
 public class Scale : MonoBehaviour
 {
-	public ParticleSystem[] particleEmitters;
+	public ParticleEmitter[] particleEmitters;
 
 	public float scale;
 

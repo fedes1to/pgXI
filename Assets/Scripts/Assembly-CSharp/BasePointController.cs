@@ -360,6 +360,7 @@ public class BasePointController : MonoBehaviour
 	}
 
 	[PunRPC]
+	[RPC]
 	public void SinchCapture(int command)
 	{
 		if (command == 1)
@@ -375,6 +376,7 @@ public class BasePointController : MonoBehaviour
 	}
 
 	[PunRPC]
+	[RPC]
 	private void AddPlayerInCapturePoint(int _viewId, float _time)
 	{
 		for (int i = 0; i < Initializer.players.Count; i++)
@@ -426,6 +428,7 @@ public class BasePointController : MonoBehaviour
 	}
 
 	[PunRPC]
+	[RPC]
 	private void RemovePlayerInCapturePoint(int _viewId, float _time)
 	{
 		for (int i = 0; i < Initializer.players.Count; i++)
@@ -489,6 +492,7 @@ public class BasePointController : MonoBehaviour
 	}
 
 	[PunRPC]
+	[RPC]
 	public void SynchCaptureCounterNewPlayer(int _viewId, bool isMaster, float _captureCounter, int _captureCommand)
 	{
 		if (!isStartUpdateFromMasterClient && PhotonNetwork.player.ID == _viewId)
@@ -499,6 +503,7 @@ public class BasePointController : MonoBehaviour
 		}
 	}
 
+	[RPC]
 	[PunRPC]
 	private void SynchCaptureCounter(float _captureCounter)
 	{

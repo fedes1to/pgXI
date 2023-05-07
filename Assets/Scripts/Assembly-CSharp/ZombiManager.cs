@@ -81,6 +81,7 @@ public sealed class ZombiManager : MonoBehaviour
 	}
 
 	[PunRPC]
+	[RPC]
 	private void synchTime(float _time)
 	{
 	}
@@ -163,6 +164,7 @@ public sealed class ZombiManager : MonoBehaviour
 	}
 
 	[PunRPC]
+	[RPC]
 	private void win(string _winer)
 	{
 		if (WeaponManager.sharedManager.myPlayerMoveC != null)
@@ -246,6 +248,7 @@ public sealed class ZombiManager : MonoBehaviour
 	}
 
 	[PunRPC]
+	[RPC]
 	private void WinID(int winID)
 	{
 		WeaponManager weaponManager = WeaponManager.sharedManager;

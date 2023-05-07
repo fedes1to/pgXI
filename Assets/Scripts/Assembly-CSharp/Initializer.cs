@@ -11,9 +11,8 @@ using Rilisoft.NullExtensions;
 using RilisoftBot;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Photon;
 
-public sealed class Initializer : UnityEngine.MonoBehaviour
+public sealed class Initializer : MonoBehaviour
 {
 	public class TargetsList
 	{
@@ -235,7 +234,7 @@ public sealed class Initializer : UnityEngine.MonoBehaviour
 		return null;
 	}
 
-	public static Player_move_c GetPlayerMoveCWithLocalPlayerID(PhotonView id)
+	public static Player_move_c GetPlayerMoveCWithLocalPlayerID(NetworkViewID id)
 	{
 		foreach (Player_move_c player in players)
 		{
@@ -500,8 +499,17 @@ public sealed class Initializer : UnityEngine.MonoBehaviour
 			tc = UnityEngine.Object.Instantiate(tempCam, Vector3.zero, Quaternion.identity) as GameObject;
 			if (!Defs.isInet)
 			{
-				_weaponManager.myTable = (GameObject)PhotonNetwork.Instantiate("NetworkTable", base.transform.position, base.transform.rotation, 0);
-				_weaponManager.myNetworkStartTable = _weaponManager.myTable.GetComponent<NetworkStartTable>();
+				if (PlayerPrefs.GetString("TypeGame").Equals("client"))
+				{
+					bool useNat = !Network.HavePublicAddress();
+					Network.useNat = useNat;
+					UnityEngine.Debug.Log(Defs.ServerIp + " " + Network.Connect(Defs.ServerIp, 25002));
+				}
+				else
+				{
+					_weaponManager.myTable = (GameObject)Network.Instantiate(networkTablePref, base.transform.position, base.transform.rotation, 0);
+					_weaponManager.myNetworkStartTable = _weaponManager.myTable.GetComponent<NetworkStartTable>();
+				}
 			}
 			else
 			{
@@ -520,6 +528,7 @@ public sealed class Initializer : UnityEngine.MonoBehaviour
 	}
 
 	[PunRPC]
+	[RPC]
 	private void SpawnOnNetwork(Vector3 pos, Quaternion rot, int id1, PhotonPlayer np)
 	{
 		if (networkTablePref != null)
@@ -724,13 +733,20 @@ public sealed class Initializer : UnityEngine.MonoBehaviour
 
 	private void OnConnectedToServer()
 	{
-		_weaponManager.myTable = (GameObject)PhotonNetwork.Instantiate("NetworkTable", base.transform.position, base.transform.rotation, 0);
+		_weaponManager.myTable = (GameObject)Network.Instantiate(networkTablePref, base.transform.position, base.transform.rotation, 0);
 		_weaponManager.myNetworkStartTable = _weaponManager.myTable.GetComponent<NetworkStartTable>();
 	}
 
-	private void OnFailedToConnect()
+	private void OnFailedToConnect(NetworkConnectionError error)
 	{
-		ShowDescriptionLabel(LocalizationStore.Get("Key_0993"));
+		if (error == NetworkConnectionError.TooManyConnectedPlayers)
+		{
+			ShowDescriptionLabel(LocalizationStore.Get("Key_0992"));
+		}
+		if (error == NetworkConnectionError.ConnectionFailed)
+		{
+			ShowDescriptionLabel(LocalizationStore.Get("Key_0993"));
+		}
 		timerShow = 5f;
 		if (!(_weaponManager == null) && !(_weaponManager.myTable == null))
 		{
