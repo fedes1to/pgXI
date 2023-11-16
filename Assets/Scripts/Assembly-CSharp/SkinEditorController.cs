@@ -172,7 +172,7 @@ public class SkinEditorController : MonoBehaviour
 
 	public UIWrapContent skinPresentsWrap;
 
-	private List<string> presentSkins = SkinsController.GetSkinsIdList();
+	private List<string> presentSkins;
 
 	private CharacterInterface characterInterface;
 
@@ -189,6 +189,7 @@ public class SkinEditorController : MonoBehaviour
 
 	private void Awake()
 	{
+		presentSkins = SkinsController.GetSkinsIdList();
 		GameObject original = Resources.Load("Character_model") as GameObject;
 		characterInterface = (UnityEngine.Object.Instantiate(original, Vector3.zero, Quaternion.Euler(0f, 158.15f, 0f)) as GameObject).GetComponent<CharacterInterface>();
 		characterInterface.GetComponent<CharacterInterface>().usePetFromStorager = false;

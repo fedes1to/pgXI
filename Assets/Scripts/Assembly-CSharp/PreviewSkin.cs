@@ -27,9 +27,9 @@ public class PreviewSkin : MonoBehaviour
 
 	private void Update()
 	{
-		if (!isTapDown && Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+		if (!isTapDown && Input2.touchCount > 0 && Input2.GetTouch(0).phase == TouchPhase.Began)
 		{
-			touchPosition = ((Input.touchCount <= 0) ? new Vector2(Input.mousePosition.x, Input.mousePosition.y) : Input.GetTouch(0).position);
+			touchPosition = ((Input2.touchCount <= 0) ? new Vector2(Input.mousePosition.x, Input.mousePosition.y) : Input2.GetTouch(0).position);
 			if (swipeZone.Contains(touchPosition))
 			{
 				isTapDown = true;
@@ -41,9 +41,9 @@ public class PreviewSkin : MonoBehaviour
 			}
 			return;
 		}
-		if (isTapDown && Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved)
+		if (isTapDown && Input2.touchCount > 0 && Input2.GetTouch(0).phase == TouchPhase.Moved)
 		{
-			float num = ((Input.touchCount <= 0) ? (touchPosition.x - Input.mousePosition.x) : (touchPosition.x - Input.GetTouch(0).position.x));
+			float num = ((Input2.touchCount <= 0) ? (touchPosition.x - Input.mousePosition.x) : (touchPosition.x - Input2.GetTouch(0).position.x));
 			if (selectedGameObject != null && Mathf.Abs(num) > 2f)
 			{
 				Unhighlight(selectedGameObject);
@@ -53,10 +53,10 @@ public class PreviewSkin : MonoBehaviour
 			{
 				float num2 = 0.5f;
 				base.transform.Rotate(0f, num2 * num, 0f, Space.Self);
-				touchPosition = ((Input.touchCount <= 0) ? new Vector2(Input.mousePosition.x, Input.mousePosition.y) : Input.GetTouch(0).position);
+				touchPosition = ((Input2.touchCount <= 0) ? new Vector2(Input.mousePosition.x, Input.mousePosition.y) : Input2.GetTouch(0).position);
 			}
 		}
-		if (Input.touchCount <= 0 || (Input.GetTouch(0).phase != TouchPhase.Ended && Input.GetTouch(0).phase != TouchPhase.Canceled))
+		if (Input2.touchCount <= 0 || (Input2.GetTouch(0).phase != TouchPhase.Ended && Input2.GetTouch(0).phase != TouchPhase.Canceled))
 		{
 			return;
 		}
