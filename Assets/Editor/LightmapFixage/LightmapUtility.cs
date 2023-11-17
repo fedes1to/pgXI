@@ -12,7 +12,8 @@ public class LightmapUtility : Editor
 		"Mobile/Diffuse Detail",
 		"Legacy Shaders/Diffuse",
 		"Legacy Shaders/Self-Illumin/Diffuse",
-		"Legacy Shaders/Better Lightmapped/Diffuse"
+		"Legacy Shaders/Better Lightmapped/Diffuse",
+		"Legacy Shaders/Lightmapped/Diffuse"
 	};
 
 	//make a transparent thing or whatever
