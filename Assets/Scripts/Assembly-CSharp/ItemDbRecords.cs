@@ -8,11 +8,11 @@ public static class ItemDbRecords
 		list.Add(new ItemRecord(1, "FirstPistol", null, "Weapon1", null, null, 0, false, false));
 		list.Add(new ItemRecord(2, "FirstShotgun", null, "Weapon2", null, null, 0, false, false));
 		list.Add(new ItemRecord(3, "UziWeapon", null, "Weapon3", null, null, 0, false, false));
-		list.Add(new ItemRecord(4, "Revolver", null, "Weapon4", null, null, 0, false, false));
-		list.Add(new ItemRecord(5, "Machingun", null, "Weapon5", null, null, 0, false, false));
+		list.Add(new ItemRecord(4, "Revolver", "Revolver", "Weapon4", "Revolver", "Revolver", 0, true, false));
+		list.Add(new ItemRecord(5, "Machingun", "Machingun", "Weapon5", "Machingun", "Machingun", 0, true, false));
 		list.Add(new ItemRecord(6, "MinersWeapon", "MinerWeaponSett", "Weapon6", "MinerWeapon", "Miner Weapon", 35, true, false));
 		list.Add(new ItemRecord(7, "CrystalSword", "SwordSett", "Weapon7", "crystalsword", "Crystal Sword", 185, true, false, "Coins", 93));
-		list.Add(new ItemRecord(8, "AK47", null, "Weapon8", null, null, 0, false, false));
+		list.Add(new ItemRecord(8, "AK47", "AK47", "Weapon8", "AK47", "AK47", 0, true, false));
 		list.Add(new ItemRecord(9, "Knife", null, "Weapon9", null, null, 0, false, false));
 		list.Add(new ItemRecord(10, "m16", "CombatRifleSett", "Weapon10", "combatrifle", "Combat Rifle", 85, true, false));
 		list.Add(new ItemRecord(11, "Eagle 1", "GoldenEagleSett", "Weapon11", "goldeneagle", "Golden Eagle", 75, true, false));
@@ -55,9 +55,9 @@ public static class ItemDbRecords
 		list.Add(new ItemRecord(48, "Mace 2", "Mace2SN", "Weapon48", "mace2", "Lava Flail", 120, true, false));
 		list.Add(new ItemRecord(49, "Sword_2 2", "Sword_22SN", "Weapon49", "sword_22", "Fire Demon", 255, true, true));
 		list.Add(new ItemRecord(50, "Staff 2", "Staff2SN", "Weapon50", "staff2", "Archimage Dragon Wand", 200, true, false));
-		list.Add(new ItemRecord(51, "DoubleShotgun", null, "Weapon51", null, null, 0, false, false));
-		list.Add(new ItemRecord(52, "AlienGun", null, "Weapon52", null, null, 0, false, false));
-		list.Add(new ItemRecord(53, "m16_2", null, "Weapon53", null, null, 0, false, false));
+		list.Add(new ItemRecord(51, "DoubleShotgun", "DoubleShotgun", "Weapon51", "DoubleShotgun", "DoubleShotgun", 0, true, false));
+		list.Add(new ItemRecord(52, "AlienGun", "AlienGun", "Weapon52", "AlienGun", "AlienGun", 0, true, false));
+		list.Add(new ItemRecord(53, "m16_2", "m16_2", "Weapon53", "m16_2", "m16_2", 0, true, false));
 		list.Add(new ItemRecord(54, "CrystalGlock", "CrystalGlockSN", "Weapon54", "crystalGlock", "Fast Death 3", 135, true, false, "Coins", 65));
 		list.Add(new ItemRecord(55, "CrystalSPAS", "CrystalSPASSN", "Weapon55", "crystalSPAS", "Mega Destroyer 3", 45, true, false));
 		list.Add(new ItemRecord(56, "Tree", "TreeSN", "Weapon56", "tree", "Christmas Sword", 75, true, false));
@@ -70,7 +70,7 @@ public static class ItemDbRecords
 		list.Add(new ItemRecord(63, "SVD_2", "SVD_2SN", "Weapon63", "svd_2", "Guerilla Rifle M2", 135, true, false));
 		list.Add(new ItemRecord(64, "Eagle_3", "Eagle_3SN", "Weapon64", "eagle3", "Deadly Viper", 150, true, false, "Coins", 72));
 		list.Add(new ItemRecord(65, "Barrett_2", "Barrett2SN", "Weapon65", "barrett_2", "Ultimate Headhunter", 150, true, false));
-		list.Add(new ItemRecord(66, "Uzi2", null, "Weapon66", null, null, 0, false, false));
+		list.Add(new ItemRecord(66, "Uzi2", "Uzi2", "Weapon66", "Uzi2", "Uzi2", 0, true, false));
 		list.Add(new ItemRecord(67, "Hunter_Rifle", null, "Weapon67", null, null, 0, false, false));
 		list.Add(new ItemRecord(68, "Scythe_2", "Scythe_2_SN", "Weapon68", "scythe2", "Laser Scythe", 150, true, true));
 		list.Add(new ItemRecord(69, "m16_3", "m_16_3_Sett", "Weapon69", "m16_3", "Combat Rifle M2", 100, true, false));

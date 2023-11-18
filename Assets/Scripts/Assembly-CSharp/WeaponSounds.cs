@@ -507,7 +507,7 @@ public sealed class WeaponSounds : MonoBehaviour
 
 	public float downKoof = 0.2f;
 
-	public bool campaignOnly;
+	public bool campaignOnly { get{ return false; } }
 
 	public int rocketNum;
 
