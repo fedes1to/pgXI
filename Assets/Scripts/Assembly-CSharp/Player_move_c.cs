@@ -393,7 +393,7 @@ public sealed class Player_move_c : MonoBehaviour
 
 	private int currentWeaponBeforeGrenade = -1;
 
-	private float stdFov = 60f;
+	private float stdFov = 90f;
 
 	private AudioSource myAudioSource;
 
