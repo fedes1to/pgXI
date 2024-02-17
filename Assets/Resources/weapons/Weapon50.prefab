@@ -14,6 +14,8 @@ Prefab:
 --- !u!1 &1637783243372752
 GameObject:
   m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4214154711074823}
@@ -30,6 +32,8 @@ GameObject:
 --- !u!4 &4214154711074823
 Transform:
   m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1637783243372752}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -38,15 +42,42 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -0, z: -0}
+--- !u!114 &114184485721250044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1637783243372752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15d89e3beb0edcf46827ecf4fed2761a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gunFlashObj: {fileID: 0}
+  timeFireAction: 0.1
+--- !u!114 &114256348442124222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1637783243372752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07066e518e9705546a627fe2df116989, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dataId: 5
 --- !u!114 &114439308627583411
 MonoBehaviour:
   m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1637783243372752}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a719e3ceedf796444ade224c30d54318, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   rarity: 2
   typeForLow: 15
   InShopEffects: 01000000
@@ -81,18 +112,18 @@ MonoBehaviour:
   grenadeUseTime: 0.4
   grenadeThrowTime: 0.2667
   fireRateShop: 83
-  filterMap:
+  filterMap: 
   alternativeName: Weapon401
   isBurstShooting: 0
   countShootInBurst: 3
   delayInBurstShooting: 1
   isDaterWeapon: 0
-  daterMessage:
+  daterMessage: 
   ammoInClip: 1
   InitialAmmo: 20
   maxAmmo: 40
   ammoForBonusShotMelee: 10
-  isMelee: 1
+  isMelee: 0
   isRoundMelee: 0
   isFrostSword: 0
   frostRadius: 0
@@ -123,7 +154,7 @@ MonoBehaviour:
   flamethrower: 0
   shocker: 0
   snowStorm: 0
-  bulletExplode: 0
+  bulletExplode: 1
   bazooka: 0
   countInSeriaBazooka: 1
   stepTimeInSeriaBazooka: 0.2
@@ -132,7 +163,7 @@ MonoBehaviour:
   freezer: 0
   countReflectionRay: 1
   grenadeLauncher: 0
-  bazookaExplosionName: Explosion1
+  bazookaExplosionName: Explosion34
   bazookaExplosionRadius: 5
   bazookaExplosionRadiusSelf: 2.5
   bazookaImpulseRadius: 6
@@ -158,7 +189,6 @@ MonoBehaviour:
   maxKoof: 4
   downKoofFirst: 0.2
   downKoof: 0.2
-  campaignOnly: 0
   rocketNum: 0
   scopeNum: 0
   scaleShop: 289.66336
@@ -168,24 +198,3 @@ MonoBehaviour:
   protectionEffectValue: 1
   localizeWeaponKey: Key_0646
   DPSRememberWhenGet: 0
---- !u!114 &114184485721250044
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_GameObject: {fileID: 1637783243372752}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15d89e3beb0edcf46827ecf4fed2761a, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
-  gunFlashObj: {fileID: 0}
-  timeFireAction: 0.1
---- !u!114 &114256348442124222
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_GameObject: {fileID: 1637783243372752}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07066e518e9705546a627fe2df116989, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
-  _dataId: 5
