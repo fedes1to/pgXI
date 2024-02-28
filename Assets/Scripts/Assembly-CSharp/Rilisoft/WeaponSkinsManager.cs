@@ -12,7 +12,7 @@ namespace Rilisoft
 		public static List<string> SkinIds = new List<string>
 		{
 			"weaponskin_acid_canon", "weaponskin_antihero_rifle", "weaponskin_dragon_breath", "weaponskin_ghost_lantern", "weaponskin_loud_piggy", "weaponskin_peacemaker", "weaponskin_prototype", "weaponskin_secret_forces_rifle", "weaponskin_shotgun_pistol", "weaponskin_steam_revolver",
-			"weaponskin_storm_hammer", "weaponskin_toy_bomber"
+			"weaponskin_storm_hammer", "weaponskin_toy_bomber", "weaponskin_antichroma_rifle"
 		};
 
 		public static List<WeaponSkin> AllSkins
