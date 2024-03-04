@@ -2345,7 +2345,7 @@ public sealed class Defs
 	{
 		get
 		{
-			return "Menu_School";
+			return "Menu_Test";
 		}
 	}
 

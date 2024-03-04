@@ -55,7 +55,7 @@ public class ServerSettings : ScriptableObject
 	public void UseCloud(string cloudAppid, CloudRegionCode code)
 	{
 		HostType = HostingOption.PhotonCloud;
-		AppID = "4d2df5e9-5172-44a0-bf8b-df5346a54393";
+		AppID = "108a9f24-fb7a-479b-b50e-cc5c2bf0074b";
 		PreferredRegion = code;
 	}
 
